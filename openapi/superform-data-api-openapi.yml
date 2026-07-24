@@ -1,0 +1,218 @@
+openapi: 3.1.0
+info:
+  title: Superform Auxiliary Data API
+  version: 1.0.0
+servers:
+- url: https://api.superform.xyz
+tags:
+- name: Data
+paths:
+  /vault/data/historical/{vaultOrSuperformIDs}:
+    get:
+      description: Get historical vault data by vaultID(s) or superformID(s)
+      operationId: get-historical-vault-data
+      parameters:
+      - description: Comma-separated list of vault or superform IDs
+        example: 6277101738082190570017043140855561342102135322485627578637,859962937750480043315024633754576372459598905847746964453763
+        in: path
+        name: vaultOrSuperformIDs
+        required: true
+        schema:
+          description: Comma-separated list of vault or superform IDs
+          examples:
+          - 6277101738082190570017043140855561342102135322485627578637,859962937750480043315024633754576372459598905847746964453763
+          type: string
+      - description: Unix timestamp for the start of the time series data
+        example: 1726225932
+        explode: false
+        in: query
+        name: start_timestamp
+        schema:
+          description: Unix timestamp for the start of the time series data
+          examples:
+          - 1726225932
+          format: int64
+          type: integer
+      - description: Unix timestamp for the end of the time series data
+        example: 1729225932
+        explode: false
+        in: query
+        name: end_timestamp
+        schema:
+          description: Unix timestamp for the end of the time series data
+          examples:
+          - 1729225932
+          format: int64
+          type: integer
+      - description: Granularity of the time series data. Default is day.
+        example: day
+        explode: false
+        in: query
+        name: granularity
+        schema:
+          description: Granularity of the time series data. Default is day.
+          enum:
+          - hour
+          - day
+          examples:
+          - day
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalVaultResponseBody'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get historical vault data
+      tags:
+      - Data
+components:
+  schemas:
+    HistoricalVaultResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/HistoricalVaultResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        vaults:
+          additionalProperties:
+            $ref: '#/components/schemas/VaultMetrics'
+          description: Vault metrics data keyed by superform_id
+          type: object
+      required:
+      - vaults
+      type: object
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
+      type: object
+    VaultMetrics:
+      additionalProperties: false
+      properties:
+        apy:
+          description: APY at the given timestamp, including rewards APY
+          items:
+            format: double
+            type:
+            - number
+            - 'null'
+          type: array
+        apy_base:
+          description: APY at the given timestamp, excluding rewards APY
+          items:
+            format: double
+            type:
+            - number
+            - 'null'
+          type: array
+        pps:
+          description: Price per share
+          items:
+            format: double
+            type:
+            - number
+            - 'null'
+          type: array
+        pps_usd:
+          description: Price per share in USD
+          items:
+            format: double
+            type:
+            - number
+            - 'null'
+          type: array
+        timestamp:
+          description: Timestamps for the time series data
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        tvl:
+          description: Total value locked in the vault at the given timestamp
+          items:
+            format: double
+            type:
+            - number
+            - 'null'
+          type: array
+      required:
+      - timestamp
+      - tvl
+      - apy
+      - apy_base
+      - pps
+      - pps_usd
+      type: object
+    ErrorModel:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ErrorModel.json
+          format: uri
+          readOnly: true
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          examples:
+          - Property foo is required but is missing.
+          type: string
+        errors:
+          description: Optional list of individual error details
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          type: array
+        instance:
+          description: A URI reference that identifies the specific occurrence of the problem.
+          examples:
+          - https://example.com/error-log/abc123
+          format: uri
+          type: string
+        status:
+          description: HTTP status code
+          examples:
+          - 400
+          format: int64
+          type: integer
+        title:
+          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
+          examples:
+          - Bad Request
+          type: string
+        type:
+          default: about:blank
+          description: A URI reference to human-readable documentation for the error.
+          examples:
+          - https://example.com/errors/example
+          format: uri
+          type: string
+      type: object
+  securitySchemes:
+    apiKey:
+      description: Provide the api key issued to you
+      in: header
+      name: SF-API-KEY
+      type: apiKey

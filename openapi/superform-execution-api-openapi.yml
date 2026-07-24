@@ -1,0 +1,1396 @@
+openapi: 3.1.0
+info:
+  title: Superform Auxiliary Execution API
+  version: 1.0.0
+servers:
+- url: https://api.superform.xyz
+tags:
+- name: Execution
+paths:
+  /deposit/calculate:
+    post:
+      description: This is the first of two steps for a deposit flow. After providing relevant options as input, this endpoint will return a number of possible routes. The selected route should be used as input for the `/deposit/start` endpoint.
+      operationId: deposit-calculate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/QuoteParamsDeposit'
+              type: array
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CalculateResponse'
+                type: array
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get routes for a deposit
+      tags:
+      - Execution
+  /deposit/start:
+    post:
+      description: This is the second and final step in the deposit flow. The expected input is the full output of `/deposit/calculate`. The selected route should be first, or only, route in the `liq.route.routes` array. The response of this endpoint will provide the transaction data and relevant metadata to execute the transaction onchain.
+      operationId: deposit-start
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/StartRouteInput'
+              type: array
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepositResponse'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Start a deposit transaction
+      tags:
+      - Execution
+  /rebalancing/calculate:
+    post:
+      description: This is the first of two steps for a rebalancing flow. After providing relevant options as input, this endpoint will return a number of possible routes. The selected route should be used as input for the `/rebalancing/start` endpoint.
+      operationId: rebalancing-calculate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RebalancingCalculateInput'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RebalancingCalculateOutput'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get routes for a rebalancing
+      tags:
+      - Execution
+  /rebalancing/start:
+    post:
+      operationId: rebalancing-start
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RebalancingStartInput'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RebalanceStartTransactionResponse'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Start a rebalancing transaction
+      tags:
+      - Execution
+  /withdraw/calculate:
+    post:
+      description: This is the first of two steps for a withdrawal flow. After providing relevant options as input, this endpoint will return a number of possible routes. The selected route should be used as input for the `/withdraw/start` endpoint.
+      operationId: withdraw-calculate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/QuoteParamsWithdrawal'
+              type: array
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CalculateResponse'
+                type: array
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get routes for a withdrawal
+      tags:
+      - Execution
+  /withdraw/start:
+    post:
+      description: "This is the second and final step in the withdrawal flow. The expected input is the full output of `/withdraw/calculate`. The selected route should be first, or only, route in the `liq.route.routes` array. The response of this endpoint will provide the transaction data and relevant metadata to execute the transaction onchain. \n > **Note**: if the `approval_data` field is not empty, the user must first approve the token transfer before executing the transaction."
+      operationId: withdraw-start
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/StartRouteInput'
+              type: array
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepositResponse'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Start a withdrawal transaction
+      tags:
+      - Execution
+components:
+  schemas:
+    RebalancingCalculateOutput:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/RebalancingCalculateOutput.json
+          format: uri
+          readOnly: true
+          type: string
+        deposit_routes:
+          items:
+            $ref: '#/components/schemas/CalculateResponse'
+          type: array
+        interim_asset:
+          type: string
+        receiver_address_sp:
+          type: string
+        slippage:
+          format: int64
+          type: integer
+        user_address:
+          type: string
+        withdraw_routes:
+          items:
+            $ref: '#/components/schemas/CalculateResponse'
+          type: array
+      required:
+      - user_address
+      - receiver_address_sp
+      - slippage
+      - interim_asset
+      - withdraw_routes
+      - deposit_routes
+      type: object
+    QuoteParams:
+      additionalProperties: false
+      properties:
+        adjusted_amount:
+          type: string
+        amount_in:
+          description: Amount of the token to be deposited
+          examples:
+          - '15.629478'
+          type: string
+        bridge_slippage:
+          description: Slippage taken on bridge action in bps, between 0.5% and 50%
+          examples:
+          - 50
+          format: int64
+          type: integer
+        contract_address:
+          type: string
+        destination:
+          type: string
+        exclude_ambs:
+          description: List of AMB IDs to exclude from the route. See output of /supported for AMB IDs.
+          examples:
+          - []
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        exclude_bridges:
+          description: List of bridge IDs to exclude from the route. See output of /supported for bridge IDs.
+          examples:
+          - []
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        exclude_dexes:
+          description: List of dex IDs to exclude from the route. See output of /supported for dex IDs.
+          examples:
+          - []
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        exclude_liquidity_providers:
+          description: List of liquidity provider IDs to exclude from the route. See output of /supported for liquidity provider IDs.
+          examples:
+          - []
+          items:
+            format: int64
+            type: integer
+          type: array
+        filter_swap_routes:
+          description: If true, any route that contains a destination swap will be filtered out. Reduces chances of a deposit failing due to route unavailability.
+          type: boolean
+        form_implementation_id:
+          type: string
+        from_address:
+          type: string
+        from_amount:
+          type: string
+        from_chain_id:
+          description: Chain ID of the source chain
+          examples:
+          - 137
+          format: int64
+          type: integer
+        from_token_address:
+          description: Address of the source token
+          examples:
+          - '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174'
+          type: string
+        gas_estimate:
+          $ref: '#/components/schemas/ChainGasEstimate'
+        has_dst_swap:
+          type: boolean
+        is_erc20:
+          type: boolean
+        is_part_of_multi_vault:
+          description: Flag to indicate if the request is part of a multi-vault deposit or withdrawal
+          type: boolean
+        is_same_route:
+          type: boolean
+        is_x_chain:
+          type: boolean
+        max_slippage:
+          format: int64
+          type: integer
+        method:
+          type: string
+        need_insurance:
+          description: If true, only returns insurable routes.
+          type: boolean
+        output_amount_for_withdraw:
+          type: string
+        output_amount_normalized:
+          type: string
+        permit2:
+          type: string
+        positive_slippage:
+          description: Swap surplus in bps, between 1% and 100%. See help.superform.xyz for more.
+          examples:
+          - 100
+          format: int64
+          maximum: 10000
+          minimum: 100
+          type: integer
+        refund_address:
+          description: Address on the destination chain to which the refund should be made, if needed.
+          examples:
+          - '0xB9Ff2b5Ce562b79825Ca2e9003D1d548C6a698d9'
+          type: string
+        retain_4626:
+          description: Flag to indicate if the user wants to hold vault shares or not
+          type: boolean
+        route_type:
+          enum:
+          - time
+          - output
+          - gas
+          examples:
+          - output
+          type: string
+        superform_address:
+          type: string
+        superform_id:
+          description: Must provide either vault_id or superform_id
+          examples:
+          - '53060340969226284497088793362664417178471904761401476120749147'
+          type: string
+        superpositions_amount_in:
+          description: Amount of the superposition to be withdrawn
+          type: string
+        superpositions_chain_id:
+          format: int64
+          type: integer
+        swap_slippage:
+          description: Slippage taken on dex action in bps, between 0.5% and 50%
+          examples:
+          - 50
+          format: int64
+          type: integer
+        to_chain_id:
+          description: Chain ID of the destination chain
+          format: int64
+          type: integer
+        to_token_address:
+          description: Address of the destination token
+          type: string
+        transaction_type:
+          type: string
+        user_address:
+          examples:
+          - '0xB9Ff2b5Ce562b79825Ca2e9003D1d548C6a698d9'
+          type: string
+        vault_decimals:
+          format: int32
+          type: integer
+        vault_id:
+          description: Must provide either vault_id or superform_id
+          examples:
+          - yzGTCum8tkUCcLwyiFv2Z
+          type: string
+        vault_token:
+          type: string
+      required:
+      - user_address
+      type: object
+    ChainGasEstimate:
+      additionalProperties: false
+      properties:
+        estimated_seconds:
+          format: int64
+          type: integer
+        gas_price_usd:
+          type: string
+      required:
+      - gas_price_usd
+      - estimated_seconds
+      type: object
+    CalculateResponse:
+      additionalProperties: false
+      properties:
+        in:
+          $ref: '#/components/schemas/QuoteParams'
+        liq:
+          $ref: '#/components/schemas/VaultRoute'
+      required:
+      - in
+      - liq
+      type: object
+    Int:
+      additionalProperties: false
+      type: object
+    WithdrawalApprovalData:
+      additionalProperties: false
+      properties:
+        data:
+          type: string
+        to:
+          type: string
+        value:
+          type: string
+      required:
+      - to
+      - data
+      - value
+      type: object
+    LifiEstimate:
+      additionalProperties: false
+      properties:
+        approvalAddress:
+          type: string
+        executionDuration:
+          format: double
+          type: number
+        feeCosts:
+          items:
+            $ref: '#/components/schemas/LiFiFee'
+          type: array
+        fromAmount:
+          type: string
+        fromAmountUSD:
+          type: string
+        gasCosts:
+          items:
+            $ref: '#/components/schemas/GasCostItem'
+          type: array
+        toAmount:
+          type: string
+        toAmountMin:
+          type: string
+        toAmountUSD:
+          type: string
+        tool:
+          type: string
+        toolData:
+          $ref: '#/components/schemas/LifiEstimateToolDataStruct'
+      required:
+      - tool
+      - approvalAddress
+      - toAmountMin
+      - toAmount
+      - fromAmount
+      - toolData
+      - executionDuration
+      - fromAmountUSD
+      - toAmountUSD
+      type: object
+    SuperPositionEstimate:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        symbol:
+          type: string
+        usd_value:
+          format: double
+          type: number
+      type: object
+    GasCostItem:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        amountUSD:
+          type: string
+        estimate:
+          type: string
+        limit:
+          type: string
+        price:
+          type: string
+        token:
+          $ref: '#/components/schemas/LifiToken'
+        type:
+          type: string
+      required:
+      - type
+      - price
+      - estimate
+      - limit
+      - amount
+      - amountUSD
+      - token
+      type: object
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
+      type: object
+    RebalanceStartTransactionResponse:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/RebalanceStartTransactionResponse.json
+          format: uri
+          readOnly: true
+          type: string
+        payment:
+          $ref: '#/components/schemas/RebalancingPayment'
+        to:
+          type: string
+        tx_data:
+          type: string
+      required:
+      - tx_data
+      - to
+      - payment
+      type: object
+    LiFiFee:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        amountUSD:
+          type: string
+        description:
+          type: string
+        included:
+          type: boolean
+        name:
+          type: string
+        percentage:
+          type: string
+        token:
+          $ref: '#/components/schemas/LifiToken'
+      required:
+      - name
+      - description
+      - token
+      - amount
+      - amountUSD
+      - percentage
+      - included
+      type: object
+    DepositResponse:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/DepositResponse.json
+          format: uri
+          readOnly: true
+          type: string
+        approval_data:
+          $ref: '#/components/schemas/WithdrawalApprovalData'
+        data:
+          description: Data to be sent in the transaction
+          type: string
+        discount_percent:
+          type: string
+        discount_usd:
+          description: Optional discount applied to some vaults during a promotion.
+          type: string
+        fees_estimate:
+          $ref: '#/components/schemas/PaymentEstimate'
+        method:
+          description: Method to be called on the contract. This is for reference only, as method is encoded in the tx data below.
+          type: string
+        original_fee_usd:
+          type: string
+        to:
+          description: Address to which the deposit should be made
+          type: string
+        value:
+          description: Value to be sent in the transaction
+          type: string
+        value_usd:
+          description: Value to be sent in the transaction in USD
+          type: string
+      required:
+      - to
+      - method
+      - data
+      - value
+      - value_usd
+      - discount_usd
+      - original_fee_usd
+      - discount_percent
+      - approval_data
+      type: object
+    LifiRouteStepToolDetailsStruct:
+      additionalProperties: false
+      properties:
+        key:
+          type: string
+        logoURI:
+          type: string
+        name:
+          type: string
+      required:
+      - key
+      - name
+      - logoURI
+      type: object
+    RouteDex:
+      additionalProperties: false
+      properties:
+        logo:
+          type: string
+        name:
+          type: string
+      required:
+      - name
+      - logo
+      type: object
+    RebalancingFrom:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        superform_id:
+          type: string
+      required:
+      - superform_id
+      - amount
+      type: object
+    RebalancingCalculateInput:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/RebalancingCalculateInput.json
+          format: uri
+          readOnly: true
+          type: string
+        from_chain_id:
+          format: int64
+          type: integer
+        rebalancing_from:
+          items:
+            $ref: '#/components/schemas/RebalancingFrom'
+          type: array
+        rebalancing_to:
+          items:
+            $ref: '#/components/schemas/RebalancingTo'
+          type: array
+        receiver_address_sp:
+          type: string
+        slippage:
+          format: int64
+          type: integer
+        user_address:
+          type: string
+      required:
+      - user_address
+      - receiver_address_sp
+      - from_chain_id
+      - slippage
+      - rebalancing_from
+      - rebalancing_to
+      type: object
+    PaymentEstimate:
+      additionalProperties: false
+      properties:
+        bridging_fee:
+          $ref: '#/components/schemas/Int'
+        dst_amount:
+          $ref: '#/components/schemas/Int'
+        liq_amount:
+          $ref: '#/components/schemas/Int'
+        src_amount:
+          $ref: '#/components/schemas/Int'
+        total_amount:
+          $ref: '#/components/schemas/Int'
+      required:
+      - liq_amount
+      - src_amount
+      - dst_amount
+      - total_amount
+      - bridging_fee
+      type: object
+    StartRouteInput:
+      additionalProperties: false
+      properties:
+        in:
+          $ref: '#/components/schemas/QuoteParams'
+        liq:
+          $ref: '#/components/schemas/VaultRoute'
+      required:
+      - in
+      - liq
+      type: object
+    ToolDetailsStruct:
+      additionalProperties: false
+      properties:
+        key:
+          type: string
+        logoURI:
+          type: string
+        name:
+          type: string
+      required:
+      - key
+      - name
+      - logoURI
+      type: object
+    RebalancingPayment:
+      additionalProperties: false
+      properties:
+        deposit_amount:
+          type: string
+        total_amount:
+          type: string
+        total_amount_usd:
+          format: double
+          type: number
+        withdraw_amount:
+          type: string
+      required:
+      - total_amount
+      - withdraw_amount
+      - deposit_amount
+      - total_amount_usd
+      type: object
+    LifiEstimateToolDataStruct:
+      additionalProperties: false
+      properties:
+        estimatedGas:
+          format: int64
+          type: integer
+        fromToken:
+          $ref: '#/components/schemas/LifiToken'
+        fromTokenAmount:
+          type: string
+        protocols:
+          items:
+            items:
+              items:
+                $ref: '#/components/schemas/ProtocolItem'
+              type: array
+            type: array
+          type: array
+        toToken:
+          $ref: '#/components/schemas/LifiToken'
+        toTokenAmount:
+          type: string
+      required:
+      - fromToken
+      - toToken
+      - toTokenAmount
+      - fromTokenAmount
+      - estimatedGas
+      type: object
+    LifiAction:
+      additionalProperties: false
+      properties:
+        fromAddress:
+          type: string
+        fromAmount:
+          type: string
+        fromChainId:
+          format: int64
+          type: integer
+        fromToken:
+          $ref: '#/components/schemas/LifiToken'
+        slippage:
+          format: double
+          type: number
+        toAddress:
+          type: string
+        toChainId:
+          format: int64
+          type: integer
+        toToken:
+          $ref: '#/components/schemas/LifiToken'
+      required:
+      - fromToken
+      - fromAmount
+      - toToken
+      - fromChainId
+      - toChainId
+      - slippage
+      type: object
+    RouteToken:
+      additionalProperties: false
+      properties:
+        address:
+          type: string
+        chain_id:
+          format: int64
+          type: integer
+        decimals:
+          format: int64
+          type: integer
+        logo_uri:
+          type: string
+        name:
+          type: string
+        symbol:
+          type: string
+      required:
+      - address
+      - symbol
+      - decimals
+      - chain_id
+      - name
+      type: object
+    QuoteParamsWithdrawal:
+      additionalProperties: false
+      properties:
+        bridge_slippage:
+          description: Slippage taken on bridge action in bps, between 0.5% and 50%
+          examples:
+          - 50
+          format: int64
+          type: integer
+        exclude_ambs:
+          description: List of AMB IDs to exclude from the route. See output of /supported for AMB IDs.
+          examples:
+          - []
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        exclude_bridges:
+          description: List of bridge IDs to exclude from the route. See output of /supported for bridge IDs.
+          examples:
+          - []
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        exclude_dexes:
+          description: List of dex IDs to exclude from the route. See output of /supported for dex IDs.
+          examples:
+          - []
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        exclude_liquidity_providers:
+          description: List of liquidity provider IDs to exclude from the route. See output of /supported for liquidity provider IDs.
+          examples:
+          - []
+          items:
+            format: int64
+            type: integer
+          type: array
+        filter_swap_routes:
+          description: If true, any route that contains a destination swap will be filtered out. Reduces chances of a deposit failing due to route unavailability.
+          type: boolean
+        is_erc20:
+          description: Is the superposition an aERC20 token instead of the traditional 1155S
+          type: boolean
+        is_part_of_multi_vault:
+          description: Flag to indicate if the request is part of a multi-vault deposit or withdrawal
+          type: boolean
+        need_insurance:
+          description: If true, only returns insurable routes.
+          type: boolean
+        positive_slippage:
+          description: Swap surplus in bps, between 1% and 100%. See help.superform.xyz for more.
+          examples:
+          - 100
+          format: int64
+          maximum: 10000
+          minimum: 100
+          type: integer
+        refund_address:
+          description: Address on the destination chain to which the refund should be made, if needed.
+          examples:
+          - '0xB9Ff2b5Ce562b79825Ca2e9003D1d548C6a698d9'
+          type: string
+        retain_4626:
+          description: Flag to indicate if the user wants to hold vault shares or not
+          type: boolean
+        route_type:
+          enum:
+          - time
+          - output
+          - gas
+          examples:
+          - output
+          type: string
+        superform_id:
+          description: Must provide either vault_id or superform_id
+          examples:
+          - '6277101737206669028000504059097845015423773220595131737620'
+          type: string
+        superpositions_amount_in:
+          description: Amount of the superposition to be withdrawn
+          examples:
+          - '3881289106529881'
+          type: string
+        superpositions_chain_id:
+          description: Chain ID that the superposition was minted to.
+          examples:
+          - 10
+          format: int64
+          type: integer
+        swap_slippage:
+          description: Slippage taken on dex action in bps, between 0.5% and 50%
+          examples:
+          - 50
+          format: int64
+          type: integer
+        to_chain_id:
+          description: Chain ID of the destination chain
+          examples:
+          - 42161
+          format: int64
+          type: integer
+        to_token_address:
+          description: Address of the destination token
+          examples:
+          - '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+          type: string
+        user_address:
+          examples:
+          - '0xB9Ff2b5Ce562b79825Ca2e9003D1d548C6a698d9'
+          type: string
+        vault_id:
+          description: Must provide either vault_id or superform_id
+          type: string
+      required:
+      - user_address
+      type: object
+    RebalancingStartInput:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/RebalancingStartInput.json
+          format: uri
+          readOnly: true
+          type: string
+        deposit_routes:
+          items:
+            $ref: '#/components/schemas/CalculateResponse'
+          type: array
+        interim_asset:
+          type: string
+        receiver_address_sp:
+          type: string
+        slippage:
+          format: int64
+          type: integer
+        user_address:
+          type: string
+        withdraw_routes:
+          items:
+            $ref: '#/components/schemas/CalculateResponse'
+          type: array
+      required:
+      - user_address
+      - receiver_address_sp
+      - slippage
+      - interim_asset
+      - withdraw_routes
+      - deposit_routes
+      type: object
+    Route:
+      additionalProperties: false
+      properties:
+        bridge:
+          $ref: '#/components/schemas/RouteBridge'
+        bridge_id:
+          format: int64
+          type: integer
+        cross_chain_fee:
+          format: double
+          type: number
+        dex:
+          $ref: '#/components/schemas/RouteDex'
+        erc20_route_approval_target:
+          type: string
+        estimate_time:
+          format: double
+          type: number
+        from_address:
+          type: string
+        from_amount:
+          type: string
+        from_chain_id:
+          format: int64
+          type: integer
+        from_token:
+          $ref: '#/components/schemas/RouteToken'
+        gas_cost_usd:
+          type: string
+        has_swap:
+          type: boolean
+        insurable_route:
+          type: boolean
+        interim_token:
+          type: string
+        interim_token_amount:
+          type: string
+        is_erc20:
+          type: boolean
+        lifi_route_first_step:
+          $ref: '#/components/schemas/LifiRouteStep'
+        route_id:
+          contentEncoding: base64
+          type: string
+        service:
+          $ref: '#/components/schemas/RouteService'
+        super_position:
+          $ref: '#/components/schemas/SuperPositionEstimate'
+        to_address:
+          type: string
+        to_amount:
+          type: string
+        to_amount_min:
+          type: string
+        to_amount_usd:
+          type: string
+        to_chain_id:
+          format: int64
+          type: integer
+        to_token:
+          $ref: '#/components/schemas/RouteToken'
+      required:
+      - route_id
+      - is_erc20
+      - bridge_id
+      - from_chain_id
+      - from_amount
+      - from_token
+      - from_address
+      - to_chain_id
+      - to_amount
+      - to_amount_usd
+      - to_amount_min
+      - to_token
+      - to_address
+      - gas_cost_usd
+      - cross_chain_fee
+      - has_swap
+      - insurable_route
+      - estimate_time
+      type: object
+    LifiToken:
+      additionalProperties: false
+      properties:
+        address:
+          type: string
+        chainId:
+          format: int64
+          type: integer
+        coinKey:
+          type: string
+        decimals:
+          format: int64
+          type: integer
+        logoURI:
+          type: string
+        name:
+          type: string
+        priceUSD: {}
+        symbol:
+          type: string
+      required:
+      - address
+      - symbol
+      - decimals
+      - chainId
+      - name
+      - coinKey
+      type: object
+    LifiRouteStep:
+      additionalProperties: false
+      properties:
+        action:
+          $ref: '#/components/schemas/LifiAction'
+        estimate:
+          $ref: '#/components/schemas/LifiEstimate'
+        id:
+          type: string
+        includedSteps:
+          items:
+            $ref: '#/components/schemas/Item'
+          type: array
+        integrator:
+          type: string
+        routesRequestId:
+          type: string
+        tool:
+          type: string
+        toolDetails:
+          $ref: '#/components/schemas/LifiRouteStepToolDetailsStruct'
+        type:
+          type: string
+      required:
+      - type
+      - id
+      - tool
+      - toolDetails
+      - action
+      - estimate
+      - includedSteps
+      - integrator
+      - routesRequestId
+      type: object
+    VaultRoute:
+      additionalProperties: false
+      properties:
+        ok:
+          type: boolean
+        route_error:
+          type: string
+        routes:
+          items:
+            $ref: '#/components/schemas/Route'
+          type: array
+        vault_id:
+          type: string
+      required:
+      - ok
+      - vault_id
+      type: object
+    RouteBridge:
+      additionalProperties: false
+      properties:
+        logo:
+          type: string
+        name:
+          type: string
+      required:
+      - name
+      - logo
+      type: object
+    ErrorModel:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ErrorModel.json
+          format: uri
+          readOnly: true
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          examples:
+          - Property foo is required but is missing.
+          type: string
+        errors:
+          description: Optional list of individual error details
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          type: array
+        instance:
+          description: A URI reference that identifies the specific occurrence of the problem.
+          examples:
+          - https://example.com/error-log/abc123
+          format: uri
+          type: string
+        status:
+          description: HTTP status code
+          examples:
+          - 400
+          format: int64
+          type: integer
+        title:
+          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
+          examples:
+          - Bad Request
+          type: string
+        type:
+          default: about:blank
+          description: A URI reference to human-readable documentation for the error.
+          examples:
+          - https://example.com/errors/example
+          format: uri
+          type: string
+      type: object
+    Item:
+      additionalProperties: false
+      properties:
+        action:
+          $ref: '#/components/schemas/LifiAction'
+        estimate:
+          $ref: '#/components/schemas/LifiEstimate'
+        id:
+          type: string
+        tool:
+          type: string
+        toolDetails:
+          $ref: '#/components/schemas/ToolDetailsStruct'
+        type:
+          type: string
+      required:
+      - id
+      - type
+      - action
+      - estimate
+      - tool
+      - toolDetails
+      type: object
+    RouteService:
+      additionalProperties: false
+      properties:
+        logo:
+          type: string
+        name:
+          type: string
+      required:
+      - name
+      - logo
+      type: object
+    RebalancingTo:
+      additionalProperties: false
+      properties:
+        share:
+          format: double
+          type: number
+        superform_id:
+          type: string
+      required:
+      - superform_id
+      - share
+      type: object
+    QuoteParamsDeposit:
+      additionalProperties: false
+      properties:
+        amount_in:
+          description: Amount of the token to be deposited
+          examples:
+          - '15.629478'
+          type: string
+        bridge_slippage:
+          description: Slippage taken on bridge action in bps, between 0.5% and 50%
+          examples:
+          - 50
+          format: int64
+          type: integer
+        exclude_ambs:
+          description: List of AMB IDs to exclude from the route. See output of /supported for AMB IDs.
+          examples:
+          - []
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        exclude_bridges:
+          description: List of bridge IDs to exclude from the route. See output of /supported for bridge IDs.
+          examples:
+          - []
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        exclude_dexes:
+          description: List of dex IDs to exclude from the route. See output of /supported for dex IDs.
+          examples:
+          - []
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        exclude_liquidity_providers:
+          description: List of liquidity provider IDs to exclude from the route. See output of /supported for liquidity provider IDs.
+          examples:
+          - []
+          items:
+            format: int64
+            type: integer
+          type: array
+        filter_swap_routes:
+          description: If true, any route that contains a destination swap will be filtered out. Reduces chances of a deposit failing due to route unavailability.
+          type: boolean
+        from_chain_id:
+          description: Chain ID of the source chain
+          examples:
+          - 137
+          format: int64
+          type: integer
+        from_token_address:
+          description: Address of the source token
+          examples:
+          - '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174'
+          type: string
+        is_part_of_multi_vault:
+          description: Flag to indicate if the request is part of a multi-vault deposit or withdrawal
+          type: boolean
+        need_insurance:
+          description: If true, only returns insurable routes.
+          type: boolean
+        positive_slippage:
+          description: Swap surplus in bps, between 1% and 100%. See help.superform.xyz for more.
+          examples:
+          - 100
+          format: int64
+          maximum: 10000
+          minimum: 100
+          type: integer
+        refund_address:
+          description: Address on the destination chain to which the refund should be made, if needed.
+          examples:
+          - '0xB9Ff2b5Ce562b79825Ca2e9003D1d548C6a698d9'
+          type: string
+        route_type:
+          enum:
+          - time
+          - output
+          - gas
+          examples:
+          - output
+          type: string
+        superform_id:
+          description: Must provide either vault_id or superform_id
+          examples:
+          - '53060340969226284497088793362664417178471904761401476120749147'
+          type: string
+        swap_slippage:
+          description: Slippage taken on dex action in bps, between 0.5% and 50%
+          examples:
+          - 50
+          format: int64
+          type: integer
+        to_token_address:
+          description: Address of the destination token
+          type: string
+        user_address:
+          examples:
+          - '0xB9Ff2b5Ce562b79825Ca2e9003D1d548C6a698d9'
+          type: string
+        vault_id:
+          description: Must provide either vault_id or superform_id
+          type: string
+      required:
+      - user_address
+      type: object
+    ProtocolItem:
+      additionalProperties: false
+      properties:
+        fromTokenAddress:
+          type: string
+        name:
+          type: string
+        part:
+          format: int64
+          type: integer
+        toTokenAddress:
+          type: string
+      required:
+      - name
+      - part
+      - fromTokenAddress
+      - toTokenAddress
+      type: object
+  securitySchemes:
+    apiKey:
+      description: Provide the api key issued to you
+      in: header
+      name: SF-API-KEY
+      type: apiKey

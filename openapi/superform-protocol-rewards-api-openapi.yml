@@ -1,0 +1,435 @@
+openapi: 3.1.0
+info:
+  title: Superform Auxiliary Protocol Rewards API
+  version: 1.0.0
+servers:
+- url: https://api.superform.xyz
+tags:
+- name: Protocol Rewards
+paths:
+  /protocolRewards/claim/{chain_id}/{user}:
+    get:
+      description: Get transaction for claiming rewards for a user
+      operationId: claim-rewards
+      parameters:
+      - example: '0x1234567890123456789012345678901234567890'
+        in: path
+        name: user
+        required: true
+        schema:
+          examples:
+          - '0x1234567890123456789012345678901234567890'
+          type: string
+      - example: 1
+        in: path
+        name: chain_id
+        required: true
+        schema:
+          examples:
+          - 1
+          format: int64
+          type: integer
+      - example: false
+        explode: false
+        in: query
+        name: simulate_transaction
+        schema:
+          examples:
+          - false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClaimTransaction'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get transaction for claiming rewards
+      tags:
+      - Protocol Rewards
+  /protocolRewards/claimable/{user}:
+    get:
+      description: Get claimable rewards for different vaults and protocols for a user
+      operationId: get-claimable-rewards
+      parameters:
+      - example: '0x1234567890123456789012345678901234567890'
+        in: path
+        name: user
+        required: true
+        schema:
+          examples:
+          - '0x1234567890123456789012345678901234567890'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClaimableReward'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get claimable rewards
+      tags:
+      - Protocol Rewards
+  /protocolRewards/earning/{user}:
+    get:
+      description: Get user earning rewards for a user
+      operationId: get-user-earning-rewards
+      parameters:
+      - example: '0x1234567890123456789012345678901234567890'
+        in: path
+        name: user
+        required: true
+        schema:
+          examples:
+          - '0x1234567890123456789012345678901234567890'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EarningReward'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get user earning rewards
+      tags:
+      - Protocol Rewards
+  /protocolRewards/userBalance/historical/vault/{vault_id}:
+    get:
+      description: Get users and and their balances for a vault for a given timestamp
+      operationId: vault-user-historic-balances
+      parameters:
+      - example: O2KpGpoeb_V-HOPSRNGgV
+        in: path
+        name: vault_id
+        required: true
+        schema:
+          examples:
+          - O2KpGpoeb_V-HOPSRNGgV
+          type: string
+      - example: 1714857600
+        explode: false
+        in: query
+        name: timestamp
+        required: true
+        schema:
+          examples:
+          - 1714857600
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/UserWiseSuperpositionWiseBalance'
+                type: array
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get user historical balances for vault
+      tags:
+      - Protocol Rewards
+  /protocolRewards/userBalance/historical/{protocol_id}:
+    get:
+      description: Get users and and their balances for a protocol for a given timestamp
+      operationId: protocol-user-historic-balances
+      parameters:
+      - example: O2KpGpoeb_V-HOPSRNGgV
+        in: path
+        name: protocol_id
+        required: true
+        schema:
+          examples:
+          - O2KpGpoeb_V-HOPSRNGgV
+          type: string
+      - example: 1714857600
+        explode: false
+        in: query
+        name: timestamp
+        required: true
+        schema:
+          examples:
+          - 1714857600
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/UserWiseSuperpositionWiseBalance'
+                type: array
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get user historical balances for protocol
+      tags:
+      - Protocol Rewards
+components:
+  schemas:
+    UserWiseSuperpositionWiseBalance:
+      additionalProperties: false
+      properties:
+        balance:
+          description: balance of the user in the vault share decimals
+          type: string
+        superform_address:
+          description: address of the superform wrapper for the vault that mints the vault shares
+          type: string
+        user_address:
+          type: string
+        vault_address:
+          type: string
+        vault_chain_id:
+          description: ID of the chain that the vault is on.
+          format: int64
+          type: integer
+      required:
+      - user_address
+      - balance
+      - superform_address
+      type: object
+    ErrorModel:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ErrorModel.json
+          format: uri
+          readOnly: true
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          examples:
+          - Property foo is required but is missing.
+          type: string
+        errors:
+          description: Optional list of individual error details
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          type: array
+        instance:
+          description: A URI reference that identifies the specific occurrence of the problem.
+          examples:
+          - https://example.com/error-log/abc123
+          format: uri
+          type: string
+        status:
+          description: HTTP status code
+          examples:
+          - 400
+          format: int64
+          type: integer
+        title:
+          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
+          examples:
+          - Bad Request
+          type: string
+        type:
+          default: about:blank
+          description: A URI reference to human-readable documentation for the error.
+          examples:
+          - https://example.com/errors/example
+          format: uri
+          type: string
+      type: object
+    EarningReward:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/EarningReward.json
+          format: uri
+          readOnly: true
+          type: string
+        rewards:
+          items:
+            $ref: '#/components/schemas/UserReward'
+          type: array
+        total_amount_usd:
+          format: double
+          type: number
+      required:
+      - total_amount_usd
+      - rewards
+      type: object
+    ExplorerAsset:
+      additionalProperties: false
+      properties:
+        address:
+          type: string
+        chain_id:
+          format: int64
+          type: integer
+        decimals:
+          format: int64
+          type: integer
+        id:
+          type: string
+        logo:
+          type: string
+        name:
+          type: string
+        symbol:
+          type: string
+      required:
+      - id
+      - address
+      - chain_id
+      - name
+      - symbol
+      - decimals
+      - logo
+      type: object
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
+      type: object
+    ClaimableTokens:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        amount_usd:
+          format: double
+          type: number
+        chain_id:
+          format: int64
+          type: integer
+        reward_id:
+          type: string
+        source_type:
+          type: string
+        token:
+          $ref: '#/components/schemas/ExplorerAsset'
+      required:
+      - reward_id
+      - source_type
+      - amount
+      - amount_usd
+      - token
+      - chain_id
+      type: object
+    ClaimableReward:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ClaimableReward.json
+          format: uri
+          readOnly: true
+          type: string
+        rewards:
+          items:
+            $ref: '#/components/schemas/ClaimableTokens'
+          type: array
+        total_amount_usd:
+          format: double
+          type: number
+      required:
+      - total_amount_usd
+      - rewards
+      type: object
+    UserReward:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        amount_usd:
+          format: double
+          type: number
+        chain_id:
+          format: int64
+          type: integer
+        reward_id:
+          type: string
+        reward_type:
+          type: string
+        source_type:
+          type: string
+        token:
+          $ref: '#/components/schemas/ExplorerAsset'
+      required:
+      - reward_type
+      - token
+      - amount
+      - amount_usd
+      - chain_id
+      - source_type
+      type: object
+    ClaimTransaction:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ClaimTransaction.json
+          format: uri
+          readOnly: true
+          type: string
+        gasLimit:
+          format: int64
+          type: integer
+        to:
+          type: string
+        transactionData:
+          type: string
+      required:
+      - transactionData
+      - to
+      type: object
+  securitySchemes:
+    apiKey:
+      description: Provide the api key issued to you
+      in: header
+      name: SF-API-KEY
+      type: apiKey

@@ -1,0 +1,1137 @@
+openapi: 3.1.0
+info:
+  title: Superform Auxiliary SuperRewardsAPI API
+  version: 1.0.0
+servers:
+- url: https://api.superform.xyz
+tags:
+- name: SuperRewardsAPI
+paths:
+  /rewards/leaderboard:
+    get:
+      description: Get a leaderboard of rewards for Safari Season 3 and beyond
+      operationId: get-season-3-rewards-leaderboard-superrewards
+      parameters:
+      - example: '0x1234567890123456789012345678901234567890'
+        explode: false
+        in: query
+        name: user_address
+        schema:
+          examples:
+          - '0x1234567890123456789012345678901234567890'
+          type: string
+      - example: 0
+        explode: false
+        in: query
+        name: offset
+        schema:
+          examples:
+          - 0
+          format: int64
+          type: integer
+      - example: 10
+        explode: false
+        in: query
+        name: limit
+        schema:
+          examples:
+          - 10
+          format: int64
+          type: integer
+      - example: true
+        explode: false
+        in: query
+        name: tvl_rank
+        schema:
+          examples:
+          - true
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Season3RewardsLeaderboardResponse'
+                type: array
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get season 3 rewards leaderboard
+      tags:
+      - SuperRewardsAPI
+  /rewards/opportunities:
+    get:
+      description: Get a list of rewards opportunities for Safari Season 3 and beyond
+      operationId: get-season-3-rewards-opportunities-superrewards
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RewardsOpportunity'
+                type: array
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get season 3 rewards opportunities
+      tags:
+      - SuperRewardsAPI
+  /rewards/referrals/code:
+    get:
+      description: Get a user's unique referral code for Safari Season 3 and beyond
+      operationId: get-season-3-referral-code-superrewards
+      parameters:
+      - example: '0x1234567890123456789012345678901234567890'
+        explode: false
+        in: query
+        name: user
+        required: true
+        schema:
+          examples:
+          - '0x1234567890123456789012345678901234567890'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserReferralCodeResponse'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get season 3 referral code
+      tags:
+      - SuperRewardsAPI
+  /rewards/referrals/redeem:
+    get:
+      description: Redeem a referral code for Safari Season 3 and beyond
+      operationId: redeem-season-3-referral-code-superrewards
+      parameters:
+      - example: abcde_fghijklmnopqrst
+        explode: false
+        in: query
+        name: referral_code
+        required: true
+        schema:
+          examples:
+          - abcde_fghijklmnopqrst
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedeemReferralResponse'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Redeem season 3 referral code
+      tags:
+      - SuperRewardsAPI
+  /rewards/sources/{user_address}:
+    get:
+      description: Get a list of rewards sources for Safari Season 3 and beyond
+      operationId: get-season-3-rewards-sources-superrewards
+      parameters:
+      - example: '0x1234567890123456789012345678901234567890'
+        in: path
+        name: user_address
+        required: true
+        schema:
+          examples:
+          - '0x1234567890123456789012345678901234567890'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Season3RewardsSources'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get season 3 rewards sources
+      tags:
+      - SuperRewardsAPI
+  /rewards/summary/{user_address}:
+    get:
+      description: Get a user's rewards summary for Safari Season 3 and beyond
+      operationId: get-season-3-rewards-summary-superrewards
+      parameters:
+      - example: '0x1234567890123456789012345678901234567890'
+        in: path
+        name: user_address
+        required: true
+        schema:
+          examples:
+          - '0x1234567890123456789012345678901234567890'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Season3RewardsSummaryResponse'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get season 3 rewards summary
+      tags:
+      - SuperRewardsAPI
+  /superrewards/exploration/leaderboard/cred/{user}:
+    get:
+      description: Get relative cred leaderboard for Safari Season 2 and beyond
+      operationId: get-relative-cred-leaderboard-superrewards
+      parameters:
+      - example: '0x1234567890123456789012345678901234567890'
+        in: path
+        name: user
+        required: true
+        schema:
+          examples:
+          - '0x1234567890123456789012345678901234567890'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCredLeaderboard'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get cred leaderboard
+      tags:
+      - SuperRewardsAPI
+  /superrewards/exploration/leaderboard/protocols:
+    get:
+      description: Get protocol leaderboard for Safari Season 2 and beyond
+      operationId: get-protocol-leaderboard-superrewards
+      parameters:
+      - example: 0
+        explode: false
+        in: query
+        name: offset
+        schema:
+          examples:
+          - 0
+          format: int64
+          type: integer
+      - example: 100
+        explode: false
+        in: query
+        name: limit
+        schema:
+          examples:
+          - 100
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtocolLeaderboard'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get protocol leaderboard
+      tags:
+      - SuperRewardsAPI
+  /superrewards/exploration/leaderboard/tvl/{user}:
+    get:
+      description: Get relative TVL boosts leaderboard for Safari Season 2 and beyond
+      operationId: get-relative-tvl-leaderboard-superrewards
+      parameters:
+      - example: '0x1234567890123456789012345678901234567890'
+        in: path
+        name: user
+        required: true
+        schema:
+          examples:
+          - '0x1234567890123456789012345678901234567890'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserBoostsTVL'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get TVL boosts leaderboard
+      tags:
+      - SuperRewardsAPI
+  /superrewards/exploration/summary:
+    get:
+      description: Get exploration dashboard summary for Safari Season 2 and beyond
+      operationId: get-exploration-dashboard-summary-superrewards
+      parameters:
+      - example: '0x1234567890123456789012345678901234567890'
+        explode: false
+        in: query
+        name: user
+        required: true
+        schema:
+          examples:
+          - '0x1234567890123456789012345678901234567890'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExplorationDashboardSummary'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get exploration dashboard summary
+      tags:
+      - SuperRewardsAPI
+  /superrewards/exploration/{user}:
+    get:
+      description: Get user's exploration dashboard for Safari Season 2 and beyond
+      operationId: get-exploration-dashboard-superrewards
+      parameters:
+      - example: '0x1234567890123456789012345678901234567890'
+        in: path
+        name: user
+        required: true
+        schema:
+          examples:
+          - '0x1234567890123456789012345678901234567890'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExplorationDashboard'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get user's exploration dashboard
+      tags:
+      - SuperRewardsAPI
+  /superrewards/referrals/redeem/{referralCode}:
+    get:
+      description: Redeem a referral code for Safari Season 2 and beyond
+      operationId: redeem-referral-code-superrewards
+      parameters:
+      - example: abcde_fghijklmnopqrst
+        in: path
+        name: referralCode
+        required: true
+        schema:
+          examples:
+          - abcde_fghijklmnopqrst
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedeemReferralResponse'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Redeem a referral code
+      tags:
+      - SuperRewardsAPI
+  /user/referral/code:
+    get:
+      description: Get a user's unique referral code. Gated behind authentication.
+      operationId: get-referral-code-superrewards
+      parameters:
+      - example: '0x1234567890123456789012345678901234567890'
+        explode: false
+        in: query
+        name: user
+        required: true
+        schema:
+          examples:
+          - '0x1234567890123456789012345678901234567890'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserReferralCodeResponse'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get user referral code
+      tags:
+      - SuperRewardsAPI
+components:
+  schemas:
+    ExplorationDashboardCredStruct:
+      additionalProperties: false
+      properties:
+        per_hour_deposits:
+          format: double
+          type: number
+        per_hour_referrals_direct:
+          format: double
+          type: number
+        per_hour_referrals_indirect:
+          format: double
+          type: number
+        per_hour_total:
+          format: double
+          type: number
+        total:
+          format: double
+          type: number
+      required:
+      - total
+      - per_hour_total
+      - per_hour_deposits
+      - per_hour_referrals_direct
+      - per_hour_referrals_indirect
+      type: object
+    ExplorationDashboardBoostsStruct:
+      additionalProperties: false
+      properties:
+        base:
+          format: double
+          type: number
+        superfren:
+          format: double
+          type: number
+        tier:
+          format: double
+          type: number
+        total:
+          format: double
+          type: number
+      required:
+      - total
+      - base
+      - tier
+      - superfren
+      type: object
+    UserCredLeaderboardCurrentUserStruct:
+      additionalProperties: false
+      properties:
+        cred:
+          format: double
+          type: number
+        percent_complete:
+          format: double
+          type: number
+        rank:
+          format: int64
+          type: integer
+        tier:
+          type: string
+      required:
+      - cred
+      - rank
+      - tier
+      - percent_complete
+      type: object
+    Season3RewardsLeaderboardResponse:
+      additionalProperties: false
+      properties:
+        current:
+          $ref: '#/components/schemas/Season3RewardsLeaderboardResponseCurrentStruct'
+        previous:
+          $ref: '#/components/schemas/Season3RewardsLeaderboardResponsePreviousStruct'
+        user_address:
+          type:
+          - string
+          - 'null'
+      required:
+      - user_address
+      - current
+      - previous
+      type: object
+    ExplorationDashboardSummary:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ExplorationDashboardSummary.json
+          format: uri
+          readOnly: true
+          type: string
+        current_season:
+          format: int64
+          type: integer
+        days_left:
+          format: int64
+          type: integer
+        highest_tier:
+          type: string
+        highest_tier_boost:
+          format: double
+          type: number
+        total_cred_earned:
+          format: double
+          type: number
+        total_participants_count:
+          format: int64
+          type: integer
+        total_protocols_count:
+          format: int64
+          type: integer
+      required:
+      - current_season
+      - days_left
+      - total_cred_earned
+      - total_participants_count
+      - total_protocols_count
+      - highest_tier
+      - highest_tier_boost
+      type: object
+    Season3RewardsLeaderboardResponseCurrentStruct:
+      additionalProperties: false
+      properties:
+        points:
+          format: double
+          type: number
+        rank:
+          format: int64
+          type: integer
+        tvl:
+          format: double
+          type: number
+      required:
+      - rank
+      - tvl
+      - points
+      type: object
+    Season3VaultType:
+      additionalProperties: false
+      properties:
+        boost:
+          format: int64
+          type: integer
+        icon:
+          type: string
+        name:
+          type: string
+        points:
+          format: double
+          type: number
+        tvl:
+          format: double
+          type: number
+        type:
+          type: string
+        url:
+          type: string
+      required:
+      - boost
+      - name
+      - tvl
+      - points
+      - type
+      - icon
+      - url
+      type: object
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
+      type: object
+    Season3Referral:
+      additionalProperties: false
+      properties:
+        points:
+          format: double
+          type: number
+        quantity:
+          format: int64
+          type: integer
+        receiving_percent:
+          format: int64
+          type: integer
+        type:
+          type: string
+      required:
+      - type
+      - quantity
+      - receiving_percent
+      - points
+      type: object
+    Season3RewardsSummaryResponse:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/Season3RewardsSummaryResponse.json
+          format: uri
+          readOnly: true
+          type: string
+        epoch:
+          $ref: '#/components/schemas/Season3Epoch'
+        season_1:
+          $ref: '#/components/schemas/PreviousSeasonSummary'
+        season_2:
+          $ref: '#/components/schemas/PreviousSeasonSummary'
+        user:
+          $ref: '#/components/schemas/Season3User'
+      required:
+      - epoch
+      - user
+      - season_1
+      - season_2
+      type: object
+    RedeemReferralResponse:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/RedeemReferralResponse.json
+          format: uri
+          readOnly: true
+          type: string
+        error:
+          type: string
+        success:
+          type: boolean
+      required:
+      - success
+      type: object
+    CredTier:
+      additionalProperties: false
+      properties:
+        cred:
+          format: double
+          type: number
+        is_user:
+          type: boolean
+        rank:
+          format: int64
+          type: integer
+        tier:
+          type: string
+      required:
+      - tier
+      - cred
+      - rank
+      - is_user
+      type: object
+    Season3Partner:
+      additionalProperties: false
+      properties:
+        boost:
+          format: int64
+          type: integer
+        icon:
+          type: string
+        name:
+          type: string
+        points:
+          format: double
+          type: number
+        tvl:
+          format: double
+          type: number
+        url:
+          type: string
+      required:
+      - boost
+      - name
+      - url
+      - icon
+      - tvl
+      - points
+      type: object
+    UserBoostsTVLCurrentUserStruct:
+      additionalProperties: false
+      properties:
+        boost:
+          format: int64
+          type: integer
+        percent_complete:
+          format: double
+          type: number
+        rank:
+          format: int64
+          type: integer
+        tvl:
+          format: double
+          type: number
+      required:
+      - tvl
+      - rank
+      - boost
+      - percent_complete
+      type: object
+    Season3Fren:
+      additionalProperties: false
+      properties:
+        boost:
+          format: double
+          type: number
+        highest_tier:
+          type: string
+      required:
+      - highest_tier
+      - boost
+      type: object
+    Season3User:
+      additionalProperties: false
+      properties:
+        points:
+          format: double
+          type: number
+        points_per_day:
+          format: double
+          type: number
+        referrals_direct:
+          format: int64
+          type: integer
+        referrals_indirect:
+          format: int64
+          type: integer
+      required:
+      - points
+      - points_per_day
+      - referrals_direct
+      - referrals_indirect
+      type: object
+    ProtocolLeaderboard:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ProtocolLeaderboard.json
+          format: uri
+          readOnly: true
+          type: string
+        protocols:
+          items:
+            $ref: '#/components/schemas/ProtocolPoints'
+          type: array
+        total_cred_earned:
+          format: int64
+          type: integer
+        total_protocols_count:
+          format: int64
+          type: integer
+      required:
+      - total_protocols_count
+      - total_cred_earned
+      - protocols
+      type: object
+    ExplorationDashboard:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ExplorationDashboard.json
+          format: uri
+          readOnly: true
+          type: string
+        boosts:
+          $ref: '#/components/schemas/ExplorationDashboardBoostsStruct'
+        cred:
+          $ref: '#/components/schemas/ExplorationDashboardCredStruct'
+        days_left:
+          format: int64
+          type: integer
+        referrals_direct_count:
+          format: int64
+          type: integer
+        referrals_indirect_count:
+          format: int64
+          type: integer
+      required:
+      - days_left
+      - referrals_direct_count
+      - referrals_indirect_count
+      - cred
+      - boosts
+      type: object
+    UserTVLBoost:
+      additionalProperties: false
+      properties:
+        boost:
+          format: int64
+          type: integer
+        is_user:
+          type: boolean
+        rank:
+          format: int64
+          type: integer
+        tvl:
+          format: double
+          type: number
+      required:
+      - boost
+      - tvl
+      - rank
+      - is_user
+      type: object
+    Season3RewardsLeaderboardResponsePreviousStruct:
+      additionalProperties: false
+      properties:
+        points:
+          format: double
+          type: number
+        rank:
+          format: int64
+          type: integer
+        tvl:
+          format: double
+          type: number
+      required:
+      - rank
+      - tvl
+      - points
+      type: object
+    Season3RewardsSources:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/Season3RewardsSources.json
+          format: uri
+          readOnly: true
+          type: string
+        frens:
+          $ref: '#/components/schemas/Season3Fren'
+        partners:
+          items:
+            $ref: '#/components/schemas/Season3Partner'
+          type: array
+        referrals:
+          items:
+            $ref: '#/components/schemas/Season3Referral'
+          type: array
+        vault_types:
+          items:
+            $ref: '#/components/schemas/Season3VaultType'
+          type: array
+      required:
+      - partners
+      - vault_types
+      - frens
+      - referrals
+      type: object
+    PreviousSeasonSummary:
+      additionalProperties: false
+      properties:
+        total_points:
+          format: double
+          type: number
+        user_points:
+          format: double
+          type: number
+      required:
+      - user_points
+      - total_points
+      type: object
+    RewardsOpportunity:
+      additionalProperties: false
+      properties:
+        asset:
+          type: string
+        asset_icon:
+          type: string
+        boost:
+          format: double
+          type: number
+        expiry:
+          type: string
+        icon:
+          type: string
+        link_name:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+      required:
+      - name
+      - type
+      - boost
+      - asset
+      - asset_icon
+      - url
+      - icon
+      - link_name
+      - expiry
+      type: object
+    ErrorModel:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ErrorModel.json
+          format: uri
+          readOnly: true
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          examples:
+          - Property foo is required but is missing.
+          type: string
+        errors:
+          description: Optional list of individual error details
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          type: array
+        instance:
+          description: A URI reference that identifies the specific occurrence of the problem.
+          examples:
+          - https://example.com/error-log/abc123
+          format: uri
+          type: string
+        status:
+          description: HTTP status code
+          examples:
+          - 400
+          format: int64
+          type: integer
+        title:
+          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
+          examples:
+          - Bad Request
+          type: string
+        type:
+          default: about:blank
+          description: A URI reference to human-readable documentation for the error.
+          examples:
+          - https://example.com/errors/example
+          format: uri
+          type: string
+      type: object
+    UserCredLeaderboard:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/UserCredLeaderboard.json
+          format: uri
+          readOnly: true
+          type: string
+        cred_tiers:
+          items:
+            $ref: '#/components/schemas/CredTier'
+          type: array
+        current_user:
+          $ref: '#/components/schemas/UserCredLeaderboardCurrentUserStruct'
+      required:
+      - current_user
+      - cred_tiers
+      type: object
+    UserReferralCodeResponse:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/UserReferralCodeResponse.json
+          format: uri
+          readOnly: true
+          type: string
+        code:
+          type: string
+      required:
+      - code
+      type: object
+    UserBoostsTVL:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/UserBoostsTVL.json
+          format: uri
+          readOnly: true
+          type: string
+        boosts:
+          items:
+            $ref: '#/components/schemas/UserTVLBoost'
+          type: array
+        current_user:
+          $ref: '#/components/schemas/UserBoostsTVLCurrentUserStruct'
+      required:
+      - current_user
+      - boosts
+      type: object
+    ProtocolPoints:
+      additionalProperties: false
+      properties:
+        current_boost:
+          format: int64
+          type: integer
+        current_boost_end:
+          format: date-time
+          type: string
+        current_boost_start:
+          format: date-time
+          type: string
+        points:
+          format: double
+          type: number
+        protocol_icon:
+          type: string
+        protocol_id:
+          type: string
+        protocol_name:
+          type: string
+        rank:
+          format: int64
+          type: integer
+        tournament_id:
+          format: int64
+          type: integer
+        tvl:
+          format: double
+          type: number
+        tvl_rank:
+          format: int64
+          type: integer
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - protocol_id
+      - tournament_id
+      - protocol_name
+      - protocol_icon
+      - tvl
+      - rank
+      - tvl_rank
+      - points
+      - current_boost
+      - current_boost_start
+      - current_boost_end
+      - updated_at
+      type: object
+    Season3Epoch:
+      additionalProperties: false
+      properties:
+        from_timestamp:
+          format: date-time
+          type: string
+        id:
+          format: int64
+          type: integer
+        to_timestamp:
+          format: date-time
+          type: string
+        total_participants:
+          format: int64
+          type: integer
+        total_points_earned:
+          format: double
+          type: number
+      required:
+      - id
+      - total_points_earned
+      - total_participants
+      - from_timestamp
+      - to_timestamp
+      type: object
+  securitySchemes:
+    apiKey:
+      description: Provide the api key issued to you
+      in: header
+      name: SF-API-KEY
+      type: apiKey

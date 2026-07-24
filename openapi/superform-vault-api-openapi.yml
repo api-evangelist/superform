@@ -1,0 +1,1434 @@
+openapi: 3.1.0
+info:
+  title: Superform Auxiliary Vault API
+  version: 1.0.0
+servers:
+- url: https://api.superform.xyz
+tags:
+- name: Vault
+paths:
+  /vault:
+    post:
+      description: Add a new vault to Superform.
+      operationId: add-vault
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddVaultInputBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddVaultOutputBody'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Add a new vault
+      tags:
+      - Vault
+  /vault/{vaultOrSuperformIDOrContractAddress}:
+    get:
+      description: Get vault data by vaultID, superformID, or contractAddress.
+      operationId: get-vault-data
+      parameters:
+      - example: '6277101738082190570017043140855561342102135322485627578637'
+        in: path
+        name: vaultOrSuperformIDOrContractAddress
+        required: true
+        schema:
+          examples:
+          - '6277101738082190570017043140855561342102135322485627578637'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vault'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get vault data
+      tags:
+      - Vault
+  /vaults:
+    get:
+      description: Get all vaults listed on Superform.
+      operationId: get-all-vaults
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Vault'
+                type: array
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      security:
+      - apiKey: []
+      summary: Get all vaults
+      tags:
+      - Vault
+components:
+  schemas:
+    VaultAnalytic:
+      additionalProperties: false
+      properties:
+        chart_title:
+          type: string
+        chart_url:
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        vault_id:
+          type: string
+      type: object
+    VaultRiskDataProtocolsStruct:
+      additionalProperties: false
+      properties:
+        rating:
+          type: string
+        rating_color:
+          type: string
+        underlying:
+          items:
+            $ref: '#/components/schemas/VaultRiskDataUnderlying'
+          type: array
+      type: object
+    VaultRiskData:
+      additionalProperties: false
+      properties:
+        assets:
+          $ref: '#/components/schemas/VaultRiskDataAssetsStruct'
+        chain:
+          $ref: '#/components/schemas/VaultRiskDataChainStruct'
+        pool_design:
+          $ref: '#/components/schemas/VaultRiskDataPoolDesignStruct'
+        pool_rating:
+          type: string
+        pool_rating_color:
+          type: string
+        pool_rating_description:
+          type: string
+        pool_url:
+          type: string
+        protocols:
+          $ref: '#/components/schemas/VaultRiskDataProtocolsStruct'
+      type: object
+    VaultRewardRates:
+      additionalProperties: false
+      properties:
+        address:
+          type: string
+        chain_id:
+          format: int64
+          type: integer
+        is_configurable:
+          type: boolean
+        logo:
+          type: string
+        rate_type:
+          type: string
+        remarks:
+          type: string
+        remarks_url:
+          type: string
+        reward_multiplier:
+          format: double
+          type: number
+        reward_rate:
+          format: double
+          type: number
+        reward_source:
+          type: string
+        symbol:
+          type: string
+        total_supply:
+          format: int64
+          type:
+          - integer
+          - 'null'
+        type:
+          type: string
+      type: object
+    Protocol:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/Protocol.json
+          format: uri
+          readOnly: true
+          type: string
+        analytics:
+          items:
+            $ref: '#/components/schemas/ProtocolAnalytic'
+          type: array
+        audits:
+          items:
+            $ref: '#/components/schemas/ProtocolAudit'
+          type: array
+        chain_ids:
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        created_at:
+          format: date-time
+          type: string
+        defillama_id:
+          type: string
+        deploy_date:
+          format: date-time
+          type: string
+        deployers:
+          items:
+            $ref: '#/components/schemas/Deployer'
+          type: array
+        description:
+          type: string
+        exploits:
+          items:
+            $ref: '#/components/schemas/ProtocolExploit'
+          type: array
+        faq:
+          items:
+            $ref: '#/components/schemas/ProtocolFAQ'
+          type: array
+        graphics:
+          $ref: '#/components/schemas/ProtocolGraphics'
+        id:
+          type: string
+        is_authenticated:
+          type: boolean
+        is_hidden:
+          type: boolean
+        links:
+          $ref: '#/components/schemas/ProtocolLinks'
+        name:
+          type: string
+        num_depositors:
+          format: int64
+          type: integer
+        primary_color:
+          type: string
+        status:
+          type:
+          - string
+          - 'null'
+        status_message:
+          type:
+          - string
+          - 'null'
+        tagline:
+          type: string
+        tvl:
+          format: double
+          type: number
+        tvl_day_change:
+          format: double
+          type: number
+        tvl_month_change:
+          format: double
+          type: number
+        tvl_week_change:
+          format: double
+          type: number
+        type:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+        vanity_url:
+          type: string
+        vaults_amount:
+          format: int64
+          type: integer
+      required:
+      - id
+      - name
+      - description
+      - type
+      - tagline
+      - is_hidden
+      - is_authenticated
+      - defillama_id
+      - vanity_url
+      - primary_color
+      - num_depositors
+      - status
+      - status_message
+      - deploy_date
+      - graphics
+      - links
+      - vaults_amount
+      - tvl
+      - tvl_day_change
+      - tvl_week_change
+      - tvl_month_change
+      - created_at
+      - updated_at
+      type: object
+    Chain:
+      additionalProperties: false
+      properties:
+        id:
+          format: int64
+          type: integer
+        logo_url:
+          type: string
+        name:
+          type: string
+        short_name:
+          type: string
+        wrapped_token_id:
+          type: string
+      type: object
+    ProtocolAnalytic:
+      additionalProperties: false
+      properties:
+        chart_title:
+          type: string
+        chart_url:
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        protocol_id:
+          type: string
+      required:
+      - id
+      - protocol_id
+      - chart_title
+      - chart_url
+      - is_deleted
+      type: object
+    Deployer:
+      additionalProperties: false
+      properties:
+        address:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        vault_count:
+          format: int64
+          type: integer
+      required:
+      - id
+      - vault_count
+      - address
+      - name
+      - status
+      - type
+      - created_at
+      - updated_at
+      type: object
+    AddVaultOutputBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/AddVaultOutputBody.json
+          format: uri
+          readOnly: true
+          type: string
+        id:
+          description: The ID of the new vault
+          examples:
+          - 9z4Rx6tolq6WjbgyYyLub
+          type: string
+        result:
+          description: The status of the call
+          examples:
+          - success
+          type: string
+      required:
+      - result
+      - id
+      type: object
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
+      type: object
+    VaultExploit:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        date:
+          format: date-time
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        title:
+          type: string
+        url:
+          type: string
+        vault_id:
+          type: string
+      type: object
+    VaultStatistic:
+      additionalProperties: false
+      properties:
+        apy_day:
+          description: APY calculated over a 24 hour time frame and scaled to a year.
+          format: double
+          type:
+          - number
+          - 'null'
+        apy_day_change:
+          description: APY change over the past day, in percent.
+          format: double
+          type:
+          - number
+          - 'null'
+        apy_month:
+          description: APY calculated over a 30 day time frame and scaled to a year.
+          format: double
+          type:
+          - number
+          - 'null'
+        apy_month_change:
+          description: APY change over the past month, in percent.
+          format: double
+          type:
+          - number
+          - 'null'
+        apy_now:
+          description: APY.
+          format: double
+          type:
+          - number
+          - 'null'
+        apy_week:
+          description: APY calculated over a 7 day time frame and scaled to a year.
+          format: double
+          type:
+          - number
+          - 'null'
+        apy_week_change:
+          description: APY change over the past week, in percent.
+          format: double
+          type:
+          - number
+          - 'null'
+        pps:
+          description: Price per share.
+          format: double
+          type:
+          - number
+          - 'null'
+        pps_usd:
+          description: Price per share in USD.
+          format: double
+          type:
+          - number
+          - 'null'
+        reward_rate:
+          description: Reward rate.
+          format: double
+          type:
+          - number
+          - 'null'
+        sharpe_day:
+          description: Sharpe ratio calculated over a 24 hour time frame.
+          format: double
+          type:
+          - number
+          - 'null'
+        sharpe_month:
+          description: Sharpe ratio calculated over a 30 day time frame.
+          format: double
+          type:
+          - number
+          - 'null'
+        superform_id:
+          type: string
+        tvl_day_change:
+          description: TVL change over the past day, in percent.
+          format: double
+          type:
+          - number
+          - 'null'
+        tvl_month_change:
+          description: TVL change over the past month, in percent.
+          format: double
+          type:
+          - number
+          - 'null'
+        tvl_now:
+          description: Total Value Locked.
+          format: double
+          type:
+          - number
+          - 'null'
+        tvl_week_change:
+          description: TVL change over the past week, in percent.
+          format: double
+          type:
+          - number
+          - 'null'
+        vault_id:
+          type: string
+      required:
+      - vault_id
+      - superform_id
+      - apy_now
+      - tvl_now
+      - sharpe_day
+      - sharpe_month
+      - apy_day
+      - apy_week
+      - apy_month
+      - apy_day_change
+      - apy_week_change
+      - apy_month_change
+      - tvl_day_change
+      - tvl_week_change
+      - tvl_month_change
+      - pps
+      - pps_usd
+      - reward_rate
+      type: object
+    VaultOther:
+      additionalProperties: false
+      properties:
+        additional_description:
+          type: string
+        additional_info:
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        vault_id:
+          type: string
+      type: object
+    VaultRiskDataAssetsStruct:
+      additionalProperties: false
+      properties:
+        rating:
+          type: string
+        rating_color:
+          type: string
+        underlying:
+          items:
+            $ref: '#/components/schemas/VaultRiskDataUnderlying'
+          type: array
+      type: object
+    VaultAudit:
+      additionalProperties: false
+      properties:
+        audit_date:
+          format: date-time
+          type: string
+        audit_link:
+          type: string
+        audit_name:
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        vault_id:
+          type: string
+      type: object
+    VaultRiskDataUnderlying:
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        rating:
+          type: string
+        rating_color:
+          type: string
+        url:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProtocolAudit:
+      additionalProperties: false
+      properties:
+        audit_date:
+          format: date-time
+          type: string
+        audit_link:
+          type: string
+        audit_name:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        protocol_id:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - id
+      - protocol_id
+      - audit_name
+      - audit_link
+      - audit_date
+      - is_deleted
+      - created_at
+      - updated_at
+      type: object
+    Vault:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/Vault.json
+          format: uri
+          readOnly: true
+          type: string
+        analytics:
+          items:
+            $ref: '#/components/schemas/VaultAnalytic'
+          type: array
+        assets:
+          items:
+            $ref: '#/components/schemas/Asset'
+          type: array
+        audits:
+          items:
+            $ref: '#/components/schemas/VaultAudit'
+          type: array
+        availability:
+          description: Availability on the Superform platform
+          enum:
+          - available
+          - unavailable
+          - paused
+          - withdraw_only
+          - deposit_only
+          - ''
+          type: string
+        chain:
+          $ref: '#/components/schemas/Chain'
+          description: This is the chain that this vault belongs to.
+        contract_address:
+          description: This comes from on-chain data, it is the address of the vault contract.
+          readOnly: true
+          type: string
+        created_at:
+          format: date-time
+          readOnly: true
+          type: string
+        decimals:
+          description: This comes from on-chain data, decimals of the vault.
+          format: int32
+          readOnly: true
+          type: integer
+        deploy_date:
+          description: The date the vault was deployed on-chain.
+          format: date-time
+          type: string
+        description:
+          description: The description of the vault. Required when creating vault.
+          type: string
+        exploits:
+          items:
+            $ref: '#/components/schemas/VaultExploit'
+          type: array
+        external_url:
+          description: The external URL of the vault.
+          type: string
+        faq:
+          items:
+            $ref: '#/components/schemas/VaultFAQ'
+          type: array
+        fees:
+          items:
+            $ref: '#/components/schemas/VaultFee'
+          type: array
+        form_implementation_id:
+          description: This is the formImplementationID of the vault
+          readOnly: true
+          type: string
+        friendly_name:
+          description: The friendly name of the vault.
+          type: string
+        has_aerc_20_registered:
+          description: Whether the vault has an AERC20 registered.
+          readOnly: true
+          type: boolean
+        has_rewards:
+          type:
+          - boolean
+          - 'null'
+        has_timelock:
+          description: Whether the vault has a timelock.
+          type:
+          - boolean
+          - 'null'
+        id:
+          description: This is the unique identifier for this vault.
+          readOnly: true
+          type: string
+        is_authenticated:
+          readOnly: true
+          type: boolean
+        is_supervault:
+          type: boolean
+        kyc:
+          items:
+            $ref: '#/components/schemas/VaultKYC'
+          type: array
+        name:
+          description: This is the name of the vault.
+          type: string
+        num_depositors:
+          description: The number of Superform depositors in the vault.
+          format: int64
+          readOnly: true
+          type: integer
+        other:
+          items:
+            $ref: '#/components/schemas/VaultOther'
+          type: array
+        protocol:
+          $ref: '#/components/schemas/Protocol'
+          description: Optional. This is the protocol that this vault belongs to.
+        protocol_id:
+          description: Optional. This is the unique identifier for the protocol that this vault belongs to.
+          type:
+          - string
+          - 'null'
+        recommend_vault_share_withdrawal:
+          type:
+          - boolean
+          - 'null'
+        rewards:
+          description: Array of rewards that are live for this vault.
+          items:
+            $ref: '#/components/schemas/VaultRewardRates'
+          type: array
+        risk_data:
+          $ref: '#/components/schemas/VaultRiskData'
+          description: Risk data for the vault, using DefiLlama.
+        risk_data_last_updated:
+          description: The last time the risk data was updated.
+          format: date-time
+          readOnly: true
+          type: string
+        super_pools:
+          description: Array of chainIDs on which there is a liquidity pool for this vault
+          examples:
+          - - 1
+            - 137
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        superform_address:
+          description: This comes from on-chain data, it is the address of the superform contract.
+          readOnly: true
+          type:
+          - string
+          - 'null'
+        superform_id:
+          description: This comes from on-chain data, it is the unique identifier for this superform.
+          readOnly: true
+          type:
+          - string
+          - 'null'
+        symbol:
+          description: This comes from on-chain data, symbol of the vault.
+          readOnly: true
+          type: string
+        timelock_duration:
+          description: The duration of the timelock.
+          examples:
+          - 7
+          format: int64
+          type:
+          - integer
+          - 'null'
+        timelock_unit:
+          description: The unit of the timelock duration.
+          enum:
+          - hours
+          - days
+          - weeks
+          - months
+          - years
+          - ''
+          type:
+          - string
+          - 'null'
+        underlying_wrapper_vaults:
+          items:
+            $ref: '#/components/schemas/ERC5115To4626WrapperVault'
+          type: array
+        updated_at:
+          format: date-time
+          readOnly: true
+          type: string
+        vault_lister:
+          description: The address of the user who listed the vault.
+          type: string
+        vault_statistics:
+          $ref: '#/components/schemas/VaultStatistic'
+          readOnly: true
+        vault_status_message:
+          description: Optional. The status message of the vault.
+          type:
+          - string
+          - 'null'
+        visibility:
+          description: Visibility on the Superform platform
+          enum:
+          - listed
+          - unlisted
+          - hidden
+          - featured
+          - ''
+          type: string
+        withdraw_to_vault_asset_only:
+          description: If confidence score falls below a threshold, the vault will only allow withdrawals to the vault asset to minimize crosschain withdrawal failure rate.
+          readOnly: true
+          type:
+          - boolean
+          - 'null'
+        withdrawal_confidence_score:
+          description: This confidence score is based on revent withdrwawal failure rate
+          format: double
+          readOnly: true
+          type:
+          - number
+          - 'null'
+        withdrawal_link:
+          type: string
+        yield_source:
+          description: The yield source of the vault.
+          type: string
+        yield_type:
+          description: The yield type of the vault. Required when creating vault.
+          enum:
+          - Yield
+          - Liquid Staking
+          - Liquid Restaking
+          - Lending
+          - Basis Trading
+          - RWA
+          - Dexes
+          - Derivatives
+          - Yield Aggregator
+          - Leveraged Farming
+          - Insurance
+          - Intelligent
+          - Onchain Capital Allocator
+          type: string
+      required:
+      - form_implementation_id
+      - name
+      type: object
+    AddVaultInputBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/AddVaultInputBody.json
+          format: uri
+          readOnly: true
+          type: string
+        analytics:
+          items:
+            $ref: '#/components/schemas/VaultAnalytic'
+          type: array
+        assets:
+          items:
+            $ref: '#/components/schemas/Asset'
+          type: array
+        audits:
+          items:
+            $ref: '#/components/schemas/VaultAudit'
+          type: array
+        availability:
+          description: Availability on the Superform platform
+          enum:
+          - available
+          - unavailable
+          - paused
+          - withdraw_only
+          - deposit_only
+          - ''
+          type: string
+        chain:
+          $ref: '#/components/schemas/Chain'
+          description: This is the chain that this vault belongs to.
+        contract_address:
+          description: This comes from on-chain data, it is the address of the vault contract.
+          readOnly: true
+          type: string
+        created_at:
+          format: date-time
+          readOnly: true
+          type: string
+        decimals:
+          description: This comes from on-chain data, decimals of the vault.
+          format: int32
+          readOnly: true
+          type: integer
+        deploy_date:
+          description: The date the vault was deployed on-chain.
+          format: date-time
+          type: string
+        description:
+          description: The description of the vault. Required when creating vault.
+          type: string
+        exploits:
+          items:
+            $ref: '#/components/schemas/VaultExploit'
+          type: array
+        external_url:
+          description: The external URL of the vault.
+          type: string
+        faq:
+          items:
+            $ref: '#/components/schemas/VaultFAQ'
+          type: array
+        fees:
+          items:
+            $ref: '#/components/schemas/VaultFee'
+          type: array
+        form_implementation_id:
+          description: This is the formImplementationID of the vault
+          readOnly: true
+          type: string
+        friendly_name:
+          description: The friendly name of the vault.
+          type: string
+        has_aerc_20_registered:
+          description: Whether the vault has an AERC20 registered.
+          readOnly: true
+          type: boolean
+        has_rewards:
+          type:
+          - boolean
+          - 'null'
+        has_timelock:
+          description: Whether the vault has a timelock.
+          type:
+          - boolean
+          - 'null'
+        id:
+          description: This is the unique identifier for this vault.
+          readOnly: true
+          type: string
+        is_authenticated:
+          readOnly: true
+          type: boolean
+        is_supervault:
+          type: boolean
+        kyc:
+          items:
+            $ref: '#/components/schemas/VaultKYC'
+          type: array
+        name:
+          description: This is the name of the vault.
+          type: string
+        num_depositors:
+          description: The number of Superform depositors in the vault.
+          format: int64
+          readOnly: true
+          type: integer
+        other:
+          items:
+            $ref: '#/components/schemas/VaultOther'
+          type: array
+        protocol:
+          $ref: '#/components/schemas/Protocol'
+          description: Optional. This is the protocol that this vault belongs to.
+        protocol_id:
+          description: Optional. This is the unique identifier for the protocol that this vault belongs to.
+          type:
+          - string
+          - 'null'
+        recommend_vault_share_withdrawal:
+          type:
+          - boolean
+          - 'null'
+        rewards:
+          description: Array of rewards that are live for this vault.
+          items:
+            $ref: '#/components/schemas/VaultRewardRates'
+          type: array
+        risk_data:
+          $ref: '#/components/schemas/VaultRiskData'
+          description: Risk data for the vault, using DefiLlama.
+        risk_data_last_updated:
+          description: The last time the risk data was updated.
+          format: date-time
+          readOnly: true
+          type: string
+        super_pools:
+          description: Array of chainIDs on which there is a liquidity pool for this vault
+          examples:
+          - - 1
+            - 137
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        superform_address:
+          description: This comes from on-chain data, it is the address of the superform contract.
+          readOnly: true
+          type:
+          - string
+          - 'null'
+        superform_id:
+          description: This comes from on-chain data, it is the unique identifier for this superform.
+          readOnly: true
+          type:
+          - string
+          - 'null'
+        symbol:
+          description: This comes from on-chain data, symbol of the vault.
+          readOnly: true
+          type: string
+        timelock_duration:
+          description: The duration of the timelock.
+          examples:
+          - 7
+          format: int64
+          type:
+          - integer
+          - 'null'
+        timelock_unit:
+          description: The unit of the timelock duration.
+          enum:
+          - hours
+          - days
+          - weeks
+          - months
+          - years
+          - ''
+          type:
+          - string
+          - 'null'
+        underlying_wrapper_vaults:
+          items:
+            $ref: '#/components/schemas/ERC5115To4626WrapperVault'
+          type: array
+        updated_at:
+          format: date-time
+          readOnly: true
+          type: string
+        vault_lister:
+          description: The address of the user who listed the vault.
+          type: string
+        vault_statistics:
+          $ref: '#/components/schemas/VaultStatistic'
+          readOnly: true
+        vault_status_message:
+          description: Optional. The status message of the vault.
+          type:
+          - string
+          - 'null'
+        visibility:
+          description: Visibility on the Superform platform
+          enum:
+          - listed
+          - unlisted
+          - hidden
+          - featured
+          - ''
+          type: string
+        withdraw_to_vault_asset_only:
+          description: If confidence score falls below a threshold, the vault will only allow withdrawals to the vault asset to minimize crosschain withdrawal failure rate.
+          readOnly: true
+          type:
+          - boolean
+          - 'null'
+        withdrawal_confidence_score:
+          description: This confidence score is based on revent withdrwawal failure rate
+          format: double
+          readOnly: true
+          type:
+          - number
+          - 'null'
+        withdrawal_link:
+          type: string
+        yield_source:
+          description: The yield source of the vault.
+          type: string
+        yield_type:
+          description: The yield type of the vault. Required when creating vault.
+          enum:
+          - Yield
+          - Liquid Staking
+          - Liquid Restaking
+          - Lending
+          - Basis Trading
+          - RWA
+          - Dexes
+          - Derivatives
+          - Yield Aggregator
+          - Leveraged Farming
+          - Insurance
+          - Intelligent
+          - Onchain Capital Allocator
+          type: string
+      required:
+      - form_implementation_id
+      - name
+      type: object
+    Asset:
+      additionalProperties: false
+      properties:
+        contract_address:
+          type: string
+        decimals:
+          format: int32
+          type: integer
+        id:
+          format: int64
+          type: integer
+        image:
+          type: string
+        name:
+          type: string
+        symbol:
+          type: string
+      type: object
+    VaultFAQ:
+      additionalProperties: false
+      properties:
+        answer:
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        question:
+          type: string
+        vault_id:
+          type: string
+      type: object
+    VaultFee:
+      additionalProperties: false
+      properties:
+        fee_amount:
+          format: double
+          type: number
+        fee_description:
+          type: string
+        fee_name:
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        vault_id:
+          type: string
+      type: object
+    VaultKYC:
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        issuer:
+          type: string
+        issuer_link:
+          type: string
+        provider:
+          type: string
+        vault_id:
+          type: string
+      type: object
+    ProtocolExploit:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        date:
+          format: date-time
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        protocol_id:
+          type: string
+        title:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        url:
+          type: string
+      required:
+      - id
+      - protocol_id
+      - title
+      - amount
+      - url
+      - date
+      - is_deleted
+      - created_at
+      - updated_at
+      type: object
+    ERC5115To4626WrapperVault:
+      additionalProperties: false
+      properties:
+        chain_id:
+          format: int64
+          type: integer
+        contract_address:
+          type: string
+        from_token_address:
+          type: string
+        id:
+          type: string
+        superform_address:
+          type: string
+        superform_id:
+          type: string
+        to_token_address:
+          type: string
+      required:
+      - id
+      - chain_id
+      - superform_id
+      - superform_address
+      - contract_address
+      - from_token_address
+      - to_token_address
+      type: object
+    ProtocolFAQ:
+      additionalProperties: false
+      properties:
+        answer:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        protocol_id:
+          type: string
+        question:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - id
+      - protocol_id
+      - question
+      - answer
+      - is_deleted
+      - created_at
+      - updated_at
+      type: object
+    ProtocolGraphics:
+      additionalProperties: false
+      properties:
+        avatar:
+          type: string
+        header:
+          type: string
+        icon:
+          type: string
+        watermark:
+          type: string
+      required:
+      - icon
+      - header
+      - avatar
+      - watermark
+      type: object
+    User:
+      additionalProperties: false
+      properties:
+        address:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        dynamic_id:
+          type: string
+        dynamic_wallet_id:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        protocol_id:
+          type: string
+        role:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - id
+      - dynamic_id
+      - dynamic_wallet_id
+      - address
+      - protocol_id
+      - name
+      - role
+      - created_at
+      - updated_at
+      type: object
+    ErrorModel:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ErrorModel.json
+          format: uri
+          readOnly: true
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          examples:
+          - Property foo is required but is missing.
+          type: string
+        errors:
+          description: Optional list of individual error details
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          type: array
+        instance:
+          description: A URI reference that identifies the specific occurrence of the problem.
+          examples:
+          - https://example.com/error-log/abc123
+          format: uri
+          type: string
+        status:
+          description: HTTP status code
+          examples:
+          - 400
+          format: int64
+          type: integer
+        title:
+          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
+          examples:
+          - Bad Request
+          type: string
+        type:
+          default: about:blank
+          description: A URI reference to human-readable documentation for the error.
+          examples:
+          - https://example.com/errors/example
+          format: uri
+          type: string
+      type: object
+    VaultRiskDataChainStruct:
+      additionalProperties: false
+      properties:
+        rating:
+          type: string
+        rating_color:
+          type: string
+        underlying:
+          items:
+            $ref: '#/components/schemas/VaultRiskDataUnderlying'
+          type: array
+      type: object
+    VaultRiskDataPoolDesignStruct:
+      additionalProperties: false
+      properties:
+        rating:
+          type: string
+        rating_color:
+          type: string
+      type: object
+    ProtocolLinks:
+      additionalProperties: false
+      properties:
+        discord:
+          type: string
+        telegram:
+          type: string
+        twitter:
+          type: string
+        website:
+          type: string
+      required:
+      - website
+      - twitter
+      - discord
+      - telegram
+      type: object
+  securitySchemes:
+    apiKey:
+      description: Provide the api key issued to you
+      in: header
+      name: SF-API-KEY
+      type: apiKey
