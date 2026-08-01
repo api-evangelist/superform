@@ -1,0 +1,16 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/superform-openapi-original.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: SF-API-KEY
+  description: Provide the api key issued to you
+  sources:
+  - openapi/superform-openapi-original.json

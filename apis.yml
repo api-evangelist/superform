@@ -1,8 +1,28 @@
 aid: superform
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/superform.png
 name: Superform
-description: 'Superform is a company surfaced as a portfolio company of polychain and added to the API
-  Evangelist network as a stub for enrichment. Sector: defi-yield. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  Superform is a user-owned onchain neobank and the operating system for programmable
+  DeFi vaults. The protocol enables single-signature execution of arbitrary actions
+  across chains and optimized yield vaults, built on ERC-4626 / ERC-7540 tokenized
+  vaults and ERC-7579 smart accounts. Its public API (api.superform.xyz) exposes
+  vault and protocol data, cross-chain deposit/withdraw/rebalance transaction routing,
+  user portfolios and balances, superpositions, and protocol rewards. A separate
+  SuperformOS "operate" API (Erebor, Strategy Engine, and OMS) lets vault managers
+  create, configure, and automate SuperVaults. Originally added as a Polychain
+  portfolio lead, this profile has been enriched from Superform's real developer surface.
 url: https://raw.githubusercontent.com/api-evangelist/superform/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,11 +32,168 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Defi Yield
-apis: []
+- DeFi
+- Vaults
+- Yield Aggregation
+- Cross Chain
+- Onchain
+- Blockchain
+- Smart Accounts
+apis:
+- aid: superform:superform-auxiliary-api
+  name: Superform Auxiliary API
+  description: The Auxiliary API from Superform — 8 operation(s) for auxiliary.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Auxiliary
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-auxiliary-api-openapi.yml
+- aid: superform:superform-balances-api
+  name: Superform Balances API
+  description: The Balances API from Superform — 2 operation(s) for balances.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Balances
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-balances-api-openapi.yml
+- aid: superform:superform-contract-checker-api
+  name: Superform Contract Checker API
+  description: The Contract Checker API from Superform — 1 operation(s) for contract checker.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Contract Checker
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-contract-checker-api-openapi.yml
+- aid: superform:superform-data-api
+  name: Superform Data API
+  description: The Data API from Superform — 1 operation(s) for data.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Data
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-data-api-openapi.yml
+- aid: superform:superform-execution-api
+  name: Superform Execution API
+  description: The Execution API from Superform — 6 operation(s) for execution.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Execution
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-execution-api-openapi.yml
+- aid: superform:superform-explorer-api
+  name: Superform Explorer API
+  description: The Explorer API from Superform — 5 operation(s) for explorer.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Explorer
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-explorer-api-openapi.yml
+- aid: superform:superform-health-api
+  name: Superform Health API
+  description: The Health API from Superform — 8 operation(s) for health.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-health-api-openapi.yml
+- aid: superform:superform-migrate-api
+  name: Superform Migrate API
+  description: The Migrate API from Superform — 2 operation(s) for migrate.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Migrate
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-migrate-api-openapi.yml
+- aid: superform:superform-protocol-api
+  name: Superform Protocol API
+  description: The Protocol API from Superform — 3 operation(s) for protocol.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Protocol
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-protocol-api-openapi.yml
+- aid: superform:superform-protocol-rewards-api
+  name: Superform Protocol Rewards API
+  description: The Protocol Rewards API from Superform — 5 operation(s) for protocol rewards.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Protocol Rewards
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-protocol-rewards-api-openapi.yml
+- aid: superform:superform-simulator-api
+  name: Superform Simulator API
+  description: The Simulator API from Superform — 1 operation(s) for simulator.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Simulator
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-simulator-api-openapi.yml
+- aid: superform:superform-stats-api
+  name: Superform Stats API
+  description: The Stats API from Superform — 2 operation(s) for stats.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Stats
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-stats-api-openapi.yml
+- aid: superform:superform-superrewardsapi-api
+  name: Superform SuperRewardsAPI API
+  description: The SuperRewardsAPI API from Superform — 13 operation(s) for superrewardsapi.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - SuperRewardsAPI
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-superrewardsapi-api-openapi.yml
+- aid: superform:superform-token-distribution-api
+  name: Superform Token Distribution API
+  description: The Token Distribution API from Superform — 6 operation(s) for token distribution.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Token Distribution
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-token-distribution-api-openapi.yml
+- aid: superform:superform-vault-api
+  name: Superform Vault API
+  description: The Vault API from Superform — 3 operation(s) for vault.
+  humanURL: https://docs.superform.xyz/operate/api/overview
+  baseURL: https://api.superform.xyz
+  tags:
+  - Vault
+  properties:
+  - type: OpenAPI
+    url: openapi/superform-vault-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +202,42 @@ maintainers:
 common:
 - type: Website
   url: https://superform.xyz
+- type: DeveloperPortal
+  url: https://docs.superform.xyz/build
+- type: Documentation
+  url: https://docs.superform.xyz
+- type: APIReference
+  url: https://docs.superform.xyz/operate/api/overview
+- type: GettingStarted
+  url: https://docs.superform.xyz/operate/quickstart
+- type: Support
+  url: https://help.superform.xyz/
+- type: GitHubOrganization
+  url: https://github.com/superform-xyz
+- type: Blog
+  url: https://mirror.xyz/superform.eth
+- type: LLMsTxt
+  url: llms/superform-llms.txt
+- type: MCPServer
+  url: mcp/superform-mcp.yml
+- type: Authentication
+  url: authentication/superform-authentication.yml
+- type: Conventions
+  url: conventions/superform-conventions.yml
+- type: Lifecycle
+  url: lifecycle/superform-lifecycle.yml
+- type: Conformance
+  url: conformance/superform-conformance.yml
+- type: DataModel
+  url: data-model/superform-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/superform-agentic-access.yml
+- type: DomainSecurity
+  url: security/superform-domain-security.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 12
+  pass: local-v1

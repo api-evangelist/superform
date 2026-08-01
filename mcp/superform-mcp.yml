@@ -1,0 +1,208 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/superform-openapi-original.json
+server:
+  name: superform
+  transport: http
+note: Candidate tool list derived from Superform API OpenAPI operations. No official hosted MCP server
+  found as of generation.
+tools:
+- name: health_check
+  description: Basic Health Check
+  source_operation: openapi/superform-openapi-original.json#health-check
+- name: address_type
+  description: Get address type
+  source_operation: openapi/superform-openapi-original.json#address-type
+- name: vault_type
+  description: Get Vault Type
+  source_operation: openapi/superform-openapi-original.json#vault-type
+- name: deployment_details
+  description: Get deployment details
+  source_operation: openapi/superform-openapi-original.json#deployment-details
+- name: deposit_calculate
+  description: Get routes for a deposit
+  source_operation: openapi/superform-openapi-original.json#deposit-calculate
+- name: deposit_start
+  description: Start a deposit transaction
+  source_operation: openapi/superform-openapi-original.json#deposit-start
+- name: user_blast_galxe_eligibility
+  description: Get user blast transaction galxe eligibility
+  source_operation: openapi/superform-openapi-original.json#user-blast-galxe-eligibility
+- name: user_cross_chain_galxe_eligibility
+  description: Get user cross chain transaction galxe eligibility
+  source_operation: openapi/superform-openapi-original.json#user-cross-chain-galxe-eligibility
+- name: user_multi_vault_galxe_eligibility
+  description: Get user multi vault galxe eligibility
+  source_operation: openapi/superform-openapi-original.json#user-multi-vault-galxe-eligibility
+- name: user_same_chain_galxe_eligibility
+  description: Get user same chain transaction galxe eligibility
+  source_operation: openapi/superform-openapi-original.json#user-same-chain-galxe-eligibility
+- name: get_transaction_amount
+  description: Get transaction amount
+  source_operation: openapi/superform-openapi-original.json#get-transaction-amount
+- name: health_check_db
+  description: Database Health Check
+  source_operation: openapi/superform-openapi-original.json#health-check-db
+- name: health_check_debank
+  description: Debank Health Check
+  source_operation: openapi/superform-openapi-original.json#health-check-debank
+- name: health_check_ipfs
+  description: IPFS Health Check
+  source_operation: openapi/superform-openapi-original.json#health-check-ipfs
+- name: health_check_llama
+  description: DefiLlama Health Check
+  source_operation: openapi/superform-openapi-original.json#health-check-llama
+- name: health_check_rpc
+  description: RPC Health Check
+  source_operation: openapi/superform-openapi-original.json#health-check-rpc
+- name: health_check_socket
+  description: Socket Health Check
+  source_operation: openapi/superform-openapi-original.json#health-check-socket
+- name: health_check_subgraph
+  description: Subgraph Health Check
+  source_operation: openapi/superform-openapi-original.json#health-check-subgraph
+- name: migrate_transaction
+  description: Get transaction for migration
+  source_operation: openapi/superform-openapi-original.json#migrate-transaction
+- name: migrate_user_balances
+  description: Get user vault shares
+  source_operation: openapi/superform-openapi-original.json#migrate-user-balances
+- name: get_protocol
+  description: Get protocol by ID
+  source_operation: openapi/superform-openapi-original.json#get-protocol
+- name: protocol_stats
+  description: Get protocol stats
+  source_operation: openapi/superform-openapi-original.json#protocol-stats
+- name: claim_rewards
+  description: Get transaction for claiming rewards
+  source_operation: openapi/superform-openapi-original.json#claim-rewards
+- name: get_claimable_rewards
+  description: Get claimable rewards
+  source_operation: openapi/superform-openapi-original.json#get-claimable-rewards
+- name: get_user_earning_rewards
+  description: Get user earning rewards
+  source_operation: openapi/superform-openapi-original.json#get-user-earning-rewards
+- name: vault_user_historic_balances
+  description: Get user historical balances for vault
+  source_operation: openapi/superform-openapi-original.json#vault-user-historic-balances
+- name: protocol_user_historic_balances
+  description: Get user historical balances for protocol
+  source_operation: openapi/superform-openapi-original.json#protocol-user-historic-balances
+- name: get_protocols_all
+  description: Get all protocols
+  source_operation: openapi/superform-openapi-original.json#get-protocols-all
+- name: rebalancing_calculate
+  description: Get routes for a rebalancing
+  source_operation: openapi/superform-openapi-original.json#rebalancing-calculate
+- name: rebalancing_start
+  description: Start a rebalancing transaction
+  source_operation: openapi/superform-openapi-original.json#rebalancing-start
+- name: get_season_3_rewards_leaderboard_superrewards
+  description: Get season 3 rewards leaderboard
+  source_operation: openapi/superform-openapi-original.json#get-season-3-rewards-leaderboard-superrewards
+- name: get_season_3_rewards_opportunities_superrewards
+  description: Get season 3 rewards opportunities
+  source_operation: openapi/superform-openapi-original.json#get-season-3-rewards-opportunities-superrewards
+- name: get_season_3_referral_code_superrewards
+  description: Get season 3 referral code
+  source_operation: openapi/superform-openapi-original.json#get-season-3-referral-code-superrewards
+- name: redeem_season_3_referral_code_superrewards
+  description: Redeem season 3 referral code
+  source_operation: openapi/superform-openapi-original.json#redeem-season-3-referral-code-superrewards
+- name: get_season_3_rewards_sources_superrewards
+  description: Get season 3 rewards sources
+  source_operation: openapi/superform-openapi-original.json#get-season-3-rewards-sources-superrewards
+- name: get_season_3_rewards_summary_superrewards
+  description: Get season 3 rewards summary
+  source_operation: openapi/superform-openapi-original.json#get-season-3-rewards-summary-superrewards
+- name: get_simulation
+  description: Get superform simulation
+  source_operation: openapi/superform-openapi-original.json#get-simulation
+- name: get_superform_tvl_volume_stats
+  description: Get Superform stats
+  source_operation: openapi/superform-openapi-original.json#get-superform-tvl-volume-stats
+- name: get_vault_superform_tvl
+  description: Get vault Superform TVL
+  source_operation: openapi/superform-openapi-original.json#get-vault-superform-tvl
+- name: superposition_price
+  description: Get superposition price
+  source_operation: openapi/superform-openapi-original.json#superposition-price
+- name: get_relative_cred_leaderboard_superrewards
+  description: Get cred leaderboard
+  source_operation: openapi/superform-openapi-original.json#get-relative-cred-leaderboard-superrewards
+- name: get_protocol_leaderboard_superrewards
+  description: Get protocol leaderboard
+  source_operation: openapi/superform-openapi-original.json#get-protocol-leaderboard-superrewards
+- name: get_relative_tvl_leaderboard_superrewards
+  description: Get TVL boosts leaderboard
+  source_operation: openapi/superform-openapi-original.json#get-relative-tvl-leaderboard-superrewards
+- name: get_exploration_dashboard_summary_superrewards
+  description: Get exploration dashboard summary
+  source_operation: openapi/superform-openapi-original.json#get-exploration-dashboard-summary-superrewards
+- name: get_exploration_dashboard_superrewards
+  description: Get user's exploration dashboard
+  source_operation: openapi/superform-openapi-original.json#get-exploration-dashboard-superrewards
+- name: redeem_referral_code_superrewards
+  description: Redeem a referral code
+  source_operation: openapi/superform-openapi-original.json#redeem-referral-code-superrewards
+- name: supported
+  description: Get supported bridges, dexes, AMBs
+  source_operation: openapi/superform-openapi-original.json#supported
+- name: supported_chains
+  description: Get supported chains
+  source_operation: openapi/superform-openapi-original.json#supported-chains
+- name: supported_withdrawable_tokens
+  description: Get withdrawable tokens
+  source_operation: openapi/superform-openapi-original.json#supported-withdrawable-tokens
+- name: supported_yield_types
+  description: Get supported yield types
+  source_operation: openapi/superform-openapi-original.json#supported-yield-types
+- name: get_reward_token_balance
+  description: Get reward token balance
+  source_operation: openapi/superform-openapi-original.json#get-reward-token-balance
+- name: start_piggy_token_claim
+  description: Start piggy token claim
+  source_operation: openapi/superform-openapi-original.json#start-piggy-token-claim
+- name: start_slop_bucket_deposit
+  description: Start slop bucket deposit
+  source_operation: openapi/superform-openapi-original.json#start-slop-bucket-deposit
+- name: start_slop_bucket_claim
+  description: Start slop bucket claim
+  source_operation: openapi/superform-openapi-original.json#start-slop-bucket-claim
+- name: start_slop_bucket_withdraw
+  description: Start slop bucket withdraw
+  source_operation: openapi/superform-openapi-original.json#start-slop-bucket-withdraw
+- name: get_token_distribution
+  description: Get token distribution for a user
+  source_operation: openapi/superform-openapi-original.json#get-token-distribution
+- name: token_balances
+  description: Get token balances
+  source_operation: openapi/superform-openapi-original.json#token-balances
+- name: superpositions_balances
+  description: Get superpositions balances
+  source_operation: openapi/superform-openapi-original.json#superpositions-balances
+- name: user_balances
+  description: Get historical portfolio balances for an address.
+  source_operation: openapi/superform-openapi-original.json#user-balances
+- name: get_referral_code_superrewards
+  description: Get user referral code
+  source_operation: openapi/superform-openapi-original.json#get-referral-code-superrewards
+- name: add_vault
+  description: Add a new vault
+  source_operation: openapi/superform-openapi-original.json#add-vault
+- name: get_historical_vault_data
+  description: Get historical vault data
+  source_operation: openapi/superform-openapi-original.json#get-historical-vault-data
+- name: get_vault_data
+  description: Get vault data
+  source_operation: openapi/superform-openapi-original.json#get-vault-data
+- name: get_all_vaults
+  description: Get all vaults
+  source_operation: openapi/superform-openapi-original.json#get-all-vaults
+- name: withdraw_calculate
+  description: Get routes for a withdrawal
+  source_operation: openapi/superform-openapi-original.json#withdraw-calculate
+- name: withdraw_start
+  description: Start a withdrawal transaction
+  source_operation: openapi/superform-openapi-original.json#withdraw-start

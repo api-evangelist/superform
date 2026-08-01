@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.superform.xyz/learn/links
+versioning:
+  scheme: none-in-path
+  api_version: '1.0.0'
+  note: Public API operations are unversioned in the path.
+migration:
+  from: superform-v1
+  to: superform-v2
+  evidence:
+  - POST /migrate/start (migrate-transaction)
+  - GET /migrate/user-vault-shares/{user_address} (migrate-user-balances)
+  legacy_app: https://legacy.superform.xyz/
+  legacy_docs: https://superform.gitbook.io/superform-v1
+  note: Superform v2 is the current protocol; v1 is legacy with a documented migration path.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal RFC 8594 deprecation-policy page or Sunset/Deprecation header support found.
+sla:
+  url: null
+status_page: null
+security_page: https://docs.superform.xyz/security
+deprecated_operations: []

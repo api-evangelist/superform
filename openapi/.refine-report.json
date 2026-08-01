@@ -1,0 +1,42 @@
+{
+  "provider": "superform",
+  "sources": [
+    "superform-auxiliary-api-openapi.yml",
+    "superform-balances-api-openapi.yml",
+    "superform-contract-checker-api-openapi.yml",
+    "superform-data-api-openapi.yml",
+    "superform-execution-api-openapi.yml",
+    "superform-explorer-api-openapi.yml",
+    "superform-health-api-openapi.yml",
+    "superform-migrate-api-openapi.yml",
+    "superform-protocol-api-openapi.yml",
+    "superform-protocol-rewards-api-openapi.yml",
+    "superform-simulator-api-openapi.yml",
+    "superform-stats-api-openapi.yml",
+    "superform-superrewardsapi-api-openapi.yml",
+    "superform-token-distribution-api-openapi.yml",
+    "superform-vault-api-openapi.yml"
+  ],
+  "outputs": [
+    "superform-auxiliary-api-openapi.yml",
+    "superform-balances-api-openapi.yml",
+    "superform-contract-checker-api-openapi.yml",
+    "superform-data-api-openapi.yml",
+    "superform-execution-api-openapi.yml",
+    "superform-explorer-api-openapi.yml",
+    "superform-health-api-openapi.yml",
+    "superform-migrate-api-openapi.yml",
+    "superform-protocol-api-openapi.yml",
+    "superform-protocol-rewards-api-openapi.yml",
+    "superform-simulator-api-openapi.yml",
+    "superform-stats-api-openapi.yml",
+    "superform-superrewardsapi-api-openapi.yml",
+    "superform-token-distribution-api-openapi.yml",
+    "superform-vault-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

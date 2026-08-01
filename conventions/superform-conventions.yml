@@ -1,0 +1,40 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/superform-openapi-original.json
+docs: https://docs.superform.xyz/operate/api/overview
+summary: >-
+  Cross-cutting request/response conventions for the public Superform API
+  (api.superform.xyz). Derived from the OpenAPI contract and corroborated by the
+  Superform developer docs. The separate SuperformOS "operate" API
+  (erebor.superform.xyz) uses JWT/Dynamic auth and is documented independently.
+authentication:
+  style: api-key
+  location: header
+  parameter: SF-API-KEY
+  note: Public data + transaction-routing API. API key issued to the caller.
+  cross_ref: authentication/superform-authentication.yml
+idempotency:
+  supported: false
+  note: No Idempotency-Key parameter is declared in the OpenAPI. Transaction-start
+    endpoints return unsigned transaction payloads for the caller to sign and
+    broadcast onchain, so replay safety is handled at the chain layer, not the API.
+pagination:
+  style: offset-limit
+  params:
+  - limit
+  - offset
+  note: Present on historical/list endpoints (e.g. portfolio, historical vault data).
+versioning:
+  scheme: none-in-path
+  api_version: '1.0.0'
+  note: Endpoints are unversioned in the path; a v1 -> v2 protocol migration surface
+    exists (migrate/start, migrate/user-vault-shares). Legacy v1 app/docs are separate.
+  cross_ref: lifecycle/superform-lifecycle.yml
+error_envelope:
+  documented: false
+  note: The public OpenAPI declares no 4xx/5xx response bodies; error shape is not
+    published in the spec. No RFC 9457 problem+json usage observed.
+rate_limiting:
+  documented: false
+domains:
+  base_url: https://api.superform.xyz

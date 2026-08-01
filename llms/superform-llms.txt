@@ -1,0 +1,68 @@
+# Superform
+
+> Superform is the user-owned neobank enabling single-signature execution of arbitrary actions across chains and optimized vaults.
+
+## Docs
+
+- [Introduction](https://docs.superform.xyz/build.md): Build on Superform: write hooks or join the validator network.
+- [Configuration Reference](https://docs.superform.xyz/build/become-a-validator/configuration-reference.md): Reference for config.toml, chains.yaml, and OCR2 timing presets used by Superform validator nodes.
+- [Economics](https://docs.superform.xyz/build/become-a-validator/economics.md): Validator rewards, staking, slashing, insurance, and rollout phases for the Superform validator network.
+- [How It Works](https://docs.superform.xyz/build/become-a-validator/how-it-works.md): How the Superform validator network reaches OCR2 consensus and what your node does in each round.
+- [Become a Validator](https://docs.superform.xyz/build/become-a-validator/index.md): Understand the validator program, operator requirements, and the fastest path to a live Superform validator node.
+- [Infrastructure Sizing](https://docs.superform.xyz/build/become-a-validator/infrastructure.md): Decision guide for sizing compute, database, key custody, and monitoring for a Superform validator node.
+- [Monitoring](https://docs.superform.xyz/build/become-a-validator/monitoring.md): Health endpoints, Prometheus metrics, and alerting guidance for Superform validator operators.
+- [Node Setup](https://docs.superform.xyz/build/become-a-validator/node-setup.md): Canonical install guide for running a Superform validator node with Docker or from source.
+- [Operations](https://docs.superform.xyz/build/become-a-validator/operations.md): Runbook for registration, upgrades, key rotation, health checks, and troubleshooting validator nodes.
+- [Quickstart](https://docs.superform.xyz/build/become-a-validator/quickstart.md): The shortest safe path from validator approval to a healthy Superform node.
+- [Write a Hook](https://docs.superform.xyz/build/hooks.md): Step-by-step guide to building custom hooks on Superform, from repo setup through implementation and testing.
+- [Operate a SuperVault](https://docs.superform.xyz/build/manage-a-supervault.md): On-chain vault creation, manager roles, upkeep, strategy management, fee configuration, and redemption fulfillment via SuperVaultAggregator.
+- [Deployment Addresses](https://docs.superform.xyz/deployment-addresses.md): All Superform v2 contract addresses across Ethereum, Base, Optimism, Arbitrum, BNB, Polygon, Avalanche, Unichain, and HyperEVM.
+- [What is Superform?](https://docs.superform.xyz/index.md): Superform is the user-owned neobank enabling single-signature execution of arbitrary actions across chains and optimized vaults.
+- [Glossary](https://docs.superform.xyz/learn/glossary.md): Definitions of key terms used throughout the Superform protocol documentation.
+- [Hooks](https://docs.superform.xyz/learn/hooks.md): Permissionless composable contracts that can be chained to execute any multi-chain DeFi strategy.
+- [Superform Protocol](https://docs.superform.xyz/learn/learn.md): Superform Core and Superform Periphery: how the protocol components fit together.
+- [Links](https://docs.superform.xyz/learn/links.md): Superform whitepapers, source code, standards, community, and developer tools.
+- [Smart Accounts](https://docs.superform.xyz/learn/smart-accounts.md): ERC-7579 Smart Accounts powering Superform: gas abstraction, passkey login, and session keys while remaining fully self-custodial.
+- [Superform Core](https://docs.superform.xyz/learn/superform-core.md): A suite of persistent, non-upgradeable contracts providing Merkle-verified execution through ERC-7579 Smart Accounts and composable Hooks.
+- [SuperVaults](https://docs.superform.xyz/learn/supervaults.md): ERC-7540 tokenized vaults with operator-managed yield strategies, Merkle-verified execution, and validator-secured price-per-share.
+- [Economics](https://docs.superform.xyz/learn/supervaults/economics.md): SuperVault fee structure: management fees, performance fees, upkeep costs, and the fee skimming mechanism.
+- [Transaction Lifecycle](https://docs.superform.xyz/learn/supervaults/transaction-lifecycle.md): End-to-end transaction flows for SuperVault deposits, PPS updates, strategy operations, and redemptions.
+- [$UP](https://docs.superform.xyz/learn/usdup.md): The UP token: ownership, staking, governance participation, and planned validator utility in the Superform Protocol.
+- [What is SuperformOS?](https://docs.superform.xyz/operate.md): SuperformOS is the operating system for programmable vaults: transparent rules, bounded execution, validator-attested pricing, and auditable operating history.
+- [Erebor API Reference](https://docs.superform.xyz/operate/api/erebor.md): Management API for vaults, settings, merkle authorization, registries, upkeep, notifications, session keys, and pause controls.
+- [OMS API — DeFiX Intents & Session Keys](https://docs.superform.xyz/operate/api/oms.md): Submit, track, cancel, and execute DeFiX intents, including session-key readiness for strategy automation.
+- [Operate API Overview](https://docs.superform.xyz/operate/api/overview.md): How Erebor, Strategy Engine, and OMS fit together for SuperVault operations.
+- [Strategy Engine API Reference](https://docs.superform.xyz/operate/api/strategy.md): Create, order, execute, and inspect SuperVault strategies, intents, fills, and emergency locks.
+- [Authentication](https://docs.superform.xyz/operate/authentication.md): How JWT auth works in SuperVaults: wallet connection, token storage, and programmatic access.
+- [Monitoring Vault State](https://docs.superform.xyz/operate/automation/monitoring.md): Poll endpoints to track PPS, service health, and alert conditions for your vault.
+- [Automating SuperformOS](https://docs.superform.xyz/operate/automation/overview.md): Programmatic auth, safety patterns, and an end-to-end example for automated vault operations.
+- [Notifications and Event Streams](https://docs.superform.xyz/operate/automation/webhooks.md): Use notification channels, audit logs, and polling to stream SuperVault operational events.
+- [SuperformOS](https://docs.superform.xyz/operate/concepts.md): How SuperformOS makes programmable vault strategy logic visible, bounded, executable, and verifiable.
+- [Permissions Model](https://docs.superform.xyz/operate/permissions.md): Access boundaries for primary managers, secondary managers, view-only users, registry maintainers, session keys, and keepers.
+- [Prerequisites and Access](https://docs.superform.xyz/operate/prerequisites.md): What you need before you can operate a SuperVault: wallet, role, and API access.
+- [Quickstart](https://docs.superform.xyz/operate/quickstart.md): Create, activate, and operate a SuperVault end to end.
+- [Action Config](https://docs.superform.xyz/operate/strategy/action-config.md): Reference for the action_config block that dispatches strategy results into OMS intents.
+- [Strategy Anti-Patterns](https://docs.superform.xyz/operate/strategy/anti-patterns.md): Strategy designs that look reasonable but create operational risk.
+- [Strategy DSL](https://docs.superform.xyz/operate/strategy/dsl.md): Rule-tree grammar, expression syntax, variables, and validation behavior for SuperVault strategies.
+- [Strategy Quickstart](https://docs.superform.xyz/operate/strategy/quickstart.md): Author and POST your first SuperformOS strategy pair.
+- [Strategy Troubleshooting](https://docs.superform.xyz/operate/strategy/troubleshooting.md): Diagnose why a strategy is not saving, ticking, publishing, or filling.
+- [Create Vault](https://docs.superform.xyz/operate/ui/create-vault.md): Deploy a SuperVault, attach distribution metadata, and move from onchain creation to launch-ready operations.
+- [Dashboard](https://docs.superform.xyz/operate/ui/dashboard.md): 9-section vault monitoring dashboard covering TVL, PPS, fees, risk, users, operations, and the Zap Terminal.
+- [Distribute](https://docs.superform.xyz/operate/ui/distribute.md): Browse distributable vaults, review provider actions, and move from operational readiness to public availability.
+- [Home](https://docs.superform.xyz/operate/ui/home.md): The global overview page showing total TVL, vault count, best APY, and a filterable vault list.
+- [Intent History](https://docs.superform.xyz/operate/ui/intent-history.md): Trace Strategy Engine intents through OMS events, fills, gas, and execution status.
+- [Merkle Trees](https://docs.superform.xyz/operate/ui/merkle-trees.md): Configure hook authorization, generate merkle proofs, and publish active proof artifacts.
+- [Pause Operations](https://docs.superform.xyz/operate/ui/pause.md): Pause vault execution, pause keeper services, and arm per-yield-source emergency liquidity exits.
+- [Setup Checklist](https://docs.superform.xyz/operate/ui/setup-checklist.md): The canonical post-create path from onchain vault to live Superform availability.
+- [Simulation](https://docs.superform.xyz/operate/ui/simulation.md): Run backtests and forward simulations against current vault strategies before relying on automation.
+- [Strategy Canvas](https://docs.superform.xyz/operate/ui/strategy.md): Build, order, run, and monitor automated SuperVault strategies.
+- [User Management](https://docs.superform.xyz/operate/ui/user-management.md): Add and remove secondary managers and view-only users for your vault.
+- [Vault Settings](https://docs.superform.xyz/operate/ui/vault-settings.md): Configure fees, PPS parameters, redeem timelock, banned hook leaves, session keys, notifications, and upkeep activation.
+- [Yield Source Management](https://docs.superform.xyz/operate/ui/yield-sources.md): Whitelist yield sources, pair oracles, and keep emergency-exit coverage in sync.
+- [Security](https://docs.superform.xyz/security.md)
+
+## Optional
+
+- [Superform App](https://app.superform.xyz)
+- [SuperformOS](https://os.superform.xyz)
+- [GitHub](https://github.com/superform-xyz)

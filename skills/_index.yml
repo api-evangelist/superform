@@ -1,0 +1,12 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/superform-openapi-original.json
+skills:
+- file: superform-deposit-into-vault.md
+  name: Deposit into a Superform vault
+  api: openapi/superform-openapi-original.json
+  operations: [supported-chains, get-all-vaults, get-vault-data, deposit-calculate, deposit-start]
+- file: superform-track-portfolio-and-rewards.md
+  name: Track a wallet's Superform portfolio and rewards
+  api: openapi/superform-openapi-original.json
+  operations: [user-balances, token-balances, superpositions-balances, get-claimable-rewards, get-user-earning-rewards, get-token-distribution]

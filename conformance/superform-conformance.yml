@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/superform-openapi-original.json
+standards:
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme; API uses apiKey (SF-API-KEY header)
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: no application/problem+json responses declared in spec
+- id: json:api
+  conforms: false
+- id: pagination
+  conforms: true
+  evidence: offset + limit query parameters on list endpoints
+- id: idempotency
+  conforms: false
+  evidence: no Idempotency-Key parameter declared
+- id: erc-4626-tokenized-vault
+  conforms: true
+  evidence: vault/superform endpoints model ERC-4626 tokenized vaults (per docs)
+- id: erc-7540-async-vault
+  conforms: true
+  evidence: SuperVaults implement ERC-7540 async tokenized vaults (per docs)

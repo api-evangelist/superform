@@ -1,0 +1,21 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Superform API
+  version: 1.0.0
+extends: openapi/superform-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-21'
+    x-apievangelist-notes: Public Superform DeFi vault/yield data + transaction-routing API. apiKey (SF-API-KEY
+      header) auth.
+- target: $
+  update:
+    x-apievangelist-tags:
+    - defi
+    - yield
+    - vaults
+    - erc-4626
+    - erc-7540
+    - cross-chain
+    - onchain
