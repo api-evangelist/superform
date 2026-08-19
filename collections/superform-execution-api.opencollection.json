@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Superform Auxiliary Execution API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Execution",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get routes for a deposit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.superform.xyz/deposit/calculate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This is the first of two steps for a deposit flow. After providing relevant options as input, this endpoint will return a number of possible routes. The selected route should be used as input for the `/deposit/start` endpoint."
+        },
+        {
+          "info": {
+            "name": "Start a deposit transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.superform.xyz/deposit/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This is the second and final step in the deposit flow. The expected input is the full output of `/deposit/calculate`. The selected route should be first, or only, route in the `liq.route.routes` array. The response of this endpoint will provide the transaction data and relevant metadata to execute the transaction onchain."
+        },
+        {
+          "info": {
+            "name": "Get routes for a rebalancing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.superform.xyz/rebalancing/calculate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This is the first of two steps for a rebalancing flow. After providing relevant options as input, this endpoint will return a number of possible routes. The selected route should be used as input for the `/rebalancing/start` endpoint."
+        },
+        {
+          "info": {
+            "name": "Start a rebalancing transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.superform.xyz/rebalancing/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Start a rebalancing transaction"
+        },
+        {
+          "info": {
+            "name": "Get routes for a withdrawal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.superform.xyz/withdraw/calculate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This is the first of two steps for a withdrawal flow. After providing relevant options as input, this endpoint will return a number of possible routes. The selected route should be used as input for the `/withdraw/start` endpoint."
+        },
+        {
+          "info": {
+            "name": "Start a withdrawal transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.superform.xyz/withdraw/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This is the second and final step in the withdrawal flow. The expected input is the full output of `/withdraw/calculate`. The selected route should be first, or only, route in the `liq.route.routes` array. The response of this endpoint will provide the transaction data and relevant metadata to execute the transaction onchain. \n > **Note**: if the `approval_data` field is not empty, the user must first approve the token transfer before executing the transaction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

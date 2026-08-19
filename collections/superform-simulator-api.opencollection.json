@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Superform Auxiliary Simulator API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Simulator",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get superform simulation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/simulator/superform/:superform_id",
+            "params": [
+              {
+                "name": "superform_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the simulation status for the superform"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

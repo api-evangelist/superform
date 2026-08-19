@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Superform Auxiliary Vault API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vault",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a new vault",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.superform.xyz/vault",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Add a new vault to Superform."
+        },
+        {
+          "info": {
+            "name": "Get vault data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/vault/:vaultOrSuperformIDOrContractAddress",
+            "params": [
+              {
+                "name": "vaultOrSuperformIDOrContractAddress",
+                "value": "6277101738082190570017043140855561342102135322485627578637",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get vault data by vaultID, superformID, or contractAddress."
+        },
+        {
+          "info": {
+            "name": "Get all vaults",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/vaults",
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get all vaults listed on Superform."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

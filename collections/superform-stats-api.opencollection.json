@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Superform Auxiliary Stats API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Superform stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/stats/superform",
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns total Superform TVL, Volume, number of Vaults and Protocols"
+        },
+        {
+          "info": {
+            "name": "Get vault Superform TVL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/stats/tvl/vault/:vault_id",
+            "params": [
+              {
+                "name": "vault_id",
+                "value": "9Ddx7-7bIqdjshhjmgwn7",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the Superform TVL for a given vault"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

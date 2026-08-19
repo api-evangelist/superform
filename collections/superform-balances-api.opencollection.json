@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Superform Auxiliary Balances API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Balances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get token balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/token/balances/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "0x1234",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "true",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get all ERC-20 token balances with their prices for a user."
+        },
+        {
+          "info": {
+            "name": "Get superpositions balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/token/superpositions/balances/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "0x1234",
+                "type": "path"
+              },
+              {
+                "name": "fetch_erc20s",
+                "value": "true",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the superpositions balances for an address."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,400 @@
+{
+  "item": [
+    {
+      "id": "b5318feb-e8a6-43ce-ab24-03cd0cdec1dd",
+      "name": "Migrate",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bfe9ce51-fa3f-4320-aa1a-2ef2b322ea3f",
+          "name": "Get transaction for migration",
+          "request": {
+            "name": "Get transaction for migration",
+            "description": {
+              "content": "Get transaction for migration using user address and tokens user wants to migrate",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "migrate",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "need_approval",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"user_address\": \"<string>\",\n    \"superform_id\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"slippage\": \"<long>\"\n  },\n  {\n    \"user_address\": \"<string>\",\n    \"superform_id\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"slippage\": \"<long>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c16403a-3b29-4cfd-b187-2ce2ad535a76",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migrate",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "need_approval",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"user_address\": \"string\",\n    \"superform_id\": \"string\",\n    \"amount\": \"string\",\n    \"slippage\": 8506\n  },\n  {\n    \"user_address\": \"string\",\n    \"superform_id\": \"string\",\n    \"amount\": \"string\",\n    \"slippage\": 8804\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transaction\": {\n    \"transaction_data\": \"string\",\n    \"to\": \"string\",\n    \"value\": \"string\",\n    \"gas_limit\": \"string\"\n  },\n  \"$schema\": \"https://api.superform.xyz/schemas/StartMigrationOutputBody.json\",\n  \"approvals\": [\n    {\n      \"vault_id\": \"string\",\n      \"superform_id\": \"string\",\n      \"approval_amount\": \"string\",\n      \"transaction_data\": \"string\",\n      \"to\": \"string\"\n    },\n    {\n      \"vault_id\": \"string\",\n      \"superform_id\": \"string\",\n      \"approval_amount\": \"string\",\n      \"transaction_data\": \"string\",\n      \"to\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ac7db94-77a2-449e-bd3e-d14d0624a4c6",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migrate",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "need_approval",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"user_address\": \"string\",\n    \"superform_id\": \"string\",\n    \"amount\": \"string\",\n    \"slippage\": 8506\n  },\n  {\n    \"user_address\": \"string\",\n    \"superform_id\": \"string\",\n    \"amount\": \"string\",\n    \"slippage\": 8804\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e8fd0b6-72f0-4a28-96f6-1b3606351f37",
+          "name": "Get user vault shares",
+          "request": {
+            "name": "Get user vault shares",
+            "description": {
+              "content": "Get user erc4626 vault share balances",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "migrate",
+                "user-vault-shares",
+                ":user_address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force_balance",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "37345b4b-97a1-4366-abde-2d13378ebc40",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migrate",
+                    "user-vault-shares",
+                    ":user_address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force_balance",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"vault_id\": \"string\",\n    \"balance\": \"string\",\n    \"superform_id\": \"string\",\n    \"protocol_id\": \"string\",\n    \"decimals\": 6768,\n    \"amount_usd\": 3417.59757517595\n  },\n  {\n    \"vault_id\": \"string\",\n    \"balance\": \"string\",\n    \"superform_id\": \"string\",\n    \"protocol_id\": \"string\",\n    \"decimals\": 7381,\n    \"amount_usd\": 6696.162640053838\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fad2499-69b5-426b-8066-69558ac4cdf7",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "migrate",
+                    "user-vault-shares",
+                    ":user_address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force_balance",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.superform.xyz",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f60ed60e-cf9e-471c-8e4a-aa4766363a46",
+    "name": "Superform Auxiliary Migrate API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

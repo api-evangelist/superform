@@ -1,0 +1,197 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Superform Auxiliary Token Distribution API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Token Distribution",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get reward token balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/token-distribution/balance/:user",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the reward token balance for a user"
+        },
+        {
+          "info": {
+            "name": "Start piggy token claim",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/token-distribution/claim/:user",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              },
+              {
+                "name": "simulation_required",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Start the piggy token claim process for a user and get the claim transaction"
+        },
+        {
+          "info": {
+            "name": "Start slop bucket deposit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/token-distribution/slop-bucket/start/deposit/:user",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              },
+              {
+                "name": "amount",
+                "value": "1000000000000000000",
+                "type": "query"
+              },
+              {
+                "name": "approval_required",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Start the slop bucket deposit process for a user and get the deposit transaction"
+        },
+        {
+          "info": {
+            "name": "Start slop bucket claim",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/token-distribution/slop-bucket/start/harvest/:user",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              },
+              {
+                "name": "simulation_required",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Start the slop bucket claim process for a user and get the claim transaction"
+        },
+        {
+          "info": {
+            "name": "Start slop bucket withdraw",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/token-distribution/slop-bucket/start/withdraw/:user",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              },
+              {
+                "name": "amount",
+                "value": "1000000000000000000",
+                "type": "query"
+              },
+              {
+                "name": "approval_required",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Start the slop bucket withdraw process for a user and get the withdraw transaction"
+        },
+        {
+          "info": {
+            "name": "Get token distribution for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/token-distribution/:user",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the distribution of the piggy token and superrewards for the user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

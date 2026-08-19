@@ -1,0 +1,401 @@
+{
+  "item": [
+    {
+      "id": "952984ba-1c01-4cbe-8992-19231e62faed",
+      "name": "Balances",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a75033c-a147-4d85-b92e-08e72bc2bcb0",
+          "name": "Get token balances",
+          "request": {
+            "name": "Get token balances",
+            "description": {
+              "content": "Get all ERC-20 token balances with their prices for a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "token",
+                "balances",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8471c3ba-3e55-4bb6-ae9b-60d94c148f5d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token",
+                    "balances",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tokens\": [\n    {\n      \"id\": \"string\",\n      \"chain\": \"string\",\n      \"chain_id\": 2377,\n      \"name\": \"string\",\n      \"symbol\": \"string\",\n      \"display_symbol\": \"string\",\n      \"optimized_symbol\": \"string\",\n      \"decimals\": 590,\n      \"logo_url\": \"string\",\n      \"protocol_id\": \"string\",\n      \"price\": 1456.892564967811,\n      \"is_verified\": false,\n      \"is_core\": false,\n      \"is_wallet\": false,\n      \"amount\": 8007.867942225234,\n      \"amount_corrected\": \"string\",\n      \"raw_amount\": {}\n    },\n    {\n      \"id\": \"string\",\n      \"chain\": \"string\",\n      \"chain_id\": 1868,\n      \"name\": \"string\",\n      \"symbol\": \"string\",\n      \"display_symbol\": \"string\",\n      \"optimized_symbol\": \"string\",\n      \"decimals\": 1856,\n      \"logo_url\": \"string\",\n      \"protocol_id\": \"string\",\n      \"price\": 7342.989479400697,\n      \"is_verified\": false,\n      \"is_core\": false,\n      \"is_wallet\": true,\n      \"amount\": 4012.6530255082216,\n      \"amount_corrected\": \"string\",\n      \"raw_amount\": {}\n    }\n  ],\n  \"$schema\": \"https://api.superform.xyz/schemas/GetTokenBalancesOutputBody.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7baadd6-cdac-4080-9e79-b0e81bd612c9",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token",
+                    "balances",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e15611db-61ed-45dc-820d-6afad26250bf",
+          "name": "Get superpositions balances",
+          "request": {
+            "name": "Get superpositions balances",
+            "description": {
+              "content": "Get the superpositions balances for an address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "token",
+                "superpositions",
+                "balances",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fetch_erc20s",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1e087c8e-2636-4401-852a-9d4fb4e094ce",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token",
+                    "superpositions",
+                    "balances",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fetch_erc20s",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"superpositions\": [\n    {\n      \"chain_id\": 8493,\n      \"superposition_balance\": \"string\",\n      \"superposition_usd_value\": \"string\",\n      \"superposition_id\": \"string\",\n      \"vault\": {\n        \"form_implementation_id\": \"string\",\n        \"name\": \"string\",\n        \"$schema\": \"https://api.superform.xyz/schemas/Vault.json\",\n        \"analytics\": [\n          {\n            \"chart_title\": \"string\",\n            \"chart_url\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"vault_id\": \"string\"\n          },\n          {\n            \"chart_title\": \"string\",\n            \"chart_url\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": true,\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"assets\": [\n          {\n            \"contract_address\": \"string\",\n            \"decimals\": 6874,\n            \"id\": 9779,\n            \"image\": \"string\",\n            \"name\": \"string\",\n            \"symbol\": \"string\"\n          },\n          {\n            \"contract_address\": \"string\",\n            \"decimals\": 8170,\n            \"id\": 8322,\n            \"image\": \"string\",\n            \"name\": \"string\",\n            \"symbol\": \"string\"\n          }\n        ],\n        \"audits\": [\n          {\n            \"audit_date\": \"1963-02-07T09:57:55.207Z\",\n            \"audit_link\": \"string\",\n            \"audit_name\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"vault_id\": \"string\"\n          },\n          {\n            \"audit_date\": \"1990-09-09T19:08:54.931Z\",\n            \"audit_link\": \"string\",\n            \"audit_name\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": true,\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"availability\": \"unavailable\",\n        \"chain\": {\n          \"id\": 2805,\n          \"logo_url\": \"string\",\n          \"name\": \"string\",\n          \"short_name\": \"string\",\n          \"wrapped_token_id\": \"string\"\n        },\n        \"contract_address\": \"string\",\n        \"created_at\": \"2018-12-05T00:27:25.102Z\",\n        \"decimals\": 2541,\n        \"deploy_date\": \"2003-01-15T15:06:14.477Z\",\n        \"description\": \"string\",\n        \"exploits\": [\n          {\n            \"amount\": \"string\",\n            \"date\": \"1958-11-20T13:04:51.557Z\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"title\": \"string\",\n            \"url\": \"string\",\n            \"vault_id\": \"string\"\n          },\n          {\n            \"amount\": \"string\",\n            \"date\": \"2008-01-25T14:39:42.653Z\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"title\": \"string\",\n            \"url\": \"string\",\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"external_url\": \"string\",\n        \"faq\": [\n          {\n            \"answer\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"question\": \"string\",\n            \"vault_id\": \"string\"\n          },\n          {\n            \"answer\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": true,\n            \"question\": \"string\",\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"fees\": [\n          {\n            \"fee_amount\": 4972.600185193972,\n            \"fee_description\": \"string\",\n            \"fee_name\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"vault_id\": \"string\"\n          },\n          {\n            \"fee_amount\": 6045.797613602416,\n            \"fee_description\": \"string\",\n            \"fee_name\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"friendly_name\": \"string\",\n        \"has_aerc_20_registered\": true,\n        \"has_rewards\": true,\n        \"has_timelock\": false,\n        \"id\": \"string\",\n        \"is_authenticated\": false,\n        \"is_supervault\": true,\n        \"kyc\": [\n          {\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"issuer\": \"string\",\n            \"issuer_link\": \"string\",\n            \"provider\": \"string\",\n            \"vault_id\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"is_deleted\": true,\n            \"issuer\": \"string\",\n            \"issuer_link\": \"string\",\n            \"provider\": \"string\",\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"num_depositors\": 2919,\n        \"other\": [\n          {\n            \"additional_description\": \"string\",\n            \"additional_info\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"vault_id\": \"string\"\n          },\n          {\n            \"additional_description\": \"string\",\n            \"additional_info\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": true,\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"protocol\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"type\": \"string\",\n          \"tagline\": \"string\",\n          \"is_hidden\": true,\n          \"is_authenticated\": false,\n          \"defillama_id\": \"string\",\n          \"vanity_url\": \"string\",\n          \"primary_color\": \"string\",\n          \"num_depositors\": 3114,\n          \"status\": \"string\",\n          \"status_message\": \"string\",\n          \"deploy_date\": \"1959-03-16T10:38:09.099Z\",\n          \"graphics\": {\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"header\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"watermark\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"links\": {\n            \"website\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"twitter\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discord\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"telegram\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"vaults_amount\": 5028,\n          \"tvl\": 2170.2785734518648,\n          \"tvl_day_change\": 6569.989521057884,\n          \"tvl_week_change\": 5507.290475110859,\n          \"tvl_month_change\": 4360.928302073839,\n          \"created_at\": \"2020-03-01T03:03:55.872Z\",\n          \"updated_at\": \"1993-11-05T00:40:16.721Z\",\n          \"$schema\": \"https://api.superform.xyz/schemas/Protocol.json\",\n          \"analytics\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"audits\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"chain_ids\": [\n            8600,\n            8409\n          ],\n          \"deployers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"exploits\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"faq\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"users\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"protocol_id\": \"string\",\n        \"recommend_vault_share_withdrawal\": true,\n        \"rewards\": [\n          {\n            \"address\": \"string\",\n            \"chain_id\": 2170,\n            \"is_configurable\": true,\n            \"logo\": \"string\",\n            \"rate_type\": \"string\",\n            \"remarks\": \"string\",\n            \"remarks_url\": \"string\",\n            \"reward_multiplier\": 1985.8126393401353,\n            \"reward_rate\": 4401.088151326367,\n            \"reward_source\": \"string\",\n            \"symbol\": \"string\",\n            \"total_supply\": 2502,\n            \"type\": \"string\"\n          },\n          {\n            \"address\": \"string\",\n            \"chain_id\": 2756,\n            \"is_configurable\": false,\n            \"logo\": \"string\",\n            \"rate_type\": \"string\",\n            \"remarks\": \"string\",\n            \"remarks_url\": \"string\",\n            \"reward_multiplier\": 5304.165732036626,\n            \"reward_rate\": 2871.9707127076954,\n            \"reward_source\": \"string\",\n            \"symbol\": \"string\",\n            \"total_supply\": 8530,\n            \"type\": \"string\"\n          }\n        ],\n        \"risk_data\": {\n          \"assets\": {\n            \"rating\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rating_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"underlying\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"chain\": {\n            \"rating\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rating_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"underlying\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"pool_design\": {\n            \"rating\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rating_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"pool_rating\": \"string\",\n          \"pool_rating_color\": \"string\",\n          \"pool_rating_description\": \"string\",\n          \"pool_url\": \"string\",\n          \"protocols\": {\n            \"rating\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rating_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"underlying\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"risk_data_last_updated\": \"1966-12-19T06:09:01.756Z\",\n        \"super_pools\": [\n          1,\n          137\n        ],\n        \"superform_address\": \"string\",\n        \"superform_id\": \"string\",\n        \"symbol\": \"string\",\n        \"timelock_duration\": 7,\n        \"timelock_unit\": \"weeks\",\n        \"underlying_wrapper_vaults\": [\n          {\n            \"id\": \"string\",\n            \"chain_id\": 5170,\n            \"superform_id\": \"string\",\n            \"superform_address\": \"string\",\n            \"contract_address\": \"string\",\n            \"from_token_address\": \"string\",\n            \"to_token_address\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"chain_id\": 7280,\n            \"superform_id\": \"string\",\n            \"superform_address\": \"string\",\n            \"contract_address\": \"string\",\n            \"from_token_address\": \"string\",\n            \"to_token_address\": \"string\"\n          }\n        ],\n        \"updated_at\": \"2015-09-12T09:25:24.841Z\",\n        \"vault_lister\": \"string\",\n        \"vault_statistics\": {\n          \"vault_id\": \"string\",\n          \"superform_id\": \"string\",\n          \"apy_now\": 6241.572024669276,\n          \"tvl_now\": 244.18131739600835,\n          \"sharpe_day\": 2560.722103152622,\n          \"sharpe_month\": 5714.993274874498,\n          \"apy_day\": 7954.648623251329,\n          \"apy_week\": 5537.322552689024,\n          \"apy_month\": 9808.135361152048,\n          \"apy_day_change\": 8504.18905274404,\n          \"apy_week_change\": 4826.186375976054,\n          \"apy_month_change\": 1697.3157971494434,\n          \"tvl_day_change\": 7967.431115925707,\n          \"tvl_week_change\": 3873.200502767583,\n          \"tvl_month_change\": 6415.096736494147,\n          \"pps\": 9142.278887026803,\n          \"pps_usd\": 4370.381546156559,\n          \"reward_rate\": 7667.780483348754\n        },\n        \"vault_status_message\": \"string\",\n        \"visibility\": \"unlisted\",\n        \"withdraw_to_vault_asset_only\": false,\n        \"withdrawal_confidence_score\": 4200.118194254421,\n        \"withdrawal_link\": \"string\",\n        \"yield_source\": \"string\",\n        \"yield_type\": \"Liquid Staking\"\n      },\n      \"is_erc20\": false\n    },\n    {\n      \"chain_id\": 6598,\n      \"superposition_balance\": \"string\",\n      \"superposition_usd_value\": \"string\",\n      \"superposition_id\": \"string\",\n      \"vault\": {\n        \"form_implementation_id\": \"string\",\n        \"name\": \"string\",\n        \"$schema\": \"https://api.superform.xyz/schemas/Vault.json\",\n        \"analytics\": [\n          {\n            \"chart_title\": \"string\",\n            \"chart_url\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"vault_id\": \"string\"\n          },\n          {\n            \"chart_title\": \"string\",\n            \"chart_url\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"assets\": [\n          {\n            \"contract_address\": \"string\",\n            \"decimals\": 4989,\n            \"id\": 3050,\n            \"image\": \"string\",\n            \"name\": \"string\",\n            \"symbol\": \"string\"\n          },\n          {\n            \"contract_address\": \"string\",\n            \"decimals\": 880,\n            \"id\": 8650,\n            \"image\": \"string\",\n            \"name\": \"string\",\n            \"symbol\": \"string\"\n          }\n        ],\n        \"audits\": [\n          {\n            \"audit_date\": \"1952-04-03T08:31:30.474Z\",\n            \"audit_link\": \"string\",\n            \"audit_name\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": true,\n            \"vault_id\": \"string\"\n          },\n          {\n            \"audit_date\": \"2026-01-03T17:50:57.461Z\",\n            \"audit_link\": \"string\",\n            \"audit_name\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"availability\": \"paused\",\n        \"chain\": {\n          \"id\": 406,\n          \"logo_url\": \"string\",\n          \"name\": \"string\",\n          \"short_name\": \"string\",\n          \"wrapped_token_id\": \"string\"\n        },\n        \"contract_address\": \"string\",\n        \"created_at\": \"1980-09-06T04:54:13.870Z\",\n        \"decimals\": 1452,\n        \"deploy_date\": \"1999-10-07T12:51:38.052Z\",\n        \"description\": \"string\",\n        \"exploits\": [\n          {\n            \"amount\": \"string\",\n            \"date\": \"2025-08-15T12:03:39.746Z\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"title\": \"string\",\n            \"url\": \"string\",\n            \"vault_id\": \"string\"\n          },\n          {\n            \"amount\": \"string\",\n            \"date\": \"1958-02-20T05:12:56.052Z\",\n            \"id\": \"string\",\n            \"is_deleted\": true,\n            \"title\": \"string\",\n            \"url\": \"string\",\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"external_url\": \"string\",\n        \"faq\": [\n          {\n            \"answer\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": true,\n            \"question\": \"string\",\n            \"vault_id\": \"string\"\n          },\n          {\n            \"answer\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": true,\n            \"question\": \"string\",\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"fees\": [\n          {\n            \"fee_amount\": 4544.785435773032,\n            \"fee_description\": \"string\",\n            \"fee_name\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"vault_id\": \"string\"\n          },\n          {\n            \"fee_amount\": 1425.332022222685,\n            \"fee_description\": \"string\",\n            \"fee_name\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"friendly_name\": \"string\",\n        \"has_aerc_20_registered\": false,\n        \"has_rewards\": false,\n        \"has_timelock\": false,\n        \"id\": \"string\",\n        \"is_authenticated\": true,\n        \"is_supervault\": false,\n        \"kyc\": [\n          {\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"issuer\": \"string\",\n            \"issuer_link\": \"string\",\n            \"provider\": \"string\",\n            \"vault_id\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"issuer\": \"string\",\n            \"issuer_link\": \"string\",\n            \"provider\": \"string\",\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"num_depositors\": 6529,\n        \"other\": [\n          {\n            \"additional_description\": \"string\",\n            \"additional_info\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"vault_id\": \"string\"\n          },\n          {\n            \"additional_description\": \"string\",\n            \"additional_info\": \"string\",\n            \"id\": \"string\",\n            \"is_deleted\": false,\n            \"vault_id\": \"string\"\n          }\n        ],\n        \"protocol\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"type\": \"string\",\n          \"tagline\": \"string\",\n          \"is_hidden\": true,\n          \"is_authenticated\": true,\n          \"defillama_id\": \"string\",\n          \"vanity_url\": \"string\",\n          \"primary_color\": \"string\",\n          \"num_depositors\": 3386,\n          \"status\": \"string\",\n          \"status_message\": \"string\",\n          \"deploy_date\": \"2004-05-02T21:24:19.693Z\",\n          \"graphics\": {\n            \"icon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"header\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"watermark\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"links\": {\n            \"website\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"twitter\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discord\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"telegram\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"vaults_amount\": 114,\n          \"tvl\": 2557.384407148722,\n          \"tvl_day_change\": 4384.0381784655765,\n          \"tvl_week_change\": 4084.074395478996,\n          \"tvl_month_change\": 2873.75928263792,\n          \"created_at\": \"1983-08-20T07:58:02.321Z\",\n          \"updated_at\": \"1988-12-25T19:59:53.120Z\",\n          \"$schema\": \"https://api.superform.xyz/schemas/Protocol.json\",\n          \"analytics\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"audits\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"chain_ids\": [\n            9661,\n            6834\n          ],\n          \"deployers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"exploits\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"faq\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"users\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"protocol_id\": \"string\",\n        \"recommend_vault_share_withdrawal\": true,\n        \"rewards\": [\n          {\n            \"address\": \"string\",\n            \"chain_id\": 3958,\n            \"is_configurable\": false,\n            \"logo\": \"string\",\n            \"rate_type\": \"string\",\n            \"remarks\": \"string\",\n            \"remarks_url\": \"string\",\n            \"reward_multiplier\": 9007.834271092663,\n            \"reward_rate\": 2676.8666813752584,\n            \"reward_source\": \"string\",\n            \"symbol\": \"string\",\n            \"total_supply\": 5995,\n            \"type\": \"string\"\n          },\n          {\n            \"address\": \"string\",\n            \"chain_id\": 8726,\n            \"is_configurable\": false,\n            \"logo\": \"string\",\n            \"rate_type\": \"string\",\n            \"remarks\": \"string\",\n            \"remarks_url\": \"string\",\n            \"reward_multiplier\": 8671.005036496055,\n            \"reward_rate\": 7798.839616191117,\n            \"reward_source\": \"string\",\n            \"symbol\": \"string\",\n            \"total_supply\": 5838,\n            \"type\": \"string\"\n          }\n        ],\n        \"risk_data\": {\n          \"assets\": {\n            \"rating\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rating_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"underlying\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"chain\": {\n            \"rating\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rating_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"underlying\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"pool_design\": {\n            \"rating\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rating_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"pool_rating\": \"string\",\n          \"pool_rating_color\": \"string\",\n          \"pool_rating_description\": \"string\",\n          \"pool_url\": \"string\",\n          \"protocols\": {\n            \"rating\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rating_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"underlying\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"risk_data_last_updated\": \"1958-03-11T13:35:00.594Z\",\n        \"super_pools\": [\n          1,\n          137\n        ],\n        \"superform_address\": \"string\",\n        \"superform_id\": \"string\",\n        \"symbol\": \"string\",\n        \"timelock_duration\": 7,\n        \"timelock_unit\": \"days\",\n        \"underlying_wrapper_vaults\": [\n          {\n            \"id\": \"string\",\n            \"chain_id\": 9885,\n            \"superform_id\": \"string\",\n            \"superform_address\": \"string\",\n            \"contract_address\": \"string\",\n            \"from_token_address\": \"string\",\n            \"to_token_address\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"chain_id\": 8514,\n            \"superform_id\": \"string\",\n            \"superform_address\": \"string\",\n            \"contract_address\": \"string\",\n            \"from_token_address\": \"string\",\n            \"to_token_address\": \"string\"\n          }\n        ],\n        \"updated_at\": \"2007-12-04T13:19:21.727Z\",\n        \"vault_lister\": \"string\",\n        \"vault_statistics\": {\n          \"vault_id\": \"string\",\n          \"superform_id\": \"string\",\n          \"apy_now\": 9186.319312649759,\n          \"tvl_now\": 8019.123943598767,\n          \"sharpe_day\": 2843.446417154676,\n          \"sharpe_month\": 4141.595444437399,\n          \"apy_day\": 1926.7151922046432,\n          \"apy_week\": 5005.987151901514,\n          \"apy_month\": 7240.757500413084,\n          \"apy_day_change\": 5652.434169010576,\n          \"apy_week_change\": 497.68198047628,\n          \"apy_month_change\": 4426.029677498967,\n          \"tvl_day_change\": 4886.60441376276,\n          \"tvl_week_change\": 467.4493983098049,\n          \"tvl_month_change\": 30.45733083186675,\n          \"pps\": 7783.62445443889,\n          \"pps_usd\": 4974.009335648848,\n          \"reward_rate\": 5167.7871099744\n        },\n        \"vault_status_message\": \"string\",\n        \"visibility\": \"hidden\",\n        \"withdraw_to_vault_asset_only\": false,\n        \"withdrawal_confidence_score\": 7991.424779706902,\n        \"withdrawal_link\": \"string\",\n        \"yield_source\": \"string\",\n        \"yield_type\": \"Yield\"\n      },\n      \"is_erc20\": true\n    }\n  ],\n  \"portfolio_value\": \"string\",\n  \"$schema\": \"https://api.superform.xyz/schemas/GetSuperpositionBalancesOutputBody.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c622896f-925c-4e3d-b124-4087d5e771a1",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token",
+                    "superpositions",
+                    "balances",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fetch_erc20s",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.superform.xyz",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ab2f5034-52f1-4f61-8a32-ff5466488066",
+    "name": "Superform Auxiliary Balances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

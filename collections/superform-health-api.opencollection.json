@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Superform Auxiliary Health API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Basic Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/"
+          },
+          "docs": "Performs a basic health check of the API."
+        },
+        {
+          "info": {
+            "name": "Database Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/health/db"
+          },
+          "docs": "Checks the health of the database connection."
+        },
+        {
+          "info": {
+            "name": "Debank Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/health/debank"
+          },
+          "docs": "Checks the health of the Debank service."
+        },
+        {
+          "info": {
+            "name": "IPFS Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/health/ipfs"
+          },
+          "docs": "Checks the health of the IPFS service."
+        },
+        {
+          "info": {
+            "name": "DefiLlama Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/health/llama"
+          },
+          "docs": "Checks the health of the DefiLlama service."
+        },
+        {
+          "info": {
+            "name": "RPC Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/health/rpc"
+          },
+          "docs": "Checks the health of the RPC connection."
+        },
+        {
+          "info": {
+            "name": "Socket Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/health/socket"
+          },
+          "docs": "Checks the health of the Socket service."
+        },
+        {
+          "info": {
+            "name": "Subgraph Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/health/subgraph"
+          },
+          "docs": "Checks the health of the Subgraph service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Superform Auxiliary Protocol Rewards API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Protocol Rewards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get transaction for claiming rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/protocolRewards/claim/:chain_id/:user",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              },
+              {
+                "name": "chain_id",
+                "value": "1",
+                "type": "path"
+              },
+              {
+                "name": "simulate_transaction",
+                "value": "false",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get transaction for claiming rewards for a user"
+        },
+        {
+          "info": {
+            "name": "Get claimable rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/protocolRewards/claimable/:user",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get claimable rewards for different vaults and protocols for a user"
+        },
+        {
+          "info": {
+            "name": "Get user earning rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/protocolRewards/earning/:user",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get user earning rewards for a user"
+        },
+        {
+          "info": {
+            "name": "Get user historical balances for vault",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/protocolRewards/userBalance/historical/vault/:vault_id",
+            "params": [
+              {
+                "name": "vault_id",
+                "value": "O2KpGpoeb_V-HOPSRNGgV",
+                "type": "path"
+              },
+              {
+                "name": "timestamp",
+                "value": "1714857600",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get users and and their balances for a vault for a given timestamp"
+        },
+        {
+          "info": {
+            "name": "Get user historical balances for protocol",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/protocolRewards/userBalance/historical/:protocol_id",
+            "params": [
+              {
+                "name": "protocol_id",
+                "value": "O2KpGpoeb_V-HOPSRNGgV",
+                "type": "path"
+              },
+              {
+                "name": "timestamp",
+                "value": "1714857600",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get users and and their balances for a protocol for a given timestamp"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

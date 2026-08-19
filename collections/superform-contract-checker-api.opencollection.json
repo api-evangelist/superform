@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Superform Auxiliary Contract Checker API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contract Checker",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Vault Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/checks/address/vault",
+            "params": [
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the vault type of a contract address (ERC4626, ERC5115, ERC7540)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

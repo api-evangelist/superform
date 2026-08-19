@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Superform Auxiliary Data API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get historical vault data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/vault/data/historical/:vaultOrSuperformIDs",
+            "params": [
+              {
+                "name": "vaultOrSuperformIDs",
+                "value": "6277101738082190570017043140855561342102135322485627578637,859962937750480043315024633754576372459598905847746964453763",
+                "type": "path",
+                "description": "Comma-separated list of vault or superform IDs"
+              },
+              {
+                "name": "start_timestamp",
+                "value": "1726225932",
+                "type": "query",
+                "description": "Unix timestamp for the start of the time series data"
+              },
+              {
+                "name": "end_timestamp",
+                "value": "1729225932",
+                "type": "query",
+                "description": "Unix timestamp for the end of the time series data"
+              },
+              {
+                "name": "granularity",
+                "value": "day",
+                "type": "query",
+                "description": "Granularity of the time series data. Default is day."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get historical vault data by vaultID(s) or superformID(s)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

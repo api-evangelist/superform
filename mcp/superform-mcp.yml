@@ -206,3 +206,9 @@ tools:
 - name: withdraw_start
   description: Start a withdrawal transaction
   source_operation: openapi/superform-openapi-original.json#withdraw-start
+deployment:
+  mode: none
+  verified: derived
+  tools: 66
+  checked: '2026-08-12'
+  source: catalog MCP census

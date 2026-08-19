@@ -1,0 +1,1321 @@
+{
+  "item": [
+    {
+      "id": "0574c8ea-11ce-4683-a320-24021ac180fc",
+      "name": "Auxiliary",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9d0271ae-b787-493e-addc-c60b36d13843",
+          "name": "Get address type",
+          "request": {
+            "name": "Get address type",
+            "description": {
+              "content": "Get the type of an address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "address",
+                "type",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainID",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9f18cfe8-dea2-4653-94be-aaa782dc6f8a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "address",
+                    "type",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainID",
+                      "value": "137"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"addressType\": \"string\",\n  \"$schema\": \"https://api.superform.xyz/schemas/GetAddressTypeOutputBody.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11268f81-0055-478c-ad69-85d83f47932f",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "address",
+                    "type",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainID",
+                      "value": "137"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54017637-cdb8-4170-bd2c-b3f1aa2f6165",
+          "name": "Get deployment details",
+          "request": {
+            "name": "Get deployment details",
+            "description": {
+              "content": "Get contract addresses for each chain Superform is deployed on.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3d327d7b-1bf6-4c54-ba98-7914ba7bd4ff",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deployments\": [\n    {\n      \"ChainID\": 7761,\n      \"BroadcastRegistry\": \"string\",\n      \"CoreStateRegistry\": \"string\",\n      \"DstSwapper\": \"string\",\n      \"ERC4626Form\": \"string\",\n      \"ERC4626KYCDaoForm\": \"string\",\n      \"ERC4626TimelockForm\": \"string\",\n      \"EmergencyQueue\": \"string\",\n      \"HyperlaneImplementation\": \"string\",\n      \"LayerzeroImplementation\": \"string\",\n      \"LiFiValidator\": \"string\",\n      \"MultiTxProcessor\": \"string\",\n      \"PayMaster\": \"string\",\n      \"PayloadHelper\": \"string\",\n      \"PaymentHelper\": \"string\",\n      \"RewardsDistributor\": \"string\",\n      \"SocketOneInchValidator\": \"string\",\n      \"SocketValidator\": \"string\",\n      \"SuperPositions\": \"string\",\n      \"SuperRBAC\": \"string\",\n      \"SuperRegistry\": \"string\",\n      \"SuperTransmuter\": \"string\",\n      \"SuperformFactory\": \"string\",\n      \"SuperVaultFactory\": \"string\",\n      \"ERC5115To4626WrapperFactory\": \"string\",\n      \"SuperformRouter\": \"string\",\n      \"SuperformRouterPlus\": \"string\",\n      \"SuperformRouterPlusAsync\": \"string\",\n      \"VaultClaimer\": \"string\",\n      \"TimelockStateRegistry\": \"string\",\n      \"WormholeARImplementation\": \"string\",\n      \"WormholeSRImplementation\": \"string\",\n      \"LifiValidator\": \"string\",\n      \"LiFiDiamond\": \"string\"\n    },\n    {\n      \"ChainID\": 9030,\n      \"BroadcastRegistry\": \"string\",\n      \"CoreStateRegistry\": \"string\",\n      \"DstSwapper\": \"string\",\n      \"ERC4626Form\": \"string\",\n      \"ERC4626KYCDaoForm\": \"string\",\n      \"ERC4626TimelockForm\": \"string\",\n      \"EmergencyQueue\": \"string\",\n      \"HyperlaneImplementation\": \"string\",\n      \"LayerzeroImplementation\": \"string\",\n      \"LiFiValidator\": \"string\",\n      \"MultiTxProcessor\": \"string\",\n      \"PayMaster\": \"string\",\n      \"PayloadHelper\": \"string\",\n      \"PaymentHelper\": \"string\",\n      \"RewardsDistributor\": \"string\",\n      \"SocketOneInchValidator\": \"string\",\n      \"SocketValidator\": \"string\",\n      \"SuperPositions\": \"string\",\n      \"SuperRBAC\": \"string\",\n      \"SuperRegistry\": \"string\",\n      \"SuperTransmuter\": \"string\",\n      \"SuperformFactory\": \"string\",\n      \"SuperVaultFactory\": \"string\",\n      \"ERC5115To4626WrapperFactory\": \"string\",\n      \"SuperformRouter\": \"string\",\n      \"SuperformRouterPlus\": \"string\",\n      \"SuperformRouterPlusAsync\": \"string\",\n      \"VaultClaimer\": \"string\",\n      \"TimelockStateRegistry\": \"string\",\n      \"WormholeARImplementation\": \"string\",\n      \"WormholeSRImplementation\": \"string\",\n      \"LifiValidator\": \"string\",\n      \"LiFiDiamond\": \"string\"\n    }\n  ],\n  \"router_abi\": [\n    {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  ],\n  \"$schema\": \"https://api.superform.xyz/schemas/GetDeploymentDetailsOutputBody.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b8353f6-8713-4b5d-90c0-54f4fdab9470",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f7f39db-d1b4-42d4-83ee-57785adce790",
+          "name": "Get superposition price",
+          "request": {
+            "name": "Get superposition price",
+            "description": {
+              "content": "Returns superposition price in USD.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "superpositions",
+                ":superform_id",
+                "price"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "amount_in",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "block_number",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "superform_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b6e7ee31-1163-41a6-8ac8-5111b9fcfaa6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "superpositions",
+                    ":superform_id",
+                    "price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "amount_in",
+                      "value": "1000000000000000000"
+                    },
+                    {
+                      "key": "block_number",
+                      "value": "12345678"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "superform_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"message\": \"Success\",\n  \"data\": 13.48,\n  \"$schema\": \"https://api.superform.xyz/schemas/GetSuperpositionUSDPriceOutputBody.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a40ffa7-516a-4a29-a046-c2044228783f",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "superpositions",
+                    ":superform_id",
+                    "price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "amount_in",
+                      "value": "1000000000000000000"
+                    },
+                    {
+                      "key": "block_number",
+                      "value": "12345678"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "superform_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ecebce70-6634-4315-ae86-775245f743ca",
+          "name": "Get supported bridges, dexes, AMBs",
+          "request": {
+            "name": "Get supported bridges, dexes, AMBs",
+            "description": {
+              "content": "Get the supported bridges, AMBs, and dexes that can be passed to /deposit/calculate or /withdraw/calculate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supported"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "35fa727b-2b04-41f7-8292-1fe2c2bb325a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ambs\": [\n    {\n      \"key\": 1849,\n      \"display_name\": \"string\",\n      \"logo\": \"string\"\n    },\n    {\n      \"key\": 6561,\n      \"display_name\": \"string\",\n      \"logo\": \"string\"\n    }\n  ],\n  \"bridges\": [\n    {\n      \"key\": 595,\n      \"display_name\": \"string\",\n      \"icon\": \"string\",\n      \"deposit_disabled\": false,\n      \"withdraw_disabled\": true\n    },\n    {\n      \"key\": 2846,\n      \"display_name\": \"string\",\n      \"icon\": \"string\",\n      \"deposit_disabled\": true,\n      \"withdraw_disabled\": false\n    }\n  ],\n  \"dexes\": [\n    {\n      \"key\": 4710,\n      \"display_name\": \"string\",\n      \"icon\": \"string\",\n      \"deposit_disabled\": true,\n      \"withdraw_disabled\": true\n    },\n    {\n      \"key\": 8563,\n      \"display_name\": \"string\",\n      \"icon\": \"string\",\n      \"deposit_disabled\": false,\n      \"withdraw_disabled\": true\n    }\n  ],\n  \"liquidity_providers\": [\n    {\n      \"display_name\": \"string\",\n      \"key\": 6881,\n      \"logo\": \"string\"\n    },\n    {\n      \"display_name\": \"string\",\n      \"key\": 6473,\n      \"logo\": \"string\"\n    }\n  ],\n  \"$schema\": \"https://api.superform.xyz/schemas/GetSupportedOutputBody.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88129e1a-d9cd-4d31-b0df-c90bb10967b0",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2a39836-6372-4992-81e2-e77cee8670ac",
+          "name": "Get supported chains",
+          "request": {
+            "name": "Get supported chains",
+            "description": {
+              "content": "Get the supported chains.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supported",
+                "chains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4b68d721-0d49-4c97-8540-a852fcee2493",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supported",
+                    "chains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"chain_id\": 9479,\n    \"name\": \"string\",\n    \"is_L1\": false,\n    \"icon\": \"string\",\n    \"rpcs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"explorers\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"chain_id\": 9057,\n    \"name\": \"string\",\n    \"is_L1\": true,\n    \"icon\": \"string\",\n    \"rpcs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"explorers\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13a60687-829f-42f1-9197-3860e65c4874",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supported",
+                    "chains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6af726c5-92a0-4e85-9288-0bd057501cb9",
+          "name": "Get withdrawable tokens",
+          "request": {
+            "name": "Get withdrawable tokens",
+            "description": {
+              "content": "Returns the list of tokens that can be withdrawn to from the vaults.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supported",
+                "withdrawable-tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vaultIds",
+                  "value": "<string>,<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1081552b-a41e-474f-abe0-f167aec3bed9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supported",
+                    "withdrawable-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vaultIds",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"address\": \"string\",\n    \"icon\": \"string\",\n    \"decimals\": 9010,\n    \"symbol\": \"string\",\n    \"chainId\": 8070,\n    \"logoURI\": \"string\",\n    \"price\": 4801.628452754169,\n    \"chainAgnosticId\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"address\": \"string\",\n    \"icon\": \"string\",\n    \"decimals\": 1100,\n    \"symbol\": \"string\",\n    \"chainId\": 8935,\n    \"logoURI\": \"string\",\n    \"price\": 7758.693607286321,\n    \"chainAgnosticId\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65512bf5-ca8a-4c0f-bec9-dd64ad819d89",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supported",
+                    "withdrawable-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vaultIds",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9a2fa5d-8ab8-4eba-afb6-8d4ec468be16",
+          "name": "Get supported yield types",
+          "request": {
+            "name": "Get supported yield types",
+            "description": {
+              "content": "When creating or updating a vault, you must specify a yield type. This endpoint returns the supported yield types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "supported",
+                "yield-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "005401fe-94e1-4666-8d75-2a02f41f6e8f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supported",
+                    "yield-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6236ef31-75c2-4b3f-8b88-71b0ee4755f8",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "supported",
+                    "yield-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43b48368-3da1-4ffd-9d14-b9f62b51e448",
+          "name": "Get historical portfolio balances for an address. ",
+          "request": {
+            "name": "Get historical portfolio balances for an address. ",
+            "description": {
+              "content": "Get historical portfolio balances for an address. The default and only granularity is daily. The data is collected at a daily interval. The response is cached for 4 hours.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                "portfolio",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_timestamp",
+                  "value": "<long>",
+                  "description": "Unix timestamp for the start of the time series data, trimmed to 8 decimal places."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_timestamp",
+                  "value": "<long>",
+                  "description": "Unix timestamp for the end of the time series data, trimmed to 8 decimal places"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) The user's address"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4858e1f9-6b43-4d7c-888d-cb08f64602ed",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "portfolio",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "1706225932"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "1706539710"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The user's address"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"timestamp\": 1706225932,\n    \"balance_usd\": \"1000\",\n    \"balance_eth\": \"125.435\",\n    \"balance_btc\": \"0.59378\"\n  },\n  {\n    \"timestamp\": 1706225932,\n    \"balance_usd\": \"1000\",\n    \"balance_eth\": \"125.435\",\n    \"balance_btc\": \"0.59378\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77ebed7c-04fa-482b-bf7d-4c7abec65ecd",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "portfolio",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "1706225932"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "1706539710"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The user's address"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.superform.xyz",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dc0ec459-641a-4a4b-88b8-21952f69851a",
+    "name": "Superform Auxiliary API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

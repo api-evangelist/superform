@@ -1,0 +1,247 @@
+{
+  "item": [
+    {
+      "id": "e8282c46-2171-42ef-850d-d0bfe08b2be1",
+      "name": "Data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d7b498b1-2544-4b23-b937-ff0263675e7b",
+          "name": "Get historical vault data",
+          "request": {
+            "name": "Get historical vault data",
+            "description": {
+              "content": "Get historical vault data by vaultID(s) or superformID(s)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vault",
+                "data",
+                "historical",
+                ":vaultOrSuperformIDs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_timestamp",
+                  "value": "<long>",
+                  "description": "Unix timestamp for the start of the time series data"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_timestamp",
+                  "value": "<long>",
+                  "description": "Unix timestamp for the end of the time series data"
+                },
+                {
+                  "disabled": false,
+                  "key": "granularity",
+                  "value": "<string>",
+                  "description": "Granularity of the time series data. Default is day."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vaultOrSuperformIDs",
+                  "description": "(Required) Comma-separated list of vault or superform IDs"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1c47f96e-ec26-4465-92c5-294f78020dc3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "data",
+                    "historical",
+                    ":vaultOrSuperformIDs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "1726225932"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "1729225932"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "day"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vaultOrSuperformIDs",
+                      "description": "(Required) Comma-separated list of vault or superform IDs"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vaults\": {\n    \"key_0\": {\n      \"timestamp\": [\n        4217,\n        3530\n      ],\n      \"tvl\": [\n        null,\n        null\n      ],\n      \"apy\": [\n        null,\n        3158.736876941638\n      ],\n      \"apy_base\": [\n        null,\n        3148.1168155446994\n      ],\n      \"pps\": [\n        4157.075269819697,\n        null\n      ],\n      \"pps_usd\": [\n        114.56758756035023,\n        5513.192792311687\n      ]\n    },\n    \"key_1\": {\n      \"timestamp\": [\n        6786,\n        9293\n      ],\n      \"tvl\": [\n        6116.833109611009,\n        136.72210407100982\n      ],\n      \"apy\": [\n        5810.169669548646,\n        null\n      ],\n      \"apy_base\": [\n        6814.096956715795,\n        null\n      ],\n      \"pps\": [\n        null,\n        719.2425843747463\n      ],\n      \"pps_usd\": [\n        null,\n        1036.1065931533542\n      ]\n    }\n  },\n  \"$schema\": \"https://api.superform.xyz/schemas/HistoricalVaultResponseBody.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ed8997e-5e88-4b97-992e-4e3ccc80ca3c",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "data",
+                    "historical",
+                    ":vaultOrSuperformIDs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "1726225932"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "1729225932"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "day"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vaultOrSuperformIDs",
+                      "description": "(Required) Comma-separated list of vault or superform IDs"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.superform.xyz",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3bd82e7b-52a6-45aa-b5ca-eebc5a64966c",
+    "name": "Superform Auxiliary Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

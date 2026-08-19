@@ -1,0 +1,573 @@
+{
+  "item": [
+    {
+      "id": "dd499b77-8b65-417d-9b80-73978eec2c2e",
+      "name": "Protocol",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9f036c51-2aea-4a9f-858c-b1a86fc81c73",
+          "name": "Get protocol by ID",
+          "request": {
+            "name": "Get protocol by ID",
+            "description": {
+              "content": "Get one protocol by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protocol",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Protocol ID to return stats for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0901e274-036c-4091-99ce-e0ea74fad84c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protocol",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Protocol ID to return stats for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"type\": \"string\",\n  \"tagline\": \"string\",\n  \"is_hidden\": true,\n  \"is_authenticated\": false,\n  \"defillama_id\": \"string\",\n  \"vanity_url\": \"string\",\n  \"primary_color\": \"string\",\n  \"num_depositors\": 1925,\n  \"status\": \"string\",\n  \"status_message\": \"string\",\n  \"deploy_date\": \"2007-09-23T13:00:55.440Z\",\n  \"graphics\": {\n    \"icon\": \"string\",\n    \"header\": \"string\",\n    \"avatar\": \"string\",\n    \"watermark\": \"string\"\n  },\n  \"links\": {\n    \"website\": \"string\",\n    \"twitter\": \"string\",\n    \"discord\": \"string\",\n    \"telegram\": \"string\"\n  },\n  \"vaults_amount\": 5941,\n  \"tvl\": 5475.573480653425,\n  \"tvl_day_change\": 2982.1851428047075,\n  \"tvl_week_change\": 1235.147340889111,\n  \"tvl_month_change\": 6324.4832043530205,\n  \"created_at\": \"1991-03-03T00:53:02.511Z\",\n  \"updated_at\": \"2025-12-05T04:42:12.411Z\",\n  \"$schema\": \"https://api.superform.xyz/schemas/Protocol.json\",\n  \"analytics\": [\n    {\n      \"id\": \"string\",\n      \"protocol_id\": \"string\",\n      \"chart_title\": \"string\",\n      \"chart_url\": \"string\",\n      \"is_deleted\": false\n    },\n    {\n      \"id\": \"string\",\n      \"protocol_id\": \"string\",\n      \"chart_title\": \"string\",\n      \"chart_url\": \"string\",\n      \"is_deleted\": false\n    }\n  ],\n  \"audits\": [\n    {\n      \"id\": \"string\",\n      \"protocol_id\": \"string\",\n      \"audit_name\": \"string\",\n      \"audit_link\": \"string\",\n      \"audit_date\": \"1990-11-23T06:35:09.656Z\",\n      \"is_deleted\": false,\n      \"created_at\": \"1987-06-07T23:30:50.531Z\",\n      \"updated_at\": \"2026-06-06T23:58:05.207Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"protocol_id\": \"string\",\n      \"audit_name\": \"string\",\n      \"audit_link\": \"string\",\n      \"audit_date\": \"1993-11-23T22:32:59.262Z\",\n      \"is_deleted\": true,\n      \"created_at\": \"1968-10-15T15:37:49.161Z\",\n      \"updated_at\": \"1986-03-13T18:34:48.360Z\"\n    }\n  ],\n  \"chain_ids\": [\n    4724,\n    214\n  ],\n  \"deployers\": [\n    {\n      \"id\": \"string\",\n      \"vault_count\": 1007,\n      \"address\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"type\": \"string\",\n      \"created_at\": \"1999-04-29T20:41:36.603Z\",\n      \"updated_at\": \"1980-05-16T13:05:15.200Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"vault_count\": 4427,\n      \"address\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"type\": \"string\",\n      \"created_at\": \"1970-07-30T12:21:38.787Z\",\n      \"updated_at\": \"1970-02-04T18:03:33.556Z\"\n    }\n  ],\n  \"exploits\": [\n    {\n      \"id\": \"string\",\n      \"protocol_id\": \"string\",\n      \"title\": \"string\",\n      \"amount\": \"string\",\n      \"url\": \"string\",\n      \"date\": \"1957-03-24T06:42:00.563Z\",\n      \"is_deleted\": false,\n      \"created_at\": \"2012-12-15T01:52:32.301Z\",\n      \"updated_at\": \"2004-01-26T16:47:54.092Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"protocol_id\": \"string\",\n      \"title\": \"string\",\n      \"amount\": \"string\",\n      \"url\": \"string\",\n      \"date\": \"1967-08-13T20:05:53.107Z\",\n      \"is_deleted\": true,\n      \"created_at\": \"1977-05-04T13:47:53.856Z\",\n      \"updated_at\": \"1998-01-27T07:11:56.257Z\"\n    }\n  ],\n  \"faq\": [\n    {\n      \"id\": \"string\",\n      \"protocol_id\": \"string\",\n      \"question\": \"string\",\n      \"answer\": \"string\",\n      \"is_deleted\": false,\n      \"created_at\": \"2006-08-23T00:13:41.626Z\",\n      \"updated_at\": \"1949-10-27T22:40:33.827Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"protocol_id\": \"string\",\n      \"question\": \"string\",\n      \"answer\": \"string\",\n      \"is_deleted\": true,\n      \"created_at\": \"1958-09-13T08:20:07.390Z\",\n      \"updated_at\": \"1964-10-02T20:24:43.105Z\"\n    }\n  ],\n  \"users\": [\n    {\n      \"id\": \"string\",\n      \"dynamic_id\": \"string\",\n      \"dynamic_wallet_id\": \"string\",\n      \"address\": \"string\",\n      \"protocol_id\": \"string\",\n      \"name\": \"string\",\n      \"role\": \"string\",\n      \"created_at\": \"2004-04-19T03:09:24.280Z\",\n      \"updated_at\": \"1953-01-15T00:54:52.974Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"dynamic_id\": \"string\",\n      \"dynamic_wallet_id\": \"string\",\n      \"address\": \"string\",\n      \"protocol_id\": \"string\",\n      \"name\": \"string\",\n      \"role\": \"string\",\n      \"created_at\": \"1956-03-31T13:26:59.552Z\",\n      \"updated_at\": \"1963-09-19T01:53:15.944Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20a4fd75-d70e-479a-a432-e9613914651b",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protocol",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Protocol ID to return stats for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46bff67a-529c-492e-b3b0-8e7055590a02",
+          "name": "Get protocol stats",
+          "request": {
+            "name": "Get protocol stats",
+            "description": {
+              "content": "Get historical stats for a protocol, comprising all of its vaults. If no parameters are passed, response will span the full range of available data.If a timestamp is passed, the data will be for that point in time. If a start and end timestamp are passed, the data will be for that range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protocol",
+                ":id",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_timestamp",
+                  "value": "<long>",
+                  "description": "Unix timestamp for the start of the time series data"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_timestamp",
+                  "value": "<long>",
+                  "description": "Unix timestamp for the end of the time series data"
+                },
+                {
+                  "disabled": false,
+                  "key": "granularity",
+                  "value": "<string>",
+                  "description": "Granularity of the time series data. Default is day."
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp",
+                  "value": "<long>",
+                  "description": "Unix timestamp if you want the data at a point in time instead of a range"
+                },
+                {
+                  "disabled": false,
+                  "key": "fetch_superform_tvl",
+                  "value": "<boolean>",
+                  "description": "Calculate the Superform (not overall) TVL for all the vaults comprising this protocol"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Protocol ID to return stats for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dcd686e0-4391-4236-81f2-266fa2993eac",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protocol",
+                    ":id",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "1726225932"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "1729225932"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "day"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "1726654050"
+                    },
+                    {
+                      "key": "fetch_superform_tvl",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Protocol ID to return stats for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"historical_data\": {\n    \"timestamp\": [\n      1929,\n      1329\n    ],\n    \"tvl\": [\n      9809.84141743021,\n      12.84756466336967\n    ]\n  },\n  \"total_vaults\": 6613,\n  \"tvl\": 9237.078888899205,\n  \"tvl_24h_change\": 641.8141739692895,\n  \"$schema\": \"https://api.superform.xyz/schemas/HistoricalProtocolResponseBody.json\",\n  \"superform_tvl\": 5607.5279553365035\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "434f4dc8-eaa1-4fdf-91b3-a82d8ce3a770",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protocol",
+                    ":id",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_timestamp",
+                      "value": "1726225932"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "1729225932"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "day"
+                    },
+                    {
+                      "key": "timestamp",
+                      "value": "1726654050"
+                    },
+                    {
+                      "key": "fetch_superform_tvl",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Protocol ID to return stats for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3c78606-f689-4f12-8b92-6e62cff9ab69",
+          "name": "Get all protocols",
+          "request": {
+            "name": "Get all protocols",
+            "description": {
+              "content": "Get all protocols listed on Superform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protocols"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SF-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0c06696a-c7f8-4287-b13f-92dd04c594cf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protocols"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"type\": \"string\",\n    \"tagline\": \"string\",\n    \"is_hidden\": false,\n    \"is_authenticated\": true,\n    \"defillama_id\": \"string\",\n    \"vanity_url\": \"string\",\n    \"primary_color\": \"string\",\n    \"num_depositors\": 4076,\n    \"status\": \"string\",\n    \"status_message\": \"string\",\n    \"deploy_date\": \"1977-04-10T19:47:44.519Z\",\n    \"graphics\": {\n      \"icon\": \"string\",\n      \"header\": \"string\",\n      \"avatar\": \"string\",\n      \"watermark\": \"string\"\n    },\n    \"links\": {\n      \"website\": \"string\",\n      \"twitter\": \"string\",\n      \"discord\": \"string\",\n      \"telegram\": \"string\"\n    },\n    \"vaults_amount\": 2504,\n    \"tvl\": 8996.953269958753,\n    \"tvl_day_change\": 4227.095574385561,\n    \"tvl_week_change\": 3267.9522215775237,\n    \"tvl_month_change\": 9344.119722610692,\n    \"created_at\": \"1989-03-07T06:48:53.482Z\",\n    \"updated_at\": \"1961-11-02T16:24:36.363Z\",\n    \"$schema\": \"https://api.superform.xyz/schemas/Protocol.json\",\n    \"analytics\": [\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"chart_title\": \"string\",\n        \"chart_url\": \"string\",\n        \"is_deleted\": true\n      },\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"chart_title\": \"string\",\n        \"chart_url\": \"string\",\n        \"is_deleted\": false\n      }\n    ],\n    \"audits\": [\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"audit_name\": \"string\",\n        \"audit_link\": \"string\",\n        \"audit_date\": \"1974-04-17T07:23:56.651Z\",\n        \"is_deleted\": false,\n        \"created_at\": \"2023-03-18T17:54:09.143Z\",\n        \"updated_at\": \"1958-01-28T10:29:47.404Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"audit_name\": \"string\",\n        \"audit_link\": \"string\",\n        \"audit_date\": \"1953-08-01T17:41:58.405Z\",\n        \"is_deleted\": true,\n        \"created_at\": \"2018-01-02T02:22:21.260Z\",\n        \"updated_at\": \"2022-04-22T09:53:53.063Z\"\n      }\n    ],\n    \"chain_ids\": [\n      4907,\n      5455\n    ],\n    \"deployers\": [\n      {\n        \"id\": \"string\",\n        \"vault_count\": 3954,\n        \"address\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"string\",\n        \"type\": \"string\",\n        \"created_at\": \"2002-10-10T04:53:52.557Z\",\n        \"updated_at\": \"2020-08-20T22:32:25.697Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"vault_count\": 940,\n        \"address\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"string\",\n        \"type\": \"string\",\n        \"created_at\": \"2016-07-19T10:29:32.579Z\",\n        \"updated_at\": \"1975-08-10T01:40:38.719Z\"\n      }\n    ],\n    \"exploits\": [\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"title\": \"string\",\n        \"amount\": \"string\",\n        \"url\": \"string\",\n        \"date\": \"1993-10-28T21:05:16.830Z\",\n        \"is_deleted\": false,\n        \"created_at\": \"1988-10-06T08:09:53.127Z\",\n        \"updated_at\": \"1992-07-11T11:50:21.525Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"title\": \"string\",\n        \"amount\": \"string\",\n        \"url\": \"string\",\n        \"date\": \"1994-03-24T23:53:05.276Z\",\n        \"is_deleted\": false,\n        \"created_at\": \"2014-08-04T20:13:07.269Z\",\n        \"updated_at\": \"1958-09-08T18:56:34.960Z\"\n      }\n    ],\n    \"faq\": [\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"question\": \"string\",\n        \"answer\": \"string\",\n        \"is_deleted\": true,\n        \"created_at\": \"2005-12-09T13:47:06.385Z\",\n        \"updated_at\": \"1958-10-07T18:30:49.613Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"question\": \"string\",\n        \"answer\": \"string\",\n        \"is_deleted\": true,\n        \"created_at\": \"2015-11-14T12:45:24.818Z\",\n        \"updated_at\": \"1988-10-06T23:11:53.715Z\"\n      }\n    ],\n    \"users\": [\n      {\n        \"id\": \"string\",\n        \"dynamic_id\": \"string\",\n        \"dynamic_wallet_id\": \"string\",\n        \"address\": \"string\",\n        \"protocol_id\": \"string\",\n        \"name\": \"string\",\n        \"role\": \"string\",\n        \"created_at\": \"1987-12-05T07:22:25.683Z\",\n        \"updated_at\": \"1954-03-07T00:39:30.719Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"dynamic_id\": \"string\",\n        \"dynamic_wallet_id\": \"string\",\n        \"address\": \"string\",\n        \"protocol_id\": \"string\",\n        \"name\": \"string\",\n        \"role\": \"string\",\n        \"created_at\": \"2020-12-09T00:25:36.233Z\",\n        \"updated_at\": \"2026-01-09T19:17:00.092Z\"\n      }\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"type\": \"string\",\n    \"tagline\": \"string\",\n    \"is_hidden\": false,\n    \"is_authenticated\": true,\n    \"defillama_id\": \"string\",\n    \"vanity_url\": \"string\",\n    \"primary_color\": \"string\",\n    \"num_depositors\": 1486,\n    \"status\": \"string\",\n    \"status_message\": \"string\",\n    \"deploy_date\": \"1977-09-08T19:16:57.478Z\",\n    \"graphics\": {\n      \"icon\": \"string\",\n      \"header\": \"string\",\n      \"avatar\": \"string\",\n      \"watermark\": \"string\"\n    },\n    \"links\": {\n      \"website\": \"string\",\n      \"twitter\": \"string\",\n      \"discord\": \"string\",\n      \"telegram\": \"string\"\n    },\n    \"vaults_amount\": 1207,\n    \"tvl\": 4748.622989024739,\n    \"tvl_day_change\": 2878.42033118772,\n    \"tvl_week_change\": 4299.661087700764,\n    \"tvl_month_change\": 1543.482536519073,\n    \"created_at\": \"2003-05-29T09:41:38.785Z\",\n    \"updated_at\": \"2018-06-26T02:56:04.238Z\",\n    \"$schema\": \"https://api.superform.xyz/schemas/Protocol.json\",\n    \"analytics\": [\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"chart_title\": \"string\",\n        \"chart_url\": \"string\",\n        \"is_deleted\": true\n      },\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"chart_title\": \"string\",\n        \"chart_url\": \"string\",\n        \"is_deleted\": false\n      }\n    ],\n    \"audits\": [\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"audit_name\": \"string\",\n        \"audit_link\": \"string\",\n        \"audit_date\": \"1979-08-08T09:44:47.942Z\",\n        \"is_deleted\": true,\n        \"created_at\": \"1965-06-27T07:23:09.514Z\",\n        \"updated_at\": \"1993-07-31T08:18:42.589Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"audit_name\": \"string\",\n        \"audit_link\": \"string\",\n        \"audit_date\": \"2017-11-18T15:11:40.072Z\",\n        \"is_deleted\": true,\n        \"created_at\": \"1979-12-24T18:23:07.214Z\",\n        \"updated_at\": \"1985-02-12T03:28:11.211Z\"\n      }\n    ],\n    \"chain_ids\": [\n      1755,\n      810\n    ],\n    \"deployers\": [\n      {\n        \"id\": \"string\",\n        \"vault_count\": 7433,\n        \"address\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"string\",\n        \"type\": \"string\",\n        \"created_at\": \"1962-10-08T17:40:39.088Z\",\n        \"updated_at\": \"1998-04-23T18:30:57.784Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"vault_count\": 7711,\n        \"address\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"string\",\n        \"type\": \"string\",\n        \"created_at\": \"1994-06-20T01:03:50.022Z\",\n        \"updated_at\": \"2007-02-05T14:25:27.096Z\"\n      }\n    ],\n    \"exploits\": [\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"title\": \"string\",\n        \"amount\": \"string\",\n        \"url\": \"string\",\n        \"date\": \"1956-02-27T03:03:40.996Z\",\n        \"is_deleted\": false,\n        \"created_at\": \"1960-07-30T20:29:43.727Z\",\n        \"updated_at\": \"1981-08-21T07:20:12.118Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"title\": \"string\",\n        \"amount\": \"string\",\n        \"url\": \"string\",\n        \"date\": \"1956-05-22T17:51:08.782Z\",\n        \"is_deleted\": false,\n        \"created_at\": \"1986-08-30T06:42:02.846Z\",\n        \"updated_at\": \"1995-11-26T10:43:52.046Z\"\n      }\n    ],\n    \"faq\": [\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"question\": \"string\",\n        \"answer\": \"string\",\n        \"is_deleted\": true,\n        \"created_at\": \"1994-02-21T13:40:34.545Z\",\n        \"updated_at\": \"2007-10-24T10:18:54.782Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"protocol_id\": \"string\",\n        \"question\": \"string\",\n        \"answer\": \"string\",\n        \"is_deleted\": false,\n        \"created_at\": \"2014-03-31T07:34:52.830Z\",\n        \"updated_at\": \"1986-08-13T16:17:46.104Z\"\n      }\n    ],\n    \"users\": [\n      {\n        \"id\": \"string\",\n        \"dynamic_id\": \"string\",\n        \"dynamic_wallet_id\": \"string\",\n        \"address\": \"string\",\n        \"protocol_id\": \"string\",\n        \"name\": \"string\",\n        \"role\": \"string\",\n        \"created_at\": \"1985-05-14T15:11:08.160Z\",\n        \"updated_at\": \"1998-10-23T10:25:27.585Z\"\n      },\n      {\n        \"id\": \"string\",\n        \"dynamic_id\": \"string\",\n        \"dynamic_wallet_id\": \"string\",\n        \"address\": \"string\",\n        \"protocol_id\": \"string\",\n        \"name\": \"string\",\n        \"role\": \"string\",\n        \"created_at\": \"2016-07-03T08:13:05.228Z\",\n        \"updated_at\": \"2007-06-20T14:16:40.629Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e13561d-3652-4f5b-8d65-dc54caf4f5d1",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protocols"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SF-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"https://api.superform.xyz/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.superform.xyz",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b14bca2b-b47b-437b-8e66-0f932f51b3b9",
+    "name": "Superform Auxiliary Protocol API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Superform Auxiliary SuperRewardsAPI API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SuperRewardsAPI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get season 3 rewards leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/rewards/leaderboard",
+            "params": [
+              {
+                "name": "user_address",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query"
+              },
+              {
+                "name": "tvl_rank",
+                "value": "true",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a leaderboard of rewards for Safari Season 3 and beyond"
+        },
+        {
+          "info": {
+            "name": "Get season 3 rewards opportunities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/rewards/opportunities",
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of rewards opportunities for Safari Season 3 and beyond"
+        },
+        {
+          "info": {
+            "name": "Get season 3 referral code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/rewards/referrals/code",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a user's unique referral code for Safari Season 3 and beyond"
+        },
+        {
+          "info": {
+            "name": "Redeem season 3 referral code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/rewards/referrals/redeem",
+            "params": [
+              {
+                "name": "referral_code",
+                "value": "abcde_fghijklmnopqrst",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Redeem a referral code for Safari Season 3 and beyond"
+        },
+        {
+          "info": {
+            "name": "Get season 3 rewards sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/rewards/sources/:user_address",
+            "params": [
+              {
+                "name": "user_address",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of rewards sources for Safari Season 3 and beyond"
+        },
+        {
+          "info": {
+            "name": "Get season 3 rewards summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/rewards/summary/:user_address",
+            "params": [
+              {
+                "name": "user_address",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a user's rewards summary for Safari Season 3 and beyond"
+        },
+        {
+          "info": {
+            "name": "Get cred leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/superrewards/exploration/leaderboard/cred/:user",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get relative cred leaderboard for Safari Season 2 and beyond"
+        },
+        {
+          "info": {
+            "name": "Get protocol leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/superrewards/exploration/leaderboard/protocols",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "100",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get protocol leaderboard for Safari Season 2 and beyond"
+        },
+        {
+          "info": {
+            "name": "Get TVL boosts leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/superrewards/exploration/leaderboard/tvl/:user",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get relative TVL boosts leaderboard for Safari Season 2 and beyond"
+        },
+        {
+          "info": {
+            "name": "Get exploration dashboard summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/superrewards/exploration/summary",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get exploration dashboard summary for Safari Season 2 and beyond"
+        },
+        {
+          "info": {
+            "name": "Get user's exploration dashboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/superrewards/exploration/:user",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get user's exploration dashboard for Safari Season 2 and beyond"
+        },
+        {
+          "info": {
+            "name": "Redeem a referral code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/superrewards/referrals/redeem/:referralCode",
+            "params": [
+              {
+                "name": "referralCode",
+                "value": "abcde_fghijklmnopqrst",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Redeem a referral code for Safari Season 2 and beyond"
+        },
+        {
+          "info": {
+            "name": "Get user referral code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/user/referral/code",
+            "params": [
+              {
+                "name": "user",
+                "value": "0x1234567890123456789012345678901234567890",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a user's unique referral code. Gated behind authentication."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

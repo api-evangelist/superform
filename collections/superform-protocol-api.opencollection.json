@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Superform Auxiliary Protocol API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Protocol",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get protocol by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/protocol/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "20ea4lMXEYCmpAhjuLKuD",
+                "type": "path",
+                "description": "Protocol ID to return stats for"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get one protocol by ID"
+        },
+        {
+          "info": {
+            "name": "Get protocol stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/protocol/:id/stats",
+            "params": [
+              {
+                "name": "start_timestamp",
+                "value": "1726225932",
+                "type": "query",
+                "description": "Unix timestamp for the start of the time series data"
+              },
+              {
+                "name": "end_timestamp",
+                "value": "1729225932",
+                "type": "query",
+                "description": "Unix timestamp for the end of the time series data"
+              },
+              {
+                "name": "granularity",
+                "value": "day",
+                "type": "query",
+                "description": "Granularity of the time series data. Default is day."
+              },
+              {
+                "name": "id",
+                "value": "20ea4lMXEYCmpAhjuLKuD",
+                "type": "path",
+                "description": "Protocol ID to return stats for"
+              },
+              {
+                "name": "timestamp",
+                "value": "1726654050",
+                "type": "query",
+                "description": "Unix timestamp if you want the data at a point in time instead of a range"
+              },
+              {
+                "name": "fetch_superform_tvl",
+                "value": "true",
+                "type": "query",
+                "description": "Calculate the Superform (not overall) TVL for all the vaults comprising this protocol"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get historical stats for a protocol, comprising all of its vaults. If no parameters are passed, response will span the full range of available data.If a timestamp is passed, the data will be for that point in time. If a start and end timestamp are passed, the data will be for that range."
+        },
+        {
+          "info": {
+            "name": "Get all protocols",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/protocols",
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get all protocols listed on Superform."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

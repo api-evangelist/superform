@@ -1,0 +1,210 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Superform Auxiliary API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auxiliary",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get address type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/address/type/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "0x1234",
+                "type": "path"
+              },
+              {
+                "name": "chainID",
+                "value": "137",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the type of an address."
+        },
+        {
+          "info": {
+            "name": "Get deployment details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/deployment",
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get contract addresses for each chain Superform is deployed on."
+        },
+        {
+          "info": {
+            "name": "Get superposition price",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/superpositions/:superform_id/price",
+            "params": [
+              {
+                "name": "superform_id",
+                "value": "1",
+                "type": "path"
+              },
+              {
+                "name": "amount_in",
+                "value": "1000000000000000000",
+                "type": "query"
+              },
+              {
+                "name": "block_number",
+                "value": "12345678",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns superposition price in USD."
+        },
+        {
+          "info": {
+            "name": "Get supported bridges, dexes, AMBs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/supported",
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the supported bridges, AMBs, and dexes that can be passed to /deposit/calculate or /withdraw/calculate."
+        },
+        {
+          "info": {
+            "name": "Get supported chains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/supported/chains",
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the supported chains."
+        },
+        {
+          "info": {
+            "name": "Get withdrawable tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/supported/withdrawable-tokens",
+            "params": [
+              {
+                "name": "vaultIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the list of tokens that can be withdrawn to from the vaults."
+        },
+        {
+          "info": {
+            "name": "Get supported yield types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/supported/yield-types",
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "When creating or updating a vault, you must specify a yield type. This endpoint returns the supported yield types."
+        },
+        {
+          "info": {
+            "name": "Get historical portfolio balances for an address. ",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.superform.xyz/user/portfolio/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "0x1234567890abcdef",
+                "type": "path",
+                "description": "The user's address"
+              },
+              {
+                "name": "start_timestamp",
+                "value": "1706225932",
+                "type": "query",
+                "description": "Unix timestamp for the start of the time series data, trimmed to 8 decimal places."
+              },
+              {
+                "name": "end_timestamp",
+                "value": "1706539710",
+                "type": "query",
+                "description": "Unix timestamp for the end of the time series data, trimmed to 8 decimal places"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "SF-API-KEY",
+              "value": "{{SF-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get historical portfolio balances for an address. The default and only granularity is daily. The data is collected at a daily interval. The response is cached for 4 hours."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
