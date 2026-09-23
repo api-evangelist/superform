@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Superform Auxiliary Protocol API
+  title: Superform Protocol API
   version: 1.0.0
 servers:
 - url: https://api.superform.xyz
@@ -155,132 +155,54 @@ paths:
       - Protocol
 components:
   schemas:
-    User:
+    ErrorDetail:
       additionalProperties: false
       properties:
-        address:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
           type: string
-        created_at:
-          format: date-time
+        message:
+          description: Error message text
           type: string
-        dynamic_id:
+        value:
+          description: The value at the given location
+      type: object
+    ProtocolGraphics:
+      additionalProperties: false
+      properties:
+        avatar:
           type: string
-        dynamic_wallet_id:
+        header:
+          type: string
+        icon:
+          type: string
+        watermark:
+          type: string
+      required:
+      - icon
+      - header
+      - avatar
+      - watermark
+      type: object
+    ProtocolAnalytic:
+      additionalProperties: false
+      properties:
+        chart_title:
+          type: string
+        chart_url:
           type: string
         id:
           type: string
-        name:
-          type: string
+        is_deleted:
+          type: boolean
         protocol_id:
-          type: string
-        role:
-          type: string
-        updated_at:
-          format: date-time
           type: string
       required:
       - id
-      - dynamic_id
-      - dynamic_wallet_id
-      - address
       - protocol_id
-      - name
-      - role
-      - created_at
-      - updated_at
-      type: object
-    HistoricalProtocolResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/HistoricalProtocolResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        historical_data:
-          $ref: '#/components/schemas/HistoricalDataStruct'
-        superform_tvl:
-          format: double
-          type: number
-        total_vaults:
-          format: int64
-          type: integer
-        tvl:
-          format: double
-          type: number
-        tvl_24h_change:
-          format: double
-          type: number
-      required:
-      - historical_data
-      - total_vaults
-      - tvl
-      - tvl_24h_change
-      type: object
-    HistoricalDataStruct:
-      additionalProperties: false
-      properties:
-        timestamp:
-          items:
-            format: int64
-            minimum: 0
-            type: integer
-          type: array
-        tvl:
-          items:
-            format: double
-            type: number
-          type: array
-      required:
-      - timestamp
-      - tvl
-      type: object
-    ErrorModel:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/ErrorModel.json
-          format: uri
-          readOnly: true
-          type: string
-        detail:
-          description: A human-readable explanation specific to this occurrence of the problem.
-          examples:
-          - Property foo is required but is missing.
-          type: string
-        errors:
-          description: Optional list of individual error details
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-          type: array
-        instance:
-          description: A URI reference that identifies the specific occurrence of the problem.
-          examples:
-          - https://example.com/error-log/abc123
-          format: uri
-          type: string
-        status:
-          description: HTTP status code
-          examples:
-          - 400
-          format: int64
-          type: integer
-        title:
-          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
-          examples:
-          - Bad Request
-          type: string
-        type:
-          default: about:blank
-          description: A URI reference to human-readable documentation for the error.
-          examples:
-          - https://example.com/errors/example
-          format: uri
-          type: string
+      - chart_title
+      - chart_url
+      - is_deleted
       type: object
     Protocol:
       additionalProperties: false
@@ -406,41 +328,6 @@ components:
       - created_at
       - updated_at
       type: object
-    ProtocolExploit:
-      additionalProperties: false
-      properties:
-        amount:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        date:
-          format: date-time
-          type: string
-        id:
-          type: string
-        is_deleted:
-          type: boolean
-        protocol_id:
-          type: string
-        title:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        url:
-          type: string
-      required:
-      - id
-      - protocol_id
-      - title
-      - amount
-      - url
-      - date
-      - is_deleted
-      - created_at
-      - updated_at
-      type: object
     Deployer:
       additionalProperties: false
       properties:
@@ -470,54 +357,6 @@ components:
       - name
       - status
       - type
-      - created_at
-      - updated_at
-      type: object
-    ProtocolAnalytic:
-      additionalProperties: false
-      properties:
-        chart_title:
-          type: string
-        chart_url:
-          type: string
-        id:
-          type: string
-        is_deleted:
-          type: boolean
-        protocol_id:
-          type: string
-      required:
-      - id
-      - protocol_id
-      - chart_title
-      - chart_url
-      - is_deleted
-      type: object
-    ProtocolFAQ:
-      additionalProperties: false
-      properties:
-        answer:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        id:
-          type: string
-        is_deleted:
-          type: boolean
-        protocol_id:
-          type: string
-        question:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-      required:
-      - id
-      - protocol_id
-      - question
-      - answer
-      - is_deleted
       - created_at
       - updated_at
       type: object
@@ -553,22 +392,96 @@ components:
       - created_at
       - updated_at
       type: object
-    ProtocolGraphics:
+    ProtocolFAQ:
       additionalProperties: false
       properties:
-        avatar:
+        answer:
           type: string
-        header:
+        created_at:
+          format: date-time
           type: string
-        icon:
+        id:
           type: string
-        watermark:
+        is_deleted:
+          type: boolean
+        protocol_id:
+          type: string
+        question:
+          type: string
+        updated_at:
+          format: date-time
           type: string
       required:
-      - icon
-      - header
-      - avatar
-      - watermark
+      - id
+      - protocol_id
+      - question
+      - answer
+      - is_deleted
+      - created_at
+      - updated_at
+      type: object
+    ErrorModel:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ErrorModel.json
+          format: uri
+          readOnly: true
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          examples:
+          - Property foo is required but is missing.
+          type: string
+        errors:
+          description: Optional list of individual error details
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          type: array
+        instance:
+          description: A URI reference that identifies the specific occurrence of the problem.
+          examples:
+          - https://example.com/error-log/abc123
+          format: uri
+          type: string
+        status:
+          description: HTTP status code
+          examples:
+          - 400
+          format: int64
+          type: integer
+        title:
+          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
+          examples:
+          - Bad Request
+          type: string
+        type:
+          default: about:blank
+          description: A URI reference to human-readable documentation for the error.
+          examples:
+          - https://example.com/errors/example
+          format: uri
+          type: string
+      type: object
+    HistoricalDataStruct:
+      additionalProperties: false
+      properties:
+        timestamp:
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        tvl:
+          items:
+            format: double
+            type: number
+          type: array
+      required:
+      - timestamp
+      - tvl
       type: object
     ProtocolLinks:
       additionalProperties: false
@@ -587,17 +500,104 @@ components:
       - discord
       - telegram
       type: object
-    ErrorDetail:
+    HistoricalProtocolResponseBody:
       additionalProperties: false
       properties:
-        location:
-          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/HistoricalProtocolResponseBody.json
+          format: uri
+          readOnly: true
           type: string
-        message:
-          description: Error message text
+        historical_data:
+          $ref: '#/components/schemas/HistoricalDataStruct'
+        superform_tvl:
+          format: double
+          type: number
+        total_vaults:
+          format: int64
+          type: integer
+        tvl:
+          format: double
+          type: number
+        tvl_24h_change:
+          format: double
+          type: number
+      required:
+      - historical_data
+      - total_vaults
+      - tvl
+      - tvl_24h_change
+      type: object
+    User:
+      additionalProperties: false
+      properties:
+        address:
           type: string
-        value:
-          description: The value at the given location
+        created_at:
+          format: date-time
+          type: string
+        dynamic_id:
+          type: string
+        dynamic_wallet_id:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        protocol_id:
+          type: string
+        role:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - id
+      - dynamic_id
+      - dynamic_wallet_id
+      - address
+      - protocol_id
+      - name
+      - role
+      - created_at
+      - updated_at
+      type: object
+    ProtocolExploit:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        date:
+          format: date-time
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        protocol_id:
+          type: string
+        title:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        url:
+          type: string
+      required:
+      - id
+      - protocol_id
+      - title
+      - amount
+      - url
+      - date
+      - is_deleted
+      - created_at
+      - updated_at
       type: object
   securitySchemes:
     apiKey:

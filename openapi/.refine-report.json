@@ -1,21 +1,7 @@
 {
   "provider": "superform",
   "sources": [
-    "superform-auxiliary-api-openapi.yml",
-    "superform-balances-api-openapi.yml",
-    "superform-contract-checker-api-openapi.yml",
-    "superform-data-api-openapi.yml",
-    "superform-execution-api-openapi.yml",
-    "superform-explorer-api-openapi.yml",
-    "superform-health-api-openapi.yml",
-    "superform-migrate-api-openapi.yml",
-    "superform-protocol-api-openapi.yml",
-    "superform-protocol-rewards-api-openapi.yml",
-    "superform-simulator-api-openapi.yml",
-    "superform-stats-api-openapi.yml",
-    "superform-superrewardsapi-api-openapi.yml",
-    "superform-token-distribution-api-openapi.yml",
-    "superform-vault-api-openapi.yml"
+    "_original/superform-openapi-original.json"
   ],
   "outputs": [
     "superform-auxiliary-api-openapi.yml",
@@ -37,6 +23,41 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "superform-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superform-openapi-original.json: declared missing tag: Auxiliary",
+    "superform-openapi-original.json: declared missing tag: Balances",
+    "superform-openapi-original.json: declared missing tag: Contract Checker",
+    "superform-openapi-original.json: declared missing tag: Data",
+    "superform-openapi-original.json: declared missing tag: Execution",
+    "superform-openapi-original.json: declared missing tag: Explorer",
+    "superform-openapi-original.json: declared missing tag: Health",
+    "superform-openapi-original.json: declared missing tag: Migrate",
+    "superform-openapi-original.json: declared missing tag: Protocol",
+    "superform-openapi-original.json: declared missing tag: Protocol Rewards",
+    "superform-openapi-original.json: declared missing tag: Simulator",
+    "superform-openapi-original.json: declared missing tag: Stats",
+    "superform-openapi-original.json: declared missing tag: SuperRewardsAPI",
+    "superform-openapi-original.json: declared missing tag: Token Distribution",
+    "superform-openapi-original.json: declared missing tag: Vault",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "superform-auxiliary-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-balances-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-contract-checker-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-execution-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-explorer-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-migrate-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-protocol-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-protocol-rewards-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-simulator-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-stats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-superrewardsapi-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-token-distribution-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "superform-vault-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
