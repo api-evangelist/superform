@@ -205,81 +205,6 @@ paths:
       - Protocol Rewards
 components:
   schemas:
-    ErrorDetail:
-      additionalProperties: false
-      properties:
-        location:
-          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
-          type: string
-        message:
-          description: Error message text
-          type: string
-        value:
-          description: The value at the given location
-      type: object
-    ClaimTransaction:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/ClaimTransaction.json
-          format: uri
-          readOnly: true
-          type: string
-        gasLimit:
-          format: int64
-          type: integer
-        to:
-          type: string
-        transactionData:
-          type: string
-      required:
-      - transactionData
-      - to
-      type: object
-    EarningReward:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/EarningReward.json
-          format: uri
-          readOnly: true
-          type: string
-        rewards:
-          items:
-            $ref: '#/components/schemas/UserReward'
-          type: array
-        total_amount_usd:
-          format: double
-          type: number
-      required:
-      - total_amount_usd
-      - rewards
-      type: object
-    ClaimableReward:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/ClaimableReward.json
-          format: uri
-          readOnly: true
-          type: string
-        rewards:
-          items:
-            $ref: '#/components/schemas/ClaimableTokens'
-          type: array
-        total_amount_usd:
-          format: double
-          type: number
-      required:
-      - total_amount_usd
-      - rewards
-      type: object
     UserReward:
       additionalProperties: false
       properties:
@@ -307,33 +232,63 @@ components:
       - chain_id
       - source_type
       type: object
-    ExplorerAsset:
+    ClaimableTokens:
       additionalProperties: false
       properties:
-        address:
+        amount:
           type: string
+        amount_usd:
+          format: double
+          type: number
         chain_id:
           format: int64
           type: integer
-        decimals:
-          format: int64
-          type: integer
-        id:
+        reward_id:
           type: string
-        logo:
+        source_type:
           type: string
-        name:
-          type: string
-        symbol:
-          type: string
+        token:
+          $ref: '#/components/schemas/ExplorerAsset'
       required:
-      - id
-      - address
+      - reward_id
+      - source_type
+      - amount
+      - amount_usd
+      - token
       - chain_id
-      - name
-      - symbol
-      - decimals
-      - logo
+      type: object
+    ClaimableReward:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ClaimableReward.json
+          format: uri
+          readOnly: true
+          type: string
+        rewards:
+          items:
+            $ref: '#/components/schemas/ClaimableTokens'
+          type: array
+        total_amount_usd:
+          format: double
+          type: number
+      required:
+      - total_amount_usd
+      - rewards
+      type: object
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
       type: object
     ErrorModel:
       additionalProperties: false
@@ -402,30 +357,75 @@ components:
       - balance
       - superform_address
       type: object
-    ClaimableTokens:
+    ClaimTransaction:
       additionalProperties: false
       properties:
-        amount:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ClaimTransaction.json
+          format: uri
+          readOnly: true
           type: string
-        amount_usd:
+        gasLimit:
+          format: int64
+          type: integer
+        to:
+          type: string
+        transactionData:
+          type: string
+      required:
+      - transactionData
+      - to
+      type: object
+    EarningReward:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/EarningReward.json
+          format: uri
+          readOnly: true
+          type: string
+        rewards:
+          items:
+            $ref: '#/components/schemas/UserReward'
+          type: array
+        total_amount_usd:
           format: double
           type: number
+      required:
+      - total_amount_usd
+      - rewards
+      type: object
+    ExplorerAsset:
+      additionalProperties: false
+      properties:
+        address:
+          type: string
         chain_id:
           format: int64
           type: integer
-        reward_id:
+        decimals:
+          format: int64
+          type: integer
+        id:
           type: string
-        source_type:
+        logo:
           type: string
-        token:
-          $ref: '#/components/schemas/ExplorerAsset'
+        name:
+          type: string
+        symbol:
+          type: string
       required:
-      - reward_id
-      - source_type
-      - amount
-      - amount_usd
-      - token
+      - id
+      - address
       - chain_id
+      - name
+      - symbol
+      - decimals
+      - logo
       type: object
   securitySchemes:
     apiKey:
