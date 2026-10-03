@@ -190,37 +190,298 @@ paths:
       - Execution
 components:
   schemas:
-    LifiAction:
+    RebalancingStartInput:
       additionalProperties: false
       properties:
-        fromAddress:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/RebalancingStartInput.json
+          format: uri
+          readOnly: true
           type: string
-        fromAmount:
+        deposit_routes:
+          items:
+            $ref: '#/components/schemas/CalculateResponse'
+          type: array
+        interim_asset:
           type: string
-        fromChainId:
+        receiver_address_sp:
+          type: string
+        slippage:
+          format: int64
+          type: integer
+        user_address:
+          type: string
+        withdraw_routes:
+          items:
+            $ref: '#/components/schemas/CalculateResponse'
+          type: array
+      required:
+      - user_address
+      - receiver_address_sp
+      - slippage
+      - interim_asset
+      - withdraw_routes
+      - deposit_routes
+      type: object
+    LifiRouteStep:
+      additionalProperties: false
+      properties:
+        action:
+          $ref: '#/components/schemas/LifiAction'
+        estimate:
+          $ref: '#/components/schemas/LifiEstimate'
+        id:
+          type: string
+        includedSteps:
+          items:
+            $ref: '#/components/schemas/Item'
+          type: array
+        integrator:
+          type: string
+        routesRequestId:
+          type: string
+        tool:
+          type: string
+        toolDetails:
+          $ref: '#/components/schemas/LifiRouteStepToolDetailsStruct'
+        type:
+          type: string
+      required:
+      - type
+      - id
+      - tool
+      - toolDetails
+      - action
+      - estimate
+      - includedSteps
+      - integrator
+      - routesRequestId
+      type: object
+    ToolDetailsStruct:
+      additionalProperties: false
+      properties:
+        key:
+          type: string
+        logoURI:
+          type: string
+        name:
+          type: string
+      required:
+      - key
+      - name
+      - logoURI
+      type: object
+    LifiEstimateToolDataStruct:
+      additionalProperties: false
+      properties:
+        estimatedGas:
           format: int64
           type: integer
         fromToken:
           $ref: '#/components/schemas/LifiToken'
-        slippage:
-          format: double
-          type: number
-        toAddress:
+        fromTokenAmount:
           type: string
-        toChainId:
-          format: int64
-          type: integer
+        protocols:
+          items:
+            items:
+              items:
+                $ref: '#/components/schemas/ProtocolItem'
+              type: array
+            type: array
+          type: array
         toToken:
           $ref: '#/components/schemas/LifiToken'
+        toTokenAmount:
+          type: string
       required:
       - fromToken
-      - fromAmount
       - toToken
-      - fromChainId
-      - toChainId
-      - slippage
+      - toTokenAmount
+      - fromTokenAmount
+      - estimatedGas
       type: object
-    RouteService:
+    LifiRouteStepToolDetailsStruct:
+      additionalProperties: false
+      properties:
+        key:
+          type: string
+        logoURI:
+          type: string
+        name:
+          type: string
+      required:
+      - key
+      - name
+      - logoURI
+      type: object
+    GasCostItem:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        amountUSD:
+          type: string
+        estimate:
+          type: string
+        limit:
+          type: string
+        price:
+          type: string
+        token:
+          $ref: '#/components/schemas/LifiToken'
+        type:
+          type: string
+      required:
+      - type
+      - price
+      - estimate
+      - limit
+      - amount
+      - amountUSD
+      - token
+      type: object
+    Int:
+      additionalProperties: false
+      type: object
+    PaymentEstimate:
+      additionalProperties: false
+      properties:
+        bridging_fee:
+          $ref: '#/components/schemas/Int'
+        dst_amount:
+          $ref: '#/components/schemas/Int'
+        liq_amount:
+          $ref: '#/components/schemas/Int'
+        src_amount:
+          $ref: '#/components/schemas/Int'
+        total_amount:
+          $ref: '#/components/schemas/Int'
+      required:
+      - liq_amount
+      - src_amount
+      - dst_amount
+      - total_amount
+      - bridging_fee
+      type: object
+    VaultRoute:
+      additionalProperties: false
+      properties:
+        ok:
+          type: boolean
+        route_error:
+          type: string
+        routes:
+          items:
+            $ref: '#/components/schemas/Route'
+          type: array
+        vault_id:
+          type: string
+      required:
+      - ok
+      - vault_id
+      type: object
+    LifiEstimate:
+      additionalProperties: false
+      properties:
+        approvalAddress:
+          type: string
+        executionDuration:
+          format: double
+          type: number
+        feeCosts:
+          items:
+            $ref: '#/components/schemas/LiFiFee'
+          type: array
+        fromAmount:
+          type: string
+        fromAmountUSD:
+          type: string
+        gasCosts:
+          items:
+            $ref: '#/components/schemas/GasCostItem'
+          type: array
+        toAmount:
+          type: string
+        toAmountMin:
+          type: string
+        toAmountUSD:
+          type: string
+        tool:
+          type: string
+        toolData:
+          $ref: '#/components/schemas/LifiEstimateToolDataStruct'
+      required:
+      - tool
+      - approvalAddress
+      - toAmountMin
+      - toAmount
+      - fromAmount
+      - toolData
+      - executionDuration
+      - fromAmountUSD
+      - toAmountUSD
+      type: object
+    WithdrawalApprovalData:
+      additionalProperties: false
+      properties:
+        data:
+          type: string
+        to:
+          type: string
+        value:
+          type: string
+      required:
+      - to
+      - data
+      - value
+      type: object
+    ProtocolItem:
+      additionalProperties: false
+      properties:
+        fromTokenAddress:
+          type: string
+        name:
+          type: string
+        part:
+          format: int64
+          type: integer
+        toTokenAddress:
+          type: string
+      required:
+      - name
+      - part
+      - fromTokenAddress
+      - toTokenAddress
+      type: object
+    LiFiFee:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        amountUSD:
+          type: string
+        description:
+          type: string
+        included:
+          type: boolean
+        name:
+          type: string
+        percentage:
+          type: string
+        token:
+          $ref: '#/components/schemas/LifiToken'
+      required:
+      - name
+      - description
+      - token
+      - amount
+      - amountUSD
+      - percentage
+      - included
+      type: object
+    RouteDex:
       additionalProperties: false
       properties:
         logo:
@@ -230,6 +491,64 @@ components:
       required:
       - name
       - logo
+      type: object
+    ChainGasEstimate:
+      additionalProperties: false
+      properties:
+        estimated_seconds:
+          format: int64
+          type: integer
+        gas_price_usd:
+          type: string
+      required:
+      - gas_price_usd
+      - estimated_seconds
+      type: object
+    RebalancingCalculateOutput:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/RebalancingCalculateOutput.json
+          format: uri
+          readOnly: true
+          type: string
+        deposit_routes:
+          items:
+            $ref: '#/components/schemas/CalculateResponse'
+          type: array
+        interim_asset:
+          type: string
+        receiver_address_sp:
+          type: string
+        slippage:
+          format: int64
+          type: integer
+        user_address:
+          type: string
+        withdraw_routes:
+          items:
+            $ref: '#/components/schemas/CalculateResponse'
+          type: array
+      required:
+      - user_address
+      - receiver_address_sp
+      - slippage
+      - interim_asset
+      - withdraw_routes
+      - deposit_routes
+      type: object
+    CalculateResponse:
+      additionalProperties: false
+      properties:
+        in:
+          $ref: '#/components/schemas/QuoteParams'
+        liq:
+          $ref: '#/components/schemas/VaultRoute'
+      required:
+      - in
+      - liq
       type: object
     QuoteParams:
       additionalProperties: false
@@ -402,192 +721,17 @@ components:
       required:
       - user_address
       type: object
-    Route:
+    RebalancingTo:
       additionalProperties: false
       properties:
-        bridge:
-          $ref: '#/components/schemas/RouteBridge'
-        bridge_id:
-          format: int64
-          type: integer
-        cross_chain_fee:
+        share:
           format: double
           type: number
-        dex:
-          $ref: '#/components/schemas/RouteDex'
-        erc20_route_approval_target:
-          type: string
-        estimate_time:
-          format: double
-          type: number
-        from_address:
-          type: string
-        from_amount:
-          type: string
-        from_chain_id:
-          format: int64
-          type: integer
-        from_token:
-          $ref: '#/components/schemas/RouteToken'
-        gas_cost_usd:
-          type: string
-        has_swap:
-          type: boolean
-        insurable_route:
-          type: boolean
-        interim_token:
-          type: string
-        interim_token_amount:
-          type: string
-        is_erc20:
-          type: boolean
-        lifi_route_first_step:
-          $ref: '#/components/schemas/LifiRouteStep'
-        route_id:
-          contentEncoding: base64
-          type: string
-        service:
-          $ref: '#/components/schemas/RouteService'
-        super_position:
-          $ref: '#/components/schemas/SuperPositionEstimate'
-        to_address:
-          type: string
-        to_amount:
-          type: string
-        to_amount_min:
-          type: string
-        to_amount_usd:
-          type: string
-        to_chain_id:
-          format: int64
-          type: integer
-        to_token:
-          $ref: '#/components/schemas/RouteToken'
-      required:
-      - route_id
-      - is_erc20
-      - bridge_id
-      - from_chain_id
-      - from_amount
-      - from_token
-      - from_address
-      - to_chain_id
-      - to_amount
-      - to_amount_usd
-      - to_amount_min
-      - to_token
-      - to_address
-      - gas_cost_usd
-      - cross_chain_fee
-      - has_swap
-      - insurable_route
-      - estimate_time
-      type: object
-    RebalancingStartInput:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/RebalancingStartInput.json
-          format: uri
-          readOnly: true
-          type: string
-        deposit_routes:
-          items:
-            $ref: '#/components/schemas/CalculateResponse'
-          type: array
-        interim_asset:
-          type: string
-        receiver_address_sp:
-          type: string
-        slippage:
-          format: int64
-          type: integer
-        user_address:
-          type: string
-        withdraw_routes:
-          items:
-            $ref: '#/components/schemas/CalculateResponse'
-          type: array
-      required:
-      - user_address
-      - receiver_address_sp
-      - slippage
-      - interim_asset
-      - withdraw_routes
-      - deposit_routes
-      type: object
-    ErrorModel:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/ErrorModel.json
-          format: uri
-          readOnly: true
-          type: string
-        detail:
-          description: A human-readable explanation specific to this occurrence of the problem.
-          examples:
-          - Property foo is required but is missing.
-          type: string
-        errors:
-          description: Optional list of individual error details
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-          type: array
-        instance:
-          description: A URI reference that identifies the specific occurrence of the problem.
-          examples:
-          - https://example.com/error-log/abc123
-          format: uri
-          type: string
-        status:
-          description: HTTP status code
-          examples:
-          - 400
-          format: int64
-          type: integer
-        title:
-          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
-          examples:
-          - Bad Request
-          type: string
-        type:
-          default: about:blank
-          description: A URI reference to human-readable documentation for the error.
-          examples:
-          - https://example.com/errors/example
-          format: uri
-          type: string
-      type: object
-    GasCostItem:
-      additionalProperties: false
-      properties:
-        amount:
-          type: string
-        amountUSD:
-          type: string
-        estimate:
-          type: string
-        limit:
-          type: string
-        price:
-          type: string
-        token:
-          $ref: '#/components/schemas/LifiToken'
-        type:
+        superform_id:
           type: string
       required:
-      - type
-      - price
-      - estimate
-      - limit
-      - amount
-      - amountUSD
-      - token
+      - superform_id
+      - share
       type: object
     RouteToken:
       additionalProperties: false
@@ -613,114 +757,39 @@ components:
       - chain_id
       - name
       type: object
-    RouteDex:
+    Item:
       additionalProperties: false
       properties:
-        logo:
-          type: string
-        name:
-          type: string
-      required:
-      - name
-      - logo
-      type: object
-    RebalancingPayment:
-      additionalProperties: false
-      properties:
-        deposit_amount:
-          type: string
-        total_amount:
-          type: string
-        total_amount_usd:
-          format: double
-          type: number
-        withdraw_amount:
-          type: string
-      required:
-      - total_amount
-      - withdraw_amount
-      - deposit_amount
-      - total_amount_usd
-      type: object
-    LifiEstimate:
-      additionalProperties: false
-      properties:
-        approvalAddress:
-          type: string
-        executionDuration:
-          format: double
-          type: number
-        feeCosts:
-          items:
-            $ref: '#/components/schemas/LiFiFee'
-          type: array
-        fromAmount:
-          type: string
-        fromAmountUSD:
-          type: string
-        gasCosts:
-          items:
-            $ref: '#/components/schemas/GasCostItem'
-          type: array
-        toAmount:
-          type: string
-        toAmountMin:
-          type: string
-        toAmountUSD:
+        action:
+          $ref: '#/components/schemas/LifiAction'
+        estimate:
+          $ref: '#/components/schemas/LifiEstimate'
+        id:
           type: string
         tool:
           type: string
-        toolData:
-          $ref: '#/components/schemas/LifiEstimateToolDataStruct'
+        toolDetails:
+          $ref: '#/components/schemas/ToolDetailsStruct'
+        type:
+          type: string
       required:
+      - id
+      - type
+      - action
+      - estimate
       - tool
-      - approvalAddress
-      - toAmountMin
-      - toAmount
-      - fromAmount
-      - toolData
-      - executionDuration
-      - fromAmountUSD
-      - toAmountUSD
+      - toolDetails
       type: object
-    LifiToken:
+    RebalancingFrom:
       additionalProperties: false
       properties:
-        address:
+        amount:
           type: string
-        chainId:
-          format: int64
-          type: integer
-        coinKey:
-          type: string
-        decimals:
-          format: int64
-          type: integer
-        logoURI:
-          type: string
-        name:
-          type: string
-        priceUSD: {}
-        symbol:
+        superform_id:
           type: string
       required:
-      - address
-      - symbol
-      - decimals
-      - chainId
-      - name
-      - coinKey
-      type: object
-    CalculateResponse:
-      additionalProperties: false
-      properties:
-        in:
-          $ref: '#/components/schemas/QuoteParams'
-        liq:
-          $ref: '#/components/schemas/VaultRoute'
-      required:
-      - in
-      - liq
+      - superform_id
+      - amount
       type: object
     QuoteParamsWithdrawal:
       additionalProperties: false
@@ -845,92 +914,65 @@ components:
       required:
       - user_address
       type: object
-    RebalancingCalculateInput:
+    SuperPositionEstimate:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        symbol:
+          type: string
+        usd_value:
+          format: double
+          type: number
+      type: object
+    LifiToken:
+      additionalProperties: false
+      properties:
+        address:
+          type: string
+        chainId:
+          format: int64
+          type: integer
+        coinKey:
+          type: string
+        decimals:
+          format: int64
+          type: integer
+        logoURI:
+          type: string
+        name:
+          type: string
+        priceUSD: {}
+        symbol:
+          type: string
+      required:
+      - address
+      - symbol
+      - decimals
+      - chainId
+      - name
+      - coinKey
+      type: object
+    RebalanceStartTransactionResponse:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.superform.xyz/schemas/RebalancingCalculateInput.json
+          - https://api.superform.xyz/schemas/RebalanceStartTransactionResponse.json
           format: uri
           readOnly: true
           type: string
-        from_chain_id:
-          format: int64
-          type: integer
-        rebalancing_from:
-          items:
-            $ref: '#/components/schemas/RebalancingFrom'
-          type: array
-        rebalancing_to:
-          items:
-            $ref: '#/components/schemas/RebalancingTo'
-          type: array
-        receiver_address_sp:
+        payment:
+          $ref: '#/components/schemas/RebalancingPayment'
+        to:
           type: string
-        slippage:
-          format: int64
-          type: integer
-        user_address:
+        tx_data:
           type: string
       required:
-      - user_address
-      - receiver_address_sp
-      - from_chain_id
-      - slippage
-      - rebalancing_from
-      - rebalancing_to
-      type: object
-    VaultRoute:
-      additionalProperties: false
-      properties:
-        ok:
-          type: boolean
-        route_error:
-          type: string
-        routes:
-          items:
-            $ref: '#/components/schemas/Route'
-          type: array
-        vault_id:
-          type: string
-      required:
-      - ok
-      - vault_id
-      type: object
-    Item:
-      additionalProperties: false
-      properties:
-        action:
-          $ref: '#/components/schemas/LifiAction'
-        estimate:
-          $ref: '#/components/schemas/LifiEstimate'
-        id:
-          type: string
-        tool:
-          type: string
-        toolDetails:
-          $ref: '#/components/schemas/ToolDetailsStruct'
-        type:
-          type: string
-      required:
-      - id
-      - type
-      - action
-      - estimate
-      - tool
-      - toolDetails
-      type: object
-    RebalancingFrom:
-      additionalProperties: false
-      properties:
-        amount:
-          type: string
-        superform_id:
-          type: string
-      required:
-      - superform_id
-      - amount
+      - tx_data
+      - to
+      - payment
       type: object
     RouteBridge:
       additionalProperties: false
@@ -943,42 +985,115 @@ components:
       - name
       - logo
       type: object
-    ToolDetailsStruct:
+    RebalancingPayment:
       additionalProperties: false
       properties:
-        key:
+        deposit_amount:
           type: string
-        logoURI:
+        total_amount:
+          type: string
+        total_amount_usd:
+          format: double
+          type: number
+        withdraw_amount:
+          type: string
+      required:
+      - total_amount
+      - withdraw_amount
+      - deposit_amount
+      - total_amount_usd
+      type: object
+    RouteService:
+      additionalProperties: false
+      properties:
+        logo:
           type: string
         name:
           type: string
       required:
-      - key
       - name
-      - logoURI
+      - logo
       type: object
-    SuperPositionEstimate:
+    Route:
       additionalProperties: false
       properties:
-        amount:
-          type: string
-        symbol:
-          type: string
-        usd_value:
+        bridge:
+          $ref: '#/components/schemas/RouteBridge'
+        bridge_id:
+          format: int64
+          type: integer
+        cross_chain_fee:
           format: double
           type: number
-      type: object
-    ErrorDetail:
-      additionalProperties: false
-      properties:
-        location:
-          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+        dex:
+          $ref: '#/components/schemas/RouteDex'
+        erc20_route_approval_target:
           type: string
-        message:
-          description: Error message text
+        estimate_time:
+          format: double
+          type: number
+        from_address:
           type: string
-        value:
-          description: The value at the given location
+        from_amount:
+          type: string
+        from_chain_id:
+          format: int64
+          type: integer
+        from_token:
+          $ref: '#/components/schemas/RouteToken'
+        gas_cost_usd:
+          type: string
+        has_swap:
+          type: boolean
+        insurable_route:
+          type: boolean
+        interim_token:
+          type: string
+        interim_token_amount:
+          type: string
+        is_erc20:
+          type: boolean
+        lifi_route_first_step:
+          $ref: '#/components/schemas/LifiRouteStep'
+        route_id:
+          contentEncoding: base64
+          type: string
+        service:
+          $ref: '#/components/schemas/RouteService'
+        super_position:
+          $ref: '#/components/schemas/SuperPositionEstimate'
+        to_address:
+          type: string
+        to_amount:
+          type: string
+        to_amount_min:
+          type: string
+        to_amount_usd:
+          type: string
+        to_chain_id:
+          format: int64
+          type: integer
+        to_token:
+          $ref: '#/components/schemas/RouteToken'
+      required:
+      - route_id
+      - is_erc20
+      - bridge_id
+      - from_chain_id
+      - from_amount
+      - from_token
+      - from_address
+      - to_chain_id
+      - to_amount
+      - to_amount_usd
+      - to_amount_min
+      - to_token
+      - to_address
+      - gas_cost_usd
+      - cross_chain_fee
+      - has_swap
+      - insurable_route
+      - estimate_time
       type: object
     DepositResponse:
       additionalProperties: false
@@ -1026,223 +1141,6 @@ components:
       - original_fee_usd
       - discount_percent
       - approval_data
-      type: object
-    RebalancingTo:
-      additionalProperties: false
-      properties:
-        share:
-          format: double
-          type: number
-        superform_id:
-          type: string
-      required:
-      - superform_id
-      - share
-      type: object
-    WithdrawalApprovalData:
-      additionalProperties: false
-      properties:
-        data:
-          type: string
-        to:
-          type: string
-        value:
-          type: string
-      required:
-      - to
-      - data
-      - value
-      type: object
-    Int:
-      additionalProperties: false
-      type: object
-    LifiRouteStep:
-      additionalProperties: false
-      properties:
-        action:
-          $ref: '#/components/schemas/LifiAction'
-        estimate:
-          $ref: '#/components/schemas/LifiEstimate'
-        id:
-          type: string
-        includedSteps:
-          items:
-            $ref: '#/components/schemas/Item'
-          type: array
-        integrator:
-          type: string
-        routesRequestId:
-          type: string
-        tool:
-          type: string
-        toolDetails:
-          $ref: '#/components/schemas/LifiRouteStepToolDetailsStruct'
-        type:
-          type: string
-      required:
-      - type
-      - id
-      - tool
-      - toolDetails
-      - action
-      - estimate
-      - includedSteps
-      - integrator
-      - routesRequestId
-      type: object
-    ChainGasEstimate:
-      additionalProperties: false
-      properties:
-        estimated_seconds:
-          format: int64
-          type: integer
-        gas_price_usd:
-          type: string
-      required:
-      - gas_price_usd
-      - estimated_seconds
-      type: object
-    LifiEstimateToolDataStruct:
-      additionalProperties: false
-      properties:
-        estimatedGas:
-          format: int64
-          type: integer
-        fromToken:
-          $ref: '#/components/schemas/LifiToken'
-        fromTokenAmount:
-          type: string
-        protocols:
-          items:
-            items:
-              items:
-                $ref: '#/components/schemas/ProtocolItem'
-              type: array
-            type: array
-          type: array
-        toToken:
-          $ref: '#/components/schemas/LifiToken'
-        toTokenAmount:
-          type: string
-      required:
-      - fromToken
-      - toToken
-      - toTokenAmount
-      - fromTokenAmount
-      - estimatedGas
-      type: object
-    RebalanceStartTransactionResponse:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/RebalanceStartTransactionResponse.json
-          format: uri
-          readOnly: true
-          type: string
-        payment:
-          $ref: '#/components/schemas/RebalancingPayment'
-        to:
-          type: string
-        tx_data:
-          type: string
-      required:
-      - tx_data
-      - to
-      - payment
-      type: object
-    PaymentEstimate:
-      additionalProperties: false
-      properties:
-        bridging_fee:
-          $ref: '#/components/schemas/Int'
-        dst_amount:
-          $ref: '#/components/schemas/Int'
-        liq_amount:
-          $ref: '#/components/schemas/Int'
-        src_amount:
-          $ref: '#/components/schemas/Int'
-        total_amount:
-          $ref: '#/components/schemas/Int'
-      required:
-      - liq_amount
-      - src_amount
-      - dst_amount
-      - total_amount
-      - bridging_fee
-      type: object
-    RebalancingCalculateOutput:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/RebalancingCalculateOutput.json
-          format: uri
-          readOnly: true
-          type: string
-        deposit_routes:
-          items:
-            $ref: '#/components/schemas/CalculateResponse'
-          type: array
-        interim_asset:
-          type: string
-        receiver_address_sp:
-          type: string
-        slippage:
-          format: int64
-          type: integer
-        user_address:
-          type: string
-        withdraw_routes:
-          items:
-            $ref: '#/components/schemas/CalculateResponse'
-          type: array
-      required:
-      - user_address
-      - receiver_address_sp
-      - slippage
-      - interim_asset
-      - withdraw_routes
-      - deposit_routes
-      type: object
-    StartRouteInput:
-      additionalProperties: false
-      properties:
-        in:
-          $ref: '#/components/schemas/QuoteParams'
-        liq:
-          $ref: '#/components/schemas/VaultRoute'
-      required:
-      - in
-      - liq
-      type: object
-    LiFiFee:
-      additionalProperties: false
-      properties:
-        amount:
-          type: string
-        amountUSD:
-          type: string
-        description:
-          type: string
-        included:
-          type: boolean
-        name:
-          type: string
-        percentage:
-          type: string
-        token:
-          $ref: '#/components/schemas/LifiToken'
-      required:
-      - name
-      - description
-      - token
-      - amount
-      - amountUSD
-      - percentage
-      - included
       type: object
     QuoteParamsDeposit:
       additionalProperties: false
@@ -1358,37 +1256,139 @@ components:
       required:
       - user_address
       type: object
-    ProtocolItem:
+    LifiAction:
       additionalProperties: false
       properties:
-        fromTokenAddress:
+        fromAddress:
           type: string
-        name:
+        fromAmount:
           type: string
-        part:
+        fromChainId:
           format: int64
           type: integer
-        toTokenAddress:
+        fromToken:
+          $ref: '#/components/schemas/LifiToken'
+        slippage:
+          format: double
+          type: number
+        toAddress:
           type: string
+        toChainId:
+          format: int64
+          type: integer
+        toToken:
+          $ref: '#/components/schemas/LifiToken'
       required:
-      - name
-      - part
-      - fromTokenAddress
-      - toTokenAddress
+      - fromToken
+      - fromAmount
+      - toToken
+      - fromChainId
+      - toChainId
+      - slippage
       type: object
-    LifiRouteStepToolDetailsStruct:
+    ErrorDetail:
       additionalProperties: false
       properties:
-        key:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
           type: string
-        logoURI:
+        message:
+          description: Error message text
           type: string
-        name:
+        value:
+          description: The value at the given location
+      type: object
+    ErrorModel:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ErrorModel.json
+          format: uri
+          readOnly: true
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          examples:
+          - Property foo is required but is missing.
+          type: string
+        errors:
+          description: Optional list of individual error details
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          type: array
+        instance:
+          description: A URI reference that identifies the specific occurrence of the problem.
+          examples:
+          - https://example.com/error-log/abc123
+          format: uri
+          type: string
+        status:
+          description: HTTP status code
+          examples:
+          - 400
+          format: int64
+          type: integer
+        title:
+          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
+          examples:
+          - Bad Request
+          type: string
+        type:
+          default: about:blank
+          description: A URI reference to human-readable documentation for the error.
+          examples:
+          - https://example.com/errors/example
+          format: uri
+          type: string
+      type: object
+    RebalancingCalculateInput:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/RebalancingCalculateInput.json
+          format: uri
+          readOnly: true
+          type: string
+        from_chain_id:
+          format: int64
+          type: integer
+        rebalancing_from:
+          items:
+            $ref: '#/components/schemas/RebalancingFrom'
+          type: array
+        rebalancing_to:
+          items:
+            $ref: '#/components/schemas/RebalancingTo'
+          type: array
+        receiver_address_sp:
+          type: string
+        slippage:
+          format: int64
+          type: integer
+        user_address:
           type: string
       required:
-      - key
-      - name
-      - logoURI
+      - user_address
+      - receiver_address_sp
+      - from_chain_id
+      - slippage
+      - rebalancing_from
+      - rebalancing_to
+      type: object
+    StartRouteInput:
+      additionalProperties: false
+      properties:
+        in:
+          $ref: '#/components/schemas/QuoteParams'
+        liq:
+          $ref: '#/components/schemas/VaultRoute'
+      required:
+      - in
+      - liq
       type: object
   securitySchemes:
     apiKey:

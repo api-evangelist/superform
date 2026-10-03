@@ -144,6 +144,75 @@ paths:
       - Explorer
 components:
   schemas:
+    UserEligibleOutputBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/UserEligibleOutputBody.json
+          format: uri
+          readOnly: true
+          type: string
+        is_ok:
+          type: boolean
+      required:
+      - is_ok
+      type: object
+    SuperformTransaction:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/SuperformTransaction.json
+          format: uri
+          readOnly: true
+          type: string
+        amount_usd:
+          format: double
+          type: number
+        creation_timestamp:
+          format: int64
+          type: integer
+        from_chain:
+          format: int64
+          type: integer
+        protocol:
+          type: string
+        sender:
+          type: string
+        status:
+          format: int32
+          type: integer
+        superform_id:
+          type: string
+        to_chain:
+          format: int64
+          type: integer
+        transaction_hash:
+          type: string
+        tx_type:
+          format: int64
+          type: integer
+        vault:
+          type: string
+        vault_id:
+          type: string
+      required:
+      - transaction_hash
+      - tx_type
+      - sender
+      - from_chain
+      - to_chain
+      - creation_timestamp
+      - superform_id
+      - vault
+      - vault_id
+      - protocol
+      - amount_usd
+      - status
+      type: object
     ErrorDetail:
       additionalProperties: false
       properties:
@@ -200,75 +269,6 @@ components:
           - https://example.com/errors/example
           format: uri
           type: string
-      type: object
-    SuperformTransaction:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/SuperformTransaction.json
-          format: uri
-          readOnly: true
-          type: string
-        amount_usd:
-          format: double
-          type: number
-        creation_timestamp:
-          format: int64
-          type: integer
-        from_chain:
-          format: int64
-          type: integer
-        protocol:
-          type: string
-        sender:
-          type: string
-        status:
-          format: int32
-          type: integer
-        superform_id:
-          type: string
-        to_chain:
-          format: int64
-          type: integer
-        transaction_hash:
-          type: string
-        tx_type:
-          format: int64
-          type: integer
-        vault:
-          type: string
-        vault_id:
-          type: string
-      required:
-      - transaction_hash
-      - tx_type
-      - sender
-      - from_chain
-      - to_chain
-      - creation_timestamp
-      - superform_id
-      - vault
-      - vault_id
-      - protocol
-      - amount_usd
-      - status
-      type: object
-    UserEligibleOutputBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/UserEligibleOutputBody.json
-          format: uri
-          readOnly: true
-          type: string
-        is_ok:
-          type: boolean
-      required:
-      - is_ok
       type: object
   securitySchemes:
     apiKey:

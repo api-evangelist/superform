@@ -243,6 +243,103 @@ paths:
       - Token Distribution
 components:
   schemas:
+    GetTokenDistributionOutputBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/GetTokenDistributionOutputBody.json
+          format: uri
+          readOnly: true
+          type: string
+        rewards_claimed:
+          type: boolean
+        superrewards_stats:
+          $ref: '#/components/schemas/PiggyTokenStats'
+      required:
+      - superrewards_stats
+      - rewards_claimed
+      type: object
+    PiggyTokenStats:
+      additionalProperties: false
+      properties:
+        break_the_bank:
+          format: double
+          type: number
+        break_the_bank_tokens:
+          format: double
+          type: number
+        community_score:
+          format: double
+          type: number
+        community_score_percentile:
+          format: double
+          type: number
+        community_score_tokens:
+          format: double
+          type: number
+        final_superform_xp:
+          format: double
+          type: number
+        final_superform_xp_percentile:
+          format: double
+          type: number
+        superform_xp_tokens:
+          format: double
+          type: number
+        tokens_percentile:
+          format: double
+          type: number
+        total_tokens:
+          format: double
+          type: number
+        user_address:
+          type: string
+      required:
+      - user_address
+      - final_superform_xp
+      - final_superform_xp_percentile
+      - community_score
+      - community_score_percentile
+      - break_the_bank
+      - superform_xp_tokens
+      - community_score_tokens
+      - break_the_bank_tokens
+      - total_tokens
+      - tokens_percentile
+      type: object
+    GetTokenBalanceOutputBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/GetTokenBalanceOutputBody.json
+          format: uri
+          readOnly: true
+          type: string
+        availableAmount:
+          type: string
+        depositedAmount:
+          type: string
+        piggyBalance:
+          type: string
+        piggyEthBalance:
+          type: string
+        rewardsAPY:
+          format: double
+          type: number
+        user:
+          type: string
+      required:
+      - user
+      - piggyBalance
+      - piggyEthBalance
+      - depositedAmount
+      - availableAmount
+      - rewardsAPY
+      type: object
     ApprovalTransaction:
       additionalProperties: false
       properties:
@@ -314,72 +411,6 @@ components:
           format: uri
           type: string
       type: object
-    GetTokenDistributionOutputBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/GetTokenDistributionOutputBody.json
-          format: uri
-          readOnly: true
-          type: string
-        rewards_claimed:
-          type: boolean
-        superrewards_stats:
-          $ref: '#/components/schemas/PiggyTokenStats'
-      required:
-      - superrewards_stats
-      - rewards_claimed
-      type: object
-    PiggyTokenStats:
-      additionalProperties: false
-      properties:
-        break_the_bank:
-          format: double
-          type: number
-        break_the_bank_tokens:
-          format: double
-          type: number
-        community_score:
-          format: double
-          type: number
-        community_score_percentile:
-          format: double
-          type: number
-        community_score_tokens:
-          format: double
-          type: number
-        final_superform_xp:
-          format: double
-          type: number
-        final_superform_xp_percentile:
-          format: double
-          type: number
-        superform_xp_tokens:
-          format: double
-          type: number
-        tokens_percentile:
-          format: double
-          type: number
-        total_tokens:
-          format: double
-          type: number
-        user_address:
-          type: string
-      required:
-      - user_address
-      - final_superform_xp
-      - final_superform_xp_percentile
-      - community_score
-      - community_score_percentile
-      - break_the_bank
-      - superform_xp_tokens
-      - community_score_tokens
-      - break_the_bank_tokens
-      - total_tokens
-      - tokens_percentile
-      type: object
     StartTransactionRequest:
       additionalProperties: false
       properties:
@@ -408,37 +439,6 @@ components:
       - to
       - value
       - gasPriceInGwei
-      type: object
-    GetTokenBalanceOutputBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/GetTokenBalanceOutputBody.json
-          format: uri
-          readOnly: true
-          type: string
-        availableAmount:
-          type: string
-        depositedAmount:
-          type: string
-        piggyBalance:
-          type: string
-        piggyEthBalance:
-          type: string
-        rewardsAPY:
-          format: double
-          type: number
-        user:
-          type: string
-      required:
-      - user
-      - piggyBalance
-      - piggyEthBalance
-      - depositedAmount
-      - availableAmount
-      - rewardsAPY
       type: object
   securitySchemes:
     apiKey:
