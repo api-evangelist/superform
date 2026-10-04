@@ -278,70 +278,6 @@ paths:
       - Auxiliary
 components:
   schemas:
-    AvailableLiquidityProviders:
-      additionalProperties: false
-      properties:
-        display_name:
-          type: string
-        key:
-          format: int64
-          type: integer
-        logo:
-          type: string
-      required:
-      - display_name
-      - key
-      - logo
-      type: object
-    SupportedChain:
-      additionalProperties: false
-      properties:
-        chain_id:
-          format: int64
-          type: integer
-        explorers:
-          items:
-            type: string
-          type: array
-        icon:
-          type: string
-        is_L1:
-          type: boolean
-        name:
-          type: string
-        rpcs:
-          items:
-            type: string
-          type: array
-      required:
-      - chain_id
-      - name
-      - is_L1
-      - icon
-      - rpcs
-      - explorers
-      type: object
-    SupportedBridgeOrDEX:
-      additionalProperties: false
-      properties:
-        deposit_disabled:
-          type: boolean
-        display_name:
-          type: string
-        icon:
-          type: string
-        key:
-          format: int64
-          type: integer
-        withdraw_disabled:
-          type: boolean
-      required:
-      - key
-      - display_name
-      - icon
-      - deposit_disabled
-      - withdraw_disabled
-      type: object
     ErrorDetail:
       additionalProperties: false
       properties:
@@ -354,20 +290,37 @@ components:
         value:
           description: The value at the given location
       type: object
-    GetAddressTypeOutputBody:
+    GetSupportedOutputBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.superform.xyz/schemas/GetAddressTypeOutputBody.json
+          - https://api.superform.xyz/schemas/GetSupportedOutputBody.json
           format: uri
           readOnly: true
           type: string
-        addressType:
-          type: string
+        ambs:
+          items:
+            $ref: '#/components/schemas/DeployedAMB'
+          type: array
+        bridges:
+          items:
+            $ref: '#/components/schemas/SupportedBridgeOrDEX'
+          type: array
+        dexes:
+          items:
+            $ref: '#/components/schemas/SupportedBridgeOrDEX'
+          type: array
+        liquidity_providers:
+          items:
+            $ref: '#/components/schemas/AvailableLiquidityProviders'
+          type: array
       required:
-      - addressType
+      - ambs
+      - bridges
+      - dexes
+      - liquidity_providers
       type: object
     ErrorModel:
       additionalProperties: false
@@ -414,21 +367,6 @@ components:
           format: uri
           type: string
       type: object
-    DeployedAMB:
-      additionalProperties: false
-      properties:
-        display_name:
-          type: string
-        key:
-          format: int32
-          type: integer
-        logo:
-          type: string
-      required:
-      - key
-      - display_name
-      - logo
-      type: object
     GetSuperpositionUSDPriceOutputBody:
       additionalProperties: false
       properties:
@@ -457,6 +395,36 @@ components:
       - status
       - message
       - data
+      type: object
+    AvailableLiquidityProviders:
+      additionalProperties: false
+      properties:
+        display_name:
+          type: string
+        key:
+          format: int64
+          type: integer
+        logo:
+          type: string
+      required:
+      - display_name
+      - key
+      - logo
+      type: object
+    GetAddressTypeOutputBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/GetAddressTypeOutputBody.json
+          format: uri
+          readOnly: true
+          type: string
+        addressType:
+          type: string
+      required:
+      - addressType
       type: object
     ToToken:
       additionalProperties: false
@@ -515,6 +483,42 @@ components:
       required:
       - deployments
       - router_abi
+      type: object
+    DeployedAMB:
+      additionalProperties: false
+      properties:
+        display_name:
+          type: string
+        key:
+          format: int32
+          type: integer
+        logo:
+          type: string
+      required:
+      - key
+      - display_name
+      - logo
+      type: object
+    SupportedBridgeOrDEX:
+      additionalProperties: false
+      properties:
+        deposit_disabled:
+          type: boolean
+        display_name:
+          type: string
+        icon:
+          type: string
+        key:
+          format: int64
+          type: integer
+        withdraw_disabled:
+          type: boolean
+      required:
+      - key
+      - display_name
+      - icon
+      - deposit_disabled
+      - withdraw_disabled
       type: object
     DeployedContract:
       additionalProperties: false
@@ -624,37 +628,33 @@ components:
       - LifiValidator
       - LiFiDiamond
       type: object
-    GetSupportedOutputBody:
+    SupportedChain:
       additionalProperties: false
       properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/GetSupportedOutputBody.json
-          format: uri
-          readOnly: true
+        chain_id:
+          format: int64
+          type: integer
+        explorers:
+          items:
+            type: string
+          type: array
+        icon:
           type: string
-        ambs:
+        is_L1:
+          type: boolean
+        name:
+          type: string
+        rpcs:
           items:
-            $ref: '#/components/schemas/DeployedAMB'
-          type: array
-        bridges:
-          items:
-            $ref: '#/components/schemas/SupportedBridgeOrDEX'
-          type: array
-        dexes:
-          items:
-            $ref: '#/components/schemas/SupportedBridgeOrDEX'
-          type: array
-        liquidity_providers:
-          items:
-            $ref: '#/components/schemas/AvailableLiquidityProviders'
+            type: string
           type: array
       required:
-      - ambs
-      - bridges
-      - dexes
-      - liquidity_providers
+      - chain_id
+      - name
+      - is_L1
+      - icon
+      - rpcs
+      - explorers
       type: object
     UserPortfolioBalance:
       additionalProperties: false

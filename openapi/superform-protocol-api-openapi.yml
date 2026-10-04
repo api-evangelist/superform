@@ -155,57 +155,6 @@ paths:
       - Protocol
 components:
   schemas:
-    User:
-      additionalProperties: false
-      properties:
-        address:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        dynamic_id:
-          type: string
-        dynamic_wallet_id:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        protocol_id:
-          type: string
-        role:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-      required:
-      - id
-      - dynamic_id
-      - dynamic_wallet_id
-      - address
-      - protocol_id
-      - name
-      - role
-      - created_at
-      - updated_at
-      type: object
-    ProtocolLinks:
-      additionalProperties: false
-      properties:
-        discord:
-          type: string
-        telegram:
-          type: string
-        twitter:
-          type: string
-        website:
-          type: string
-      required:
-      - website
-      - twitter
-      - discord
-      - telegram
-      type: object
     ErrorDetail:
       additionalProperties: false
       properties:
@@ -218,22 +167,105 @@ components:
         value:
           description: The value at the given location
       type: object
-    ProtocolGraphics:
+    ProtocolExploit:
       additionalProperties: false
       properties:
-        avatar:
+        amount:
           type: string
-        header:
+        created_at:
+          format: date-time
           type: string
-        icon:
+        date:
+          format: date-time
           type: string
-        watermark:
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        protocol_id:
+          type: string
+        title:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        url:
           type: string
       required:
-      - icon
-      - header
-      - avatar
-      - watermark
+      - id
+      - protocol_id
+      - title
+      - amount
+      - url
+      - date
+      - is_deleted
+      - created_at
+      - updated_at
+      type: object
+    ProtocolAnalytic:
+      additionalProperties: false
+      properties:
+        chart_title:
+          type: string
+        chart_url:
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        protocol_id:
+          type: string
+      required:
+      - id
+      - protocol_id
+      - chart_title
+      - chart_url
+      - is_deleted
+      type: object
+    ErrorModel:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ErrorModel.json
+          format: uri
+          readOnly: true
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          examples:
+          - Property foo is required but is missing.
+          type: string
+        errors:
+          description: Optional list of individual error details
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          type: array
+        instance:
+          description: A URI reference that identifies the specific occurrence of the problem.
+          examples:
+          - https://example.com/error-log/abc123
+          format: uri
+          type: string
+        status:
+          description: HTTP status code
+          examples:
+          - 400
+          format: int64
+          type: integer
+        title:
+          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
+          examples:
+          - Bad Request
+          type: string
+        type:
+          default: about:blank
+          description: A URI reference to human-readable documentation for the error.
+          examples:
+          - https://example.com/errors/example
+          format: uri
+          type: string
       type: object
     Protocol:
       additionalProperties: false
@@ -359,50 +391,67 @@ components:
       - created_at
       - updated_at
       type: object
-    ErrorModel:
+    User:
       additionalProperties: false
       properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/ErrorModel.json
-          format: uri
-          readOnly: true
+        address:
           type: string
-        detail:
-          description: A human-readable explanation specific to this occurrence of the problem.
-          examples:
-          - Property foo is required but is missing.
+        created_at:
+          format: date-time
           type: string
-        errors:
-          description: Optional list of individual error details
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-          type: array
-        instance:
-          description: A URI reference that identifies the specific occurrence of the problem.
-          examples:
-          - https://example.com/error-log/abc123
-          format: uri
+        dynamic_id:
           type: string
-        status:
-          description: HTTP status code
-          examples:
-          - 400
-          format: int64
-          type: integer
-        title:
-          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
-          examples:
-          - Bad Request
+        dynamic_wallet_id:
           type: string
-        type:
-          default: about:blank
-          description: A URI reference to human-readable documentation for the error.
-          examples:
-          - https://example.com/errors/example
-          format: uri
+        id:
           type: string
+        name:
+          type: string
+        protocol_id:
+          type: string
+        role:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - id
+      - dynamic_id
+      - dynamic_wallet_id
+      - address
+      - protocol_id
+      - name
+      - role
+      - created_at
+      - updated_at
+      type: object
+    ProtocolFAQ:
+      additionalProperties: false
+      properties:
+        answer:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        protocol_id:
+          type: string
+        question:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - id
+      - protocol_id
+      - question
+      - answer
+      - is_deleted
+      - created_at
+      - updated_at
       type: object
     HistoricalDataStruct:
       additionalProperties: false
@@ -422,25 +471,52 @@ components:
       - timestamp
       - tvl
       type: object
-    ProtocolAnalytic:
+    HistoricalProtocolResponseBody:
       additionalProperties: false
       properties:
-        chart_title:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/HistoricalProtocolResponseBody.json
+          format: uri
+          readOnly: true
           type: string
-        chart_url:
+        historical_data:
+          $ref: '#/components/schemas/HistoricalDataStruct'
+        superform_tvl:
+          format: double
+          type: number
+        total_vaults:
+          format: int64
+          type: integer
+        tvl:
+          format: double
+          type: number
+        tvl_24h_change:
+          format: double
+          type: number
+      required:
+      - historical_data
+      - total_vaults
+      - tvl
+      - tvl_24h_change
+      type: object
+    ProtocolLinks:
+      additionalProperties: false
+      properties:
+        discord:
           type: string
-        id:
+        telegram:
           type: string
-        is_deleted:
-          type: boolean
-        protocol_id:
+        twitter:
+          type: string
+        website:
           type: string
       required:
-      - id
-      - protocol_id
-      - chart_title
-      - chart_url
-      - is_deleted
+      - website
+      - twitter
+      - discord
+      - telegram
       type: object
     Deployer:
       additionalProperties: false
@@ -474,40 +550,22 @@ components:
       - created_at
       - updated_at
       type: object
-    ProtocolExploit:
+    ProtocolGraphics:
       additionalProperties: false
       properties:
-        amount:
+        avatar:
           type: string
-        created_at:
-          format: date-time
+        header:
           type: string
-        date:
-          format: date-time
+        icon:
           type: string
-        id:
-          type: string
-        is_deleted:
-          type: boolean
-        protocol_id:
-          type: string
-        title:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        url:
+        watermark:
           type: string
       required:
-      - id
-      - protocol_id
-      - title
-      - amount
-      - url
-      - date
-      - is_deleted
-      - created_at
-      - updated_at
+      - icon
+      - header
+      - avatar
+      - watermark
       type: object
     ProtocolAudit:
       additionalProperties: false
@@ -540,64 +598,6 @@ components:
       - is_deleted
       - created_at
       - updated_at
-      type: object
-    ProtocolFAQ:
-      additionalProperties: false
-      properties:
-        answer:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        id:
-          type: string
-        is_deleted:
-          type: boolean
-        protocol_id:
-          type: string
-        question:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-      required:
-      - id
-      - protocol_id
-      - question
-      - answer
-      - is_deleted
-      - created_at
-      - updated_at
-      type: object
-    HistoricalProtocolResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/HistoricalProtocolResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        historical_data:
-          $ref: '#/components/schemas/HistoricalDataStruct'
-        superform_tvl:
-          format: double
-          type: number
-        total_vaults:
-          format: int64
-          type: integer
-        tvl:
-          format: double
-          type: number
-        tvl_24h_change:
-          format: double
-          type: number
-      required:
-      - historical_data
-      - total_vaults
-      - tvl
-      - tvl_24h_change
       type: object
   securitySchemes:
     apiKey:

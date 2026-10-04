@@ -87,140 +87,170 @@ paths:
       - Balances
 components:
   schemas:
-    ERC5115To4626WrapperVault:
+    VaultFAQ:
       additionalProperties: false
       properties:
-        chain_id:
-          format: int64
-          type: integer
-        contract_address:
-          type: string
-        from_token_address:
-          type: string
-        id:
-          type: string
-        superform_address:
-          type: string
-        superform_id:
-          type: string
-        to_token_address:
-          type: string
-      required:
-      - id
-      - chain_id
-      - superform_id
-      - superform_address
-      - contract_address
-      - from_token_address
-      - to_token_address
-      type: object
-    VaultRewardRates:
-      additionalProperties: false
-      properties:
-        address:
-          type: string
-        chain_id:
-          format: int64
-          type: integer
-        is_configurable:
-          type: boolean
-        logo:
-          type: string
-        rate_type:
-          type: string
-        remarks:
-          type: string
-        remarks_url:
-          type: string
-        reward_multiplier:
-          format: double
-          type: number
-        reward_rate:
-          format: double
-          type: number
-        reward_source:
-          type: string
-        symbol:
-          type: string
-        total_supply:
-          format: int64
-          type:
-          - integer
-          - 'null'
-        type:
-          type: string
-      type: object
-    ProtocolAnalytic:
-      additionalProperties: false
-      properties:
-        chart_title:
-          type: string
-        chart_url:
+        answer:
           type: string
         id:
           type: string
         is_deleted:
           type: boolean
-        protocol_id:
+        question:
           type: string
-      required:
-      - id
-      - protocol_id
-      - chart_title
-      - chart_url
-      - is_deleted
+        vault_id:
+          type: string
       type: object
-    ProtocolExploit:
+    VaultAudit:
+      additionalProperties: false
+      properties:
+        audit_date:
+          format: date-time
+          type: string
+        audit_link:
+          type: string
+        audit_name:
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        vault_id:
+          type: string
+      type: object
+    Chain:
+      additionalProperties: false
+      properties:
+        id:
+          format: int64
+          type: integer
+        logo_url:
+          type: string
+        name:
+          type: string
+        short_name:
+          type: string
+        wrapped_token_id:
+          type: string
+      type: object
+    VaultFee:
+      additionalProperties: false
+      properties:
+        fee_amount:
+          format: double
+          type: number
+        fee_description:
+          type: string
+        fee_name:
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        vault_id:
+          type: string
+      type: object
+    VaultKYC:
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        issuer:
+          type: string
+        issuer_link:
+          type: string
+        provider:
+          type: string
+        vault_id:
+          type: string
+      type: object
+    DebankToken:
       additionalProperties: false
       properties:
         amount:
+          format: double
+          type: number
+        amount_corrected:
           type: string
-        created_at:
-          format: date-time
+        chain:
           type: string
-        date:
-          format: date-time
+        chain_id:
+          format: int64
+          type: integer
+        decimals:
+          format: int64
+          type: integer
+        display_symbol:
+          type: string
+        id:
+          type: string
+        is_core:
+          type: boolean
+        is_verified:
+          type: boolean
+        is_wallet:
+          type: boolean
+        logo_url:
+          type: string
+        name:
+          type: string
+        optimized_symbol:
+          type: string
+        price:
+          format: double
+          type: number
+        protocol_id:
+          type: string
+        raw_amount:
+          $ref: '#/components/schemas/Int'
+        symbol:
+          type: string
+      required:
+      - id
+      - chain
+      - chain_id
+      - name
+      - symbol
+      - display_symbol
+      - optimized_symbol
+      - decimals
+      - logo_url
+      - protocol_id
+      - price
+      - is_verified
+      - is_core
+      - is_wallet
+      - amount
+      - amount_corrected
+      - raw_amount
+      type: object
+    VaultOther:
+      additionalProperties: false
+      properties:
+        additional_description:
+          type: string
+        additional_info:
           type: string
         id:
           type: string
         is_deleted:
           type: boolean
-        protocol_id:
+        vault_id:
           type: string
-        title:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        url:
-          type: string
-      required:
-      - id
-      - protocol_id
-      - title
-      - amount
-      - url
-      - date
-      - is_deleted
-      - created_at
-      - updated_at
       type: object
-    GetTokenBalancesOutputBody:
+    VaultRiskDataChainStruct:
       additionalProperties: false
       properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/GetTokenBalancesOutputBody.json
-          format: uri
-          readOnly: true
+        rating:
           type: string
-        tokens:
+        rating_color:
+          type: string
+        underlying:
           items:
-            $ref: '#/components/schemas/DebankToken'
+            $ref: '#/components/schemas/VaultRiskDataUnderlying'
           type: array
-      required:
-      - tokens
       type: object
     ProtocolAudit:
       additionalProperties: false
@@ -254,27 +284,53 @@ components:
       - created_at
       - updated_at
       type: object
-    Int:
-      additionalProperties: false
-      type: object
-    VaultExploit:
+    ProtocolAnalytic:
       additionalProperties: false
       properties:
-        amount:
+        chart_title:
           type: string
-        date:
+        chart_url:
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        protocol_id:
+          type: string
+      required:
+      - id
+      - protocol_id
+      - chart_title
+      - chart_url
+      - is_deleted
+      type: object
+    ProtocolFAQ:
+      additionalProperties: false
+      properties:
+        answer:
+          type: string
+        created_at:
           format: date-time
           type: string
         id:
           type: string
         is_deleted:
           type: boolean
-        title:
+        protocol_id:
           type: string
-        url:
+        question:
           type: string
-        vault_id:
+        updated_at:
+          format: date-time
           type: string
+      required:
+      - id
+      - protocol_id
+      - question
+      - answer
+      - is_deleted
+      - created_at
+      - updated_at
       type: object
     User:
       additionalProperties: false
@@ -310,31 +366,33 @@ components:
       - created_at
       - updated_at
       type: object
-    VaultOther:
+    VaultRiskData:
       additionalProperties: false
       properties:
-        additional_description:
+        assets:
+          $ref: '#/components/schemas/VaultRiskDataAssetsStruct'
+        chain:
+          $ref: '#/components/schemas/VaultRiskDataChainStruct'
+        pool_design:
+          $ref: '#/components/schemas/VaultRiskDataPoolDesignStruct'
+        pool_rating:
           type: string
-        additional_info:
+        pool_rating_color:
           type: string
-        id:
+        pool_rating_description:
           type: string
-        is_deleted:
-          type: boolean
-        vault_id:
+        pool_url:
           type: string
+        protocols:
+          $ref: '#/components/schemas/VaultRiskDataProtocolsStruct'
       type: object
-    VaultRiskDataAssetsStruct:
+    VaultRiskDataPoolDesignStruct:
       additionalProperties: false
       properties:
         rating:
           type: string
         rating_color:
           type: string
-        underlying:
-          items:
-            $ref: '#/components/schemas/VaultRiskDataUnderlying'
-          type: array
       type: object
     VaultStatistic:
       additionalProperties: false
@@ -459,40 +517,106 @@ components:
       - pps_usd
       - reward_rate
       type: object
-    GetSuperpositionBalancesOutputBody:
+    Asset:
       additionalProperties: false
       properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/GetSuperpositionBalancesOutputBody.json
-          format: uri
-          readOnly: true
+        contract_address:
           type: string
-        portfolio_value:
-          type: string
-        superpositions:
-          items:
-            $ref: '#/components/schemas/VaultBalanceSP'
-          type: array
-      required:
-      - superpositions
-      - portfolio_value
-      type: object
-    Chain:
-      additionalProperties: false
-      properties:
+        decimals:
+          format: int32
+          type: integer
         id:
           format: int64
           type: integer
-        logo_url:
+        image:
           type: string
         name:
           type: string
-        short_name:
+        symbol:
           type: string
-        wrapped_token_id:
+      type: object
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
           type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
+      type: object
+    ProtocolExploit:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        date:
+          format: date-time
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        protocol_id:
+          type: string
+        title:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        url:
+          type: string
+      required:
+      - id
+      - protocol_id
+      - title
+      - amount
+      - url
+      - date
+      - is_deleted
+      - created_at
+      - updated_at
+      type: object
+    VaultBalanceSP:
+      additionalProperties: false
+      properties:
+        chain_id:
+          format: int64
+          type: integer
+        is_erc20:
+          type: boolean
+        superposition_balance:
+          type: string
+        superposition_id:
+          type: string
+        superposition_usd_value:
+          type: string
+        vault:
+          $ref: '#/components/schemas/Vault'
+      required:
+      - chain_id
+      - superposition_balance
+      - superposition_usd_value
+      - superposition_id
+      - vault
+      - is_erc20
+      type: object
+    VaultRiskDataAssetsStruct:
+      additionalProperties: false
+      properties:
+        rating:
+          type: string
+        rating_color:
+          type: string
+        underlying:
+          items:
+            $ref: '#/components/schemas/VaultRiskDataUnderlying'
+          type: array
       type: object
     VaultAnalytic:
       additionalProperties: false
@@ -508,33 +632,122 @@ components:
         vault_id:
           type: string
       type: object
-    ProtocolFAQ:
+    Deployer:
       additionalProperties: false
       properties:
-        answer:
+        address:
           type: string
         created_at:
           format: date-time
           type: string
         id:
           type: string
-        is_deleted:
-          type: boolean
-        protocol_id:
+        name:
           type: string
-        question:
+        status:
+          type: string
+        type:
           type: string
         updated_at:
           format: date-time
           type: string
+        vault_count:
+          format: int64
+          type: integer
       required:
       - id
-      - protocol_id
-      - question
-      - answer
-      - is_deleted
+      - vault_count
+      - address
+      - name
+      - status
+      - type
       - created_at
       - updated_at
+      type: object
+    Int:
+      additionalProperties: false
+      type: object
+    VaultRewardRates:
+      additionalProperties: false
+      properties:
+        address:
+          type: string
+        chain_id:
+          format: int64
+          type: integer
+        is_configurable:
+          type: boolean
+        logo:
+          type: string
+        rate_type:
+          type: string
+        remarks:
+          type: string
+        remarks_url:
+          type: string
+        reward_multiplier:
+          format: double
+          type: number
+        reward_rate:
+          format: double
+          type: number
+        reward_source:
+          type: string
+        symbol:
+          type: string
+        total_supply:
+          format: int64
+          type:
+          - integer
+          - 'null'
+        type:
+          type: string
+      type: object
+    ERC5115To4626WrapperVault:
+      additionalProperties: false
+      properties:
+        chain_id:
+          format: int64
+          type: integer
+        contract_address:
+          type: string
+        from_token_address:
+          type: string
+        id:
+          type: string
+        superform_address:
+          type: string
+        superform_id:
+          type: string
+        to_token_address:
+          type: string
+      required:
+      - id
+      - chain_id
+      - superform_id
+      - superform_address
+      - contract_address
+      - from_token_address
+      - to_token_address
+      type: object
+    VaultExploit:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        date:
+          format: date-time
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        title:
+          type: string
+        url:
+          type: string
+        vault_id:
+          type: string
       type: object
     Vault:
       additionalProperties: false
@@ -789,96 +1002,67 @@ components:
       - form_implementation_id
       - name
       type: object
-    VaultBalanceSP:
+    GetTokenBalancesOutputBody:
       additionalProperties: false
       properties:
-        chain_id:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/GetTokenBalancesOutputBody.json
+          format: uri
+          readOnly: true
+          type: string
+        tokens:
+          items:
+            $ref: '#/components/schemas/DebankToken'
+          type: array
+      required:
+      - tokens
+      type: object
+    ErrorModel:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ErrorModel.json
+          format: uri
+          readOnly: true
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          examples:
+          - Property foo is required but is missing.
+          type: string
+        errors:
+          description: Optional list of individual error details
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          type: array
+        instance:
+          description: A URI reference that identifies the specific occurrence of the problem.
+          examples:
+          - https://example.com/error-log/abc123
+          format: uri
+          type: string
+        status:
+          description: HTTP status code
+          examples:
+          - 400
           format: int64
           type: integer
-        is_erc20:
-          type: boolean
-        superposition_balance:
+        title:
+          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
+          examples:
+          - Bad Request
           type: string
-        superposition_id:
+        type:
+          default: about:blank
+          description: A URI reference to human-readable documentation for the error.
+          examples:
+          - https://example.com/errors/example
+          format: uri
           type: string
-        superposition_usd_value:
-          type: string
-        vault:
-          $ref: '#/components/schemas/Vault'
-      required:
-      - chain_id
-      - superposition_balance
-      - superposition_usd_value
-      - superposition_id
-      - vault
-      - is_erc20
-      type: object
-    VaultKYC:
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-        is_deleted:
-          type: boolean
-        issuer:
-          type: string
-        issuer_link:
-          type: string
-        provider:
-          type: string
-        vault_id:
-          type: string
-      type: object
-    VaultAudit:
-      additionalProperties: false
-      properties:
-        audit_date:
-          format: date-time
-          type: string
-        audit_link:
-          type: string
-        audit_name:
-          type: string
-        id:
-          type: string
-        is_deleted:
-          type: boolean
-        vault_id:
-          type: string
-      type: object
-    ProtocolLinks:
-      additionalProperties: false
-      properties:
-        discord:
-          type: string
-        telegram:
-          type: string
-        twitter:
-          type: string
-        website:
-          type: string
-      required:
-      - website
-      - twitter
-      - discord
-      - telegram
-      type: object
-    ProtocolGraphics:
-      additionalProperties: false
-      properties:
-        avatar:
-          type: string
-        header:
-          type: string
-        icon:
-          type: string
-        watermark:
-          type: string
-      required:
-      - icon
-      - header
-      - avatar
-      - watermark
       type: object
     Protocol:
       additionalProperties: false
@@ -1004,96 +1188,6 @@ components:
       - created_at
       - updated_at
       type: object
-    Asset:
-      additionalProperties: false
-      properties:
-        contract_address:
-          type: string
-        decimals:
-          format: int32
-          type: integer
-        id:
-          format: int64
-          type: integer
-        image:
-          type: string
-        name:
-          type: string
-        symbol:
-          type: string
-      type: object
-    VaultRiskDataProtocolsStruct:
-      additionalProperties: false
-      properties:
-        rating:
-          type: string
-        rating_color:
-          type: string
-        underlying:
-          items:
-            $ref: '#/components/schemas/VaultRiskDataUnderlying'
-          type: array
-      type: object
-    DebankToken:
-      additionalProperties: false
-      properties:
-        amount:
-          format: double
-          type: number
-        amount_corrected:
-          type: string
-        chain:
-          type: string
-        chain_id:
-          format: int64
-          type: integer
-        decimals:
-          format: int64
-          type: integer
-        display_symbol:
-          type: string
-        id:
-          type: string
-        is_core:
-          type: boolean
-        is_verified:
-          type: boolean
-        is_wallet:
-          type: boolean
-        logo_url:
-          type: string
-        name:
-          type: string
-        optimized_symbol:
-          type: string
-        price:
-          format: double
-          type: number
-        protocol_id:
-          type: string
-        raw_amount:
-          $ref: '#/components/schemas/Int'
-        symbol:
-          type: string
-      required:
-      - id
-      - chain
-      - chain_id
-      - name
-      - symbol
-      - display_symbol
-      - optimized_symbol
-      - decimals
-      - logo_url
-      - protocol_id
-      - price
-      - is_verified
-      - is_core
-      - is_wallet
-      - amount
-      - amount_corrected
-      - raw_amount
-      type: object
     VaultRiskDataUnderlying:
       additionalProperties: false
       properties:
@@ -1108,70 +1202,24 @@ components:
           - string
           - 'null'
       type: object
-    VaultFee:
+    ProtocolLinks:
       additionalProperties: false
       properties:
-        fee_amount:
-          format: double
-          type: number
-        fee_description:
+        discord:
           type: string
-        fee_name:
+        telegram:
           type: string
-        id:
+        twitter:
           type: string
-        is_deleted:
-          type: boolean
-        vault_id:
+        website:
           type: string
+      required:
+      - website
+      - twitter
+      - discord
+      - telegram
       type: object
-    ErrorDetail:
-      additionalProperties: false
-      properties:
-        location:
-          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
-          type: string
-        message:
-          description: Error message text
-          type: string
-        value:
-          description: The value at the given location
-      type: object
-    VaultRiskData:
-      additionalProperties: false
-      properties:
-        assets:
-          $ref: '#/components/schemas/VaultRiskDataAssetsStruct'
-        chain:
-          $ref: '#/components/schemas/VaultRiskDataChainStruct'
-        pool_design:
-          $ref: '#/components/schemas/VaultRiskDataPoolDesignStruct'
-        pool_rating:
-          type: string
-        pool_rating_color:
-          type: string
-        pool_rating_description:
-          type: string
-        pool_url:
-          type: string
-        protocols:
-          $ref: '#/components/schemas/VaultRiskDataProtocolsStruct'
-      type: object
-    VaultFAQ:
-      additionalProperties: false
-      properties:
-        answer:
-          type: string
-        id:
-          type: string
-        is_deleted:
-          type: boolean
-        question:
-          type: string
-        vault_id:
-          type: string
-      type: object
-    VaultRiskDataChainStruct:
+    VaultRiskDataProtocolsStruct:
       additionalProperties: false
       properties:
         rating:
@@ -1183,90 +1231,42 @@ components:
             $ref: '#/components/schemas/VaultRiskDataUnderlying'
           type: array
       type: object
-    Deployer:
-      additionalProperties: false
-      properties:
-        address:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        status:
-          type: string
-        type:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        vault_count:
-          format: int64
-          type: integer
-      required:
-      - id
-      - vault_count
-      - address
-      - name
-      - status
-      - type
-      - created_at
-      - updated_at
-      type: object
-    ErrorModel:
+    GetSuperpositionBalancesOutputBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.superform.xyz/schemas/ErrorModel.json
+          - https://api.superform.xyz/schemas/GetSuperpositionBalancesOutputBody.json
           format: uri
           readOnly: true
           type: string
-        detail:
-          description: A human-readable explanation specific to this occurrence of the problem.
-          examples:
-          - Property foo is required but is missing.
+        portfolio_value:
           type: string
-        errors:
-          description: Optional list of individual error details
+        superpositions:
           items:
-            $ref: '#/components/schemas/ErrorDetail'
+            $ref: '#/components/schemas/VaultBalanceSP'
           type: array
-        instance:
-          description: A URI reference that identifies the specific occurrence of the problem.
-          examples:
-          - https://example.com/error-log/abc123
-          format: uri
-          type: string
-        status:
-          description: HTTP status code
-          examples:
-          - 400
-          format: int64
-          type: integer
-        title:
-          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
-          examples:
-          - Bad Request
-          type: string
-        type:
-          default: about:blank
-          description: A URI reference to human-readable documentation for the error.
-          examples:
-          - https://example.com/errors/example
-          format: uri
-          type: string
+      required:
+      - superpositions
+      - portfolio_value
       type: object
-    VaultRiskDataPoolDesignStruct:
+    ProtocolGraphics:
       additionalProperties: false
       properties:
-        rating:
+        avatar:
           type: string
-        rating_color:
+        header:
           type: string
+        icon:
+          type: string
+        watermark:
+          type: string
+      required:
+      - icon
+      - header
+      - avatar
+      - watermark
       type: object
   securitySchemes:
     apiKey:
