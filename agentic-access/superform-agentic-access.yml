@@ -1,23 +1,28 @@
-generated: '2026-07-21'
+generated: '2026-09-23'
 method: generated
-source: openapi/superform-openapi-original.json
+source: openapi/superform-auxiliary-api-openapi.yml, openapi/superform-balances-api-openapi.yml,
+  openapi/superform-contract-checker-api-openapi.yml, openapi/superform-data-api-openapi.yml,
+  openapi/superform-execution-api-openapi.yml, openapi/superform-explorer-api-openapi.yml, openapi/superform-health-api-openapi.yml,
+  openapi/superform-migrate-api-openapi.yml, openapi/superform-protocol-api-openapi.yml, openapi/superform-protocol-rewards-api-openapi.yml,
+  openapi/superform-simulator-api-openapi.yml, openapi/superform-stats-api-openapi.yml, openapi/superform-superrewardsapi-api-openapi.yml,
+  openapi/superform-token-distribution-api-openapi.yml, openapi/superform-vault-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 66
   by_action_class:
-    connected: 58
-    acting: 8
+    connected: 61
+    acting: 5
   by_consequence:
-    read: 58
-    physical: 4
-    write: 4
+    read: 61
+    physical: 3
+    write: 2
   human_in_the_loop_required: 0
 operations:
-- path: /
+- path: /address/type/{address}
   method: get
-  operationId: health-check
+  operationId: address-type
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -25,9 +30,89 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /address/type/{address}
+- path: /deployment
   method: get
-  operationId: address-type
+  operationId: deployment-details
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /superpositions/{superform_id}/price
+  method: get
+  operationId: superposition-price
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /supported
+  method: get
+  operationId: supported
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /supported/chains
+  method: get
+  operationId: supported-chains
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /supported/withdrawable-tokens
+  method: get
+  operationId: supported-withdrawable-tokens
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /supported/yield-types
+  method: get
+  operationId: supported-yield-types
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /user/portfolio/{address}
+  method: get
+  operationId: user-balances
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /token/balances/{address}
+  method: get
+  operationId: token-balances
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /token/superpositions/balances/{address}
+  method: get
+  operationId: superpositions-balances
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -45,9 +130,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /deployment
+- path: /vault/data/historical/{vaultOrSuperformIDs}
   method: get
-  operationId: deployment-details
+  operationId: get-historical-vault-data
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -76,6 +161,60 @@ operations:
 - path: /deposit/start
   method: post
   operationId: deposit-start
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /rebalancing/calculate
+  method: post
+  operationId: rebalancing-calculate
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /rebalancing/start
+  method: post
+  operationId: rebalancing-start
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /withdraw/calculate
+  method: post
+  operationId: withdraw-calculate
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /withdraw/start
+  method: post
+  operationId: withdraw-start
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -134,6 +273,16 @@ operations:
 - path: /explorer/transactionAmount/{txHash}
   method: get
   operationId: get-transaction-amount
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /
+  method: get
+  operationId: health-check
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -215,18 +364,12 @@ operations:
   method: post
   operationId: migrate-transaction
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /migrate/user-vault-shares/{user_address}
   method: get
   operationId: migrate-user-balances
@@ -250,6 +393,16 @@ operations:
 - path: /protocol/{id}/stats
   method: get
   operationId: protocol-stats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /protocols
+  method: get
+  operationId: get-protocols-all
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -307,9 +460,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /protocols
+- path: /simulator/superform/{superform_id}
   method: get
-  operationId: get-protocols-all
+  operationId: get-simulation
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -317,38 +470,26 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /rebalancing/calculate
-  method: post
-  operationId: rebalancing-calculate
+- path: /stats/superform
+  method: get
+  operationId: get-superform-tvl-volume-stats
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /rebalancing/start
-  method: post
-  operationId: rebalancing-start
+      max-ttl: 3600
+    audit: none
+- path: /stats/tvl/vault/{vault_id}
+  method: get
+  operationId: get-vault-superform-tvl
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /rewards/leaderboard
   method: get
   operationId: get-season-3-rewards-leaderboard-superrewards
@@ -402,46 +543,6 @@ operations:
 - path: /rewards/summary/{user_address}
   method: get
   operationId: get-season-3-rewards-summary-superrewards
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /simulator/superform/{superform_id}
-  method: get
-  operationId: get-simulation
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /stats/superform
-  method: get
-  operationId: get-superform-tvl-volume-stats
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /stats/tvl/vault/{vault_id}
-  method: get
-  operationId: get-vault-superform-tvl
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /superpositions/{superform_id}/price
-  method: get
-  operationId: superposition-price
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -509,39 +610,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /supported
+- path: /user/referral/code
   method: get
-  operationId: supported
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /supported/chains
-  method: get
-  operationId: supported-chains
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /supported/withdrawable-tokens
-  method: get
-  operationId: supported-withdrawable-tokens
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /supported/yield-types
-  method: get
-  operationId: supported-yield-types
+  operationId: get-referral-code-superrewards
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -609,46 +680,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /token/balances/{address}
-  method: get
-  operationId: token-balances
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /token/superpositions/balances/{address}
-  method: get
-  operationId: superpositions-balances
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user/portfolio/{address}
-  method: get
-  operationId: user-balances
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user/referral/code
-  method: get
-  operationId: get-referral-code-superrewards
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /vault
   method: post
   operationId: add-vault
@@ -665,16 +696,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /vault/data/historical/{vaultOrSuperformIDs}
-  method: get
-  operationId: get-historical-vault-data
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /vault/{vaultOrSuperformIDOrContractAddress}
   method: get
   operationId: get-vault-data
@@ -695,39 +716,3 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /withdraw/calculate
-  method: post
-  operationId: withdraw-calculate
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /withdraw/start
-  method: post
-  operationId: withdraw-start
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
