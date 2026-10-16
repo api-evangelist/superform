@@ -2,6 +2,20 @@
   "repo": "superform",
   "feeds": [
     {
+      "source": "https://blog.superform.xyz/feed/",
+      "feed_url": "https://blog.superform.xyz/feed/",
+      "title": "",
+      "saved": 1,
+      "method": "feed"
+    },
+    {
+      "source": "https://mirror.xyz/superform.eth",
+      "feed_url": "https://mirror.xyz/superform.eth/blog/rss/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
       "source": "https://github.com/superform-xyz",
       "feed_url": "https://github.com/superform-xyz",
       "title": "",
@@ -9,6 +23,6 @@
       "method": "none"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-10-03T12:30:02Z"
+  "post_count": 1,
+  "fetched": "2026-10-10T13:15:00Z"
 }
