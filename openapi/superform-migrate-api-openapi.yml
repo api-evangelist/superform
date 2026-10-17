@@ -89,17 +89,21 @@ paths:
       - Migrate
 components:
   schemas:
-    ErrorDetail:
+    StartMigrationTransaction:
       additionalProperties: false
       properties:
-        location:
-          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+        gas_limit:
           type: string
-        message:
-          description: Error message text
+        to:
+          type: string
+        transaction_data:
           type: string
         value:
-          description: The value at the given location
+          type: string
+      required:
+      - transaction_data
+      - to
+      - value
       type: object
     StartMigrationOutputBody:
       additionalProperties: false
@@ -119,6 +123,51 @@ components:
           $ref: '#/components/schemas/StartMigrationTransaction'
       required:
       - transaction
+      type: object
+    UserERC4626VaultShares:
+      additionalProperties: false
+      properties:
+        amount_usd:
+          format: double
+          type: number
+        balance:
+          type: string
+        decimals:
+          format: int64
+          type: integer
+        protocol_id:
+          type: string
+        superform_id:
+          type: string
+        vault_id:
+          type: string
+      required:
+      - vault_id
+      - balance
+      - superform_id
+      - protocol_id
+      - decimals
+      - amount_usd
+      type: object
+    MigrateApproveTransactions:
+      additionalProperties: false
+      properties:
+        approval_amount:
+          type: string
+        superform_id:
+          type: string
+        to:
+          type: string
+        transaction_data:
+          type: string
+        vault_id:
+          type: string
+      required:
+      - vault_id
+      - superform_id
+      - approval_amount
+      - transaction_data
+      - to
       type: object
     ErrorModel:
       additionalProperties: false
@@ -165,51 +214,6 @@ components:
           format: uri
           type: string
       type: object
-    MigrateApproveTransactions:
-      additionalProperties: false
-      properties:
-        approval_amount:
-          type: string
-        superform_id:
-          type: string
-        to:
-          type: string
-        transaction_data:
-          type: string
-        vault_id:
-          type: string
-      required:
-      - vault_id
-      - superform_id
-      - approval_amount
-      - transaction_data
-      - to
-      type: object
-    UserERC4626VaultShares:
-      additionalProperties: false
-      properties:
-        amount_usd:
-          format: double
-          type: number
-        balance:
-          type: string
-        decimals:
-          format: int64
-          type: integer
-        protocol_id:
-          type: string
-        superform_id:
-          type: string
-        vault_id:
-          type: string
-      required:
-      - vault_id
-      - balance
-      - superform_id
-      - protocol_id
-      - decimals
-      - amount_usd
-      type: object
     StartMigrationInput:
       additionalProperties: false
       properties:
@@ -228,21 +232,17 @@ components:
       - amount
       - slippage
       type: object
-    StartMigrationTransaction:
+    ErrorDetail:
       additionalProperties: false
       properties:
-        gas_limit:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
           type: string
-        to:
-          type: string
-        transaction_data:
+        message:
+          description: Error message text
           type: string
         value:
-          type: string
-      required:
-      - transaction_data
-      - to
-      - value
+          description: The value at the given location
       type: object
   securitySchemes:
     apiKey:

@@ -155,118 +155,6 @@ paths:
       - Protocol
 components:
   schemas:
-    ErrorDetail:
-      additionalProperties: false
-      properties:
-        location:
-          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
-          type: string
-        message:
-          description: Error message text
-          type: string
-        value:
-          description: The value at the given location
-      type: object
-    ProtocolExploit:
-      additionalProperties: false
-      properties:
-        amount:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        date:
-          format: date-time
-          type: string
-        id:
-          type: string
-        is_deleted:
-          type: boolean
-        protocol_id:
-          type: string
-        title:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        url:
-          type: string
-      required:
-      - id
-      - protocol_id
-      - title
-      - amount
-      - url
-      - date
-      - is_deleted
-      - created_at
-      - updated_at
-      type: object
-    ProtocolAnalytic:
-      additionalProperties: false
-      properties:
-        chart_title:
-          type: string
-        chart_url:
-          type: string
-        id:
-          type: string
-        is_deleted:
-          type: boolean
-        protocol_id:
-          type: string
-      required:
-      - id
-      - protocol_id
-      - chart_title
-      - chart_url
-      - is_deleted
-      type: object
-    ErrorModel:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/ErrorModel.json
-          format: uri
-          readOnly: true
-          type: string
-        detail:
-          description: A human-readable explanation specific to this occurrence of the problem.
-          examples:
-          - Property foo is required but is missing.
-          type: string
-        errors:
-          description: Optional list of individual error details
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-          type: array
-        instance:
-          description: A URI reference that identifies the specific occurrence of the problem.
-          examples:
-          - https://example.com/error-log/abc123
-          format: uri
-          type: string
-        status:
-          description: HTTP status code
-          examples:
-          - 400
-          format: int64
-          type: integer
-        title:
-          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
-          examples:
-          - Bad Request
-          type: string
-        type:
-          default: about:blank
-          description: A URI reference to human-readable documentation for the error.
-          examples:
-          - https://example.com/errors/example
-          format: uri
-          type: string
-      type: object
     Protocol:
       additionalProperties: false
       properties:
@@ -391,39 +279,74 @@ components:
       - created_at
       - updated_at
       type: object
-    User:
+    ProtocolAudit:
       additionalProperties: false
       properties:
-        address:
+        audit_date:
+          format: date-time
+          type: string
+        audit_link:
+          type: string
+        audit_name:
           type: string
         created_at:
           format: date-time
           type: string
-        dynamic_id:
-          type: string
-        dynamic_wallet_id:
-          type: string
         id:
           type: string
-        name:
-          type: string
+        is_deleted:
+          type: boolean
         protocol_id:
-          type: string
-        role:
           type: string
         updated_at:
           format: date-time
           type: string
       required:
       - id
-      - dynamic_id
-      - dynamic_wallet_id
-      - address
       - protocol_id
-      - name
-      - role
+      - audit_name
+      - audit_link
+      - audit_date
+      - is_deleted
       - created_at
       - updated_at
+      type: object
+    ProtocolLinks:
+      additionalProperties: false
+      properties:
+        discord:
+          type: string
+        telegram:
+          type: string
+        twitter:
+          type: string
+        website:
+          type: string
+      required:
+      - website
+      - twitter
+      - discord
+      - telegram
+      type: object
+    ProtocolAnalytic:
+      additionalProperties: false
+      properties:
+        chart_title:
+          type: string
+        chart_url:
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        protocol_id:
+          type: string
+      required:
+      - id
+      - protocol_id
+      - chart_title
+      - chart_url
+      - is_deleted
       type: object
     ProtocolFAQ:
       additionalProperties: false
@@ -452,24 +375,6 @@ components:
       - is_deleted
       - created_at
       - updated_at
-      type: object
-    HistoricalDataStruct:
-      additionalProperties: false
-      properties:
-        timestamp:
-          items:
-            format: int64
-            minimum: 0
-            type: integer
-          type: array
-        tvl:
-          items:
-            format: double
-            type: number
-          type: array
-      required:
-      - timestamp
-      - tvl
       type: object
     HistoricalProtocolResponseBody:
       additionalProperties: false
@@ -501,22 +406,115 @@ components:
       - tvl
       - tvl_24h_change
       type: object
-    ProtocolLinks:
+    HistoricalDataStruct:
       additionalProperties: false
       properties:
-        discord:
+        timestamp:
+          items:
+            format: int64
+            minimum: 0
+            type: integer
+          type: array
+        tvl:
+          items:
+            format: double
+            type: number
+          type: array
+      required:
+      - timestamp
+      - tvl
+      type: object
+    ErrorModel:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/ErrorModel.json
+          format: uri
+          readOnly: true
           type: string
-        telegram:
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          examples:
+          - Property foo is required but is missing.
           type: string
-        twitter:
+        errors:
+          description: Optional list of individual error details
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          type: array
+        instance:
+          description: A URI reference that identifies the specific occurrence of the problem.
+          examples:
+          - https://example.com/error-log/abc123
+          format: uri
           type: string
-        website:
+        status:
+          description: HTTP status code
+          examples:
+          - 400
+          format: int64
+          type: integer
+        title:
+          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
+          examples:
+          - Bad Request
+          type: string
+        type:
+          default: about:blank
+          description: A URI reference to human-readable documentation for the error.
+          examples:
+          - https://example.com/errors/example
+          format: uri
+          type: string
+      type: object
+    ProtocolExploit:
+      additionalProperties: false
+      properties:
+        amount:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        date:
+          format: date-time
+          type: string
+        id:
+          type: string
+        is_deleted:
+          type: boolean
+        protocol_id:
+          type: string
+        title:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        url:
           type: string
       required:
-      - website
-      - twitter
-      - discord
-      - telegram
+      - id
+      - protocol_id
+      - title
+      - amount
+      - url
+      - date
+      - is_deleted
+      - created_at
+      - updated_at
+      type: object
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
       type: object
     Deployer:
       additionalProperties: false
@@ -567,35 +565,37 @@ components:
       - avatar
       - watermark
       type: object
-    ProtocolAudit:
+    User:
       additionalProperties: false
       properties:
-        audit_date:
-          format: date-time
-          type: string
-        audit_link:
-          type: string
-        audit_name:
+        address:
           type: string
         created_at:
           format: date-time
           type: string
+        dynamic_id:
+          type: string
+        dynamic_wallet_id:
+          type: string
         id:
           type: string
-        is_deleted:
-          type: boolean
+        name:
+          type: string
         protocol_id:
+          type: string
+        role:
           type: string
         updated_at:
           format: date-time
           type: string
       required:
       - id
+      - dynamic_id
+      - dynamic_wallet_id
+      - address
       - protocol_id
-      - audit_name
-      - audit_link
-      - audit_date
-      - is_deleted
+      - name
+      - role
       - created_at
       - updated_at
       type: object

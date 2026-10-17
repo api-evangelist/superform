@@ -77,6 +77,18 @@ paths:
       - Data
 components:
   schemas:
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
+      type: object
     HistoricalVaultResponseBody:
       additionalProperties: false
       properties:
@@ -94,18 +106,6 @@ components:
           type: object
       required:
       - vaults
-      type: object
-    ErrorDetail:
-      additionalProperties: false
-      properties:
-        location:
-          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
-          type: string
-        message:
-          description: Error message text
-          type: string
-        value:
-          description: The value at the given location
       type: object
     ErrorModel:
       additionalProperties: false

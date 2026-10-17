@@ -243,6 +243,38 @@ paths:
       - Token Distribution
 components:
   schemas:
+    GetTokenDistributionOutputBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.superform.xyz/schemas/GetTokenDistributionOutputBody.json
+          format: uri
+          readOnly: true
+          type: string
+        rewards_claimed:
+          type: boolean
+        superrewards_stats:
+          $ref: '#/components/schemas/PiggyTokenStats'
+      required:
+      - superrewards_stats
+      - rewards_claimed
+      type: object
+    ApprovalTransaction:
+      additionalProperties: false
+      properties:
+        approvingAmount:
+          type: string
+        to:
+          type: string
+        transactionData:
+          type: string
+      required:
+      - transactionData
+      - to
+      - approvingAmount
+      type: object
     PiggyTokenStats:
       additionalProperties: false
       properties:
@@ -291,49 +323,36 @@ components:
       - total_tokens
       - tokens_percentile
       type: object
-    ErrorDetail:
-      additionalProperties: false
-      properties:
-        location:
-          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
-          type: string
-        message:
-          description: Error message text
-          type: string
-        value:
-          description: The value at the given location
-      type: object
-    GetTokenDistributionOutputBody:
+    GetTokenBalanceOutputBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.superform.xyz/schemas/GetTokenDistributionOutputBody.json
+          - https://api.superform.xyz/schemas/GetTokenBalanceOutputBody.json
           format: uri
           readOnly: true
           type: string
-        rewards_claimed:
-          type: boolean
-        superrewards_stats:
-          $ref: '#/components/schemas/PiggyTokenStats'
-      required:
-      - superrewards_stats
-      - rewards_claimed
-      type: object
-    ApprovalTransaction:
-      additionalProperties: false
-      properties:
-        approvingAmount:
+        availableAmount:
           type: string
-        to:
+        depositedAmount:
           type: string
-        transactionData:
+        piggyBalance:
+          type: string
+        piggyEthBalance:
+          type: string
+        rewardsAPY:
+          format: double
+          type: number
+        user:
           type: string
       required:
-      - transactionData
-      - to
-      - approvingAmount
+      - user
+      - piggyBalance
+      - piggyEthBalance
+      - depositedAmount
+      - availableAmount
+      - rewardsAPY
       type: object
     ErrorModel:
       additionalProperties: false
@@ -380,6 +399,18 @@ components:
           format: uri
           type: string
       type: object
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
+      type: object
     StartTransactionRequest:
       additionalProperties: false
       properties:
@@ -408,37 +439,6 @@ components:
       - to
       - value
       - gasPriceInGwei
-      type: object
-    GetTokenBalanceOutputBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.superform.xyz/schemas/GetTokenBalanceOutputBody.json
-          format: uri
-          readOnly: true
-          type: string
-        availableAmount:
-          type: string
-        depositedAmount:
-          type: string
-        piggyBalance:
-          type: string
-        piggyEthBalance:
-          type: string
-        rewardsAPY:
-          format: double
-          type: number
-        user:
-          type: string
-      required:
-      - user
-      - piggyBalance
-      - piggyEthBalance
-      - depositedAmount
-      - availableAmount
-      - rewardsAPY
       type: object
   securitySchemes:
     apiKey:
